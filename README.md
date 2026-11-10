@@ -10,6 +10,7 @@ Läuft komplett im Browser – kein Backend, keine Anmeldung, keine Tracker.
 - Beliebig viele Rally-Leads mit Allianz-Tag, Name, Pet-Markierung und Marschzeit
 - Flexible Zeiteingabe: `45`, `1:05`, `1m 5s`, `00:01:05`
 - Berechnung: langsamster Marsch = Base (GO), alle anderen `+Verzögerung`
+- Optional: Base-Rally manuell wählen – langsamere Rallys starten dann vor der Base (`−Vorlauf`)
 - Reihenfolge als Text kopieren (für den Allianz-Chat)
 - Visueller Timer: optionaler 3-s-Vorlauf, Countdown mit Zehntelsekunden, grünes GO-Signal, Vibration (Android), Bildschirm bleibt an
 - Deutsch/Englisch umschaltbar
@@ -44,3 +45,4 @@ Farben stehen als Variablen ganz oben in `styles.css` (`--accent` = Orange, `--g
 Alle Rallys werden mit **derselben Rally-Dauer** erstellt. Dann gilt:
 `Verzögerung = langsamste Marschzeit − eigene Marschzeit`.
 Die Base-Rally startet bei 0, alle anderen nach ihrer Verzögerung – so landen alle zur gleichen Sekunde.
+Bei manuell gewählter Base wird die Verzögerung für langsamere Rallys negativ: sie starten entsprechend früher, der Timer beginnt dann mit dem ersten Start.

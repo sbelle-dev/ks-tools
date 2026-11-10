@@ -22,17 +22,24 @@
       add: '＋ Rally', example: 'Beispiel', clear: 'Leeren',
       hint: 'Formate: 45 · 1:05 · 1m 5s · 00:01:05. Marschzeit per Test-Rally im Spiel messen. Wichtig: Alle wählen dieselbe Rally-Dauer.',
       precount: '3-Sekunden-Vorlauf vor dem Timer',
+      baseLabel: 'Base-Rally (optional)',
+      baseAuto: 'Automatisch – langsamster Marsch',
+      baseHint: 'Wählst du eine schnellere Rally als Base, starten langsamere vor ihr (−).',
+      rowN: 'Zeile {n}',
       calc: '⚔️ Reihenfolge berechnen',
       errNone: 'Trag mindestens eine gültige Marschzeit ein.',
       errInvalid: 'Ungültige Marschzeit in den markierten Zeilen.',
       resultOne: '{names} startet die Base-Rally',
       resultMany: 'Gleichzeitig als Base: {names}',
       resultSub: 'Langsamster Marsch: {time}. Alle anderen starten nach der angezeigten Verzögerung.',
+      resultSubManual: 'Base manuell gewählt (Marsch {time}). + = nach der Base starten, − = vor der Base starten.',
+      errBase: 'Die gewählte Base-Rally hat keine gültige Marschzeit.',
       copy: '📋 Kopieren', copied: '✓ Kopiert', copyFail: 'Kopieren fehlgeschlagen',
       timer: '▶ Timer starten',
       copyHead: '⚔️ RALLY-REIHENFOLGE',
       copyFoot: 'Alle mit derselben Rally-Dauer starten!',
-      hudPre: 'Base-Rally startet in', hudGo: 'Jetzt starten', hudNext: 'Nächster Start in',
+      copyLegend: '− = vor der Base starten, + = danach',
+      hudPre: 'Base-Rally startet in', hudFirst: 'Erster Start in', hudGo: 'Jetzt starten', hudNext: 'Nächster Start in',
       hudDone: 'Alle Rallys gestartet',
       restart: '↺ Neustart', exit: 'Zurück',
       unnamed: 'Unbenannt', confirmClear: 'Alle Zeilen löschen?',
@@ -48,17 +55,24 @@
       add: '＋ Rally', example: 'Example', clear: 'Clear',
       hint: 'Formats: 45 · 1:05 · 1m 5s · 00:01:05. Measure march time with a test rally in-game. Important: everyone picks the same rally duration.',
       precount: '3-second lead-in before the timer',
+      baseLabel: 'Base rally (optional)',
+      baseAuto: 'Automatic – slowest march',
+      baseHint: 'If you pick a faster rally as base, slower ones launch before it (−).',
+      rowN: 'Row {n}',
       calc: '⚔️ Calculate rally order',
       errNone: 'Enter at least one valid march time.',
       errInvalid: 'Invalid march time in the highlighted rows.',
       resultOne: '{names} starts the base rally',
       resultMany: 'Launch together as base: {names}',
       resultSub: 'Slowest march: {time}. Everyone else launches after the delay shown.',
+      resultSubManual: 'Base picked manually (march {time}). + = launch after the base, − = launch before the base.',
+      errBase: 'The selected base rally has no valid march time.',
       copy: '📋 Copy', copied: '✓ Copied', copyFail: 'Copy failed',
       timer: '▶ Start timer',
       copyHead: '⚔️ RALLY ORDER',
       copyFoot: 'Everyone use the same rally duration!',
-      hudPre: 'Base rally starts in', hudGo: 'Launch now', hudNext: 'Next launch in',
+      copyLegend: '− = launch before the base, + = after',
+      hudPre: 'Base rally starts in', hudFirst: 'First launch in', hudGo: 'Launch now', hudNext: 'Next launch in',
       hudDone: 'All rallies launched',
       restart: '↺ Restart', exit: 'Back',
       unnamed: 'Unnamed', confirmClear: 'Delete all rows?',
@@ -79,15 +93,19 @@
     lang: saved.lang || ((navigator.language || '').toLowerCase().startsWith('de') ? 'de' : 'en'),
     precount: saved.precount !== false,
     rows: Array.isArray(saved.rows) && saved.rows.length ? saved.rows : [],
+    baseIdx: Number.isInteger(saved.baseIdx) ? saved.baseIdx : -1,
+    baseId: null,
     schedule: null,
   };
   let uid = 0;
   state.rows = state.rows.map(r => ({ id: ++uid, tag: r.tag || '', name: r.name || '', march: r.march || '', pet: !!r.pet }));
+  if (state.baseIdx >= 0 && state.rows[state.baseIdx]) state.baseId = state.rows[state.baseIdx].id;
   while (state.rows.length < SITE.defaultRows) state.rows.push(blankRow());
 
   function blankRow() { return { id: ++uid, tag: '', name: '', march: '', pet: false }; }
   function persist() {
-    store.set({ lang: state.lang, precount: state.precount, rows: state.rows.map(({ tag, name, march, pet }) => ({ tag, name, march, pet })) });
+    const baseIdx = state.rows.findIndex(r => r.id === state.baseId);
+    store.set({ lang: state.lang, precount: state.precount, baseIdx, rows: state.rows.map(({ tag, name, march, pet }) => ({ tag, name, march, pet })) });
   }
 
   // ---------- Helfer ----------
@@ -119,6 +137,8 @@
     const ss = String(s).padStart(2, '0');
     return h ? `${h}:${String(m).padStart(2, '0')}:${ss}` : `${m}:${ss}`;
   }
+
+  const fmtDelay = d => d === 0 ? 'BASE' : `${d > 0 ? '+' : '−'}${fmt(Math.abs(d))}`;
 
   const label = r => `${r.pet ? '🐾 ' : ''}${r.tag ? `[${r.tag.toUpperCase()}] ` : ''}${r.name || t('unnamed')}`;
 
@@ -157,6 +177,7 @@
         march.classList.remove('invalid');
         invalidate();
         persist();
+        renderBaseSelect();
       };
       [tag, name, march].forEach(i => i.addEventListener('input', onChange));
       pet.addEventListener('change', onChange);
@@ -170,12 +191,27 @@
       if (state.schedule) {
         const s = state.schedule.items.find(x => x.id === r.id);
         if (s) {
-          delay.textContent = s.delay === 0 ? 'BASE' : `+${fmt(s.delay)}`;
-          delay.classList.add(s.delay === 0 ? 'base' : 'set');
+          delay.textContent = fmtDelay(s.delay);
+          delay.classList.add(s.delay === 0 ? 'base' : s.delay < 0 ? 'early' : 'set');
         }
       }
       wrap.appendChild(el);
     });
+    renderBaseSelect();
+  }
+
+  function renderBaseSelect() {
+    const sel = $('baseSelect');
+    if (state.baseId !== null && !state.rows.some(r => r.id === state.baseId)) state.baseId = null;
+    sel.textContent = '';
+    const auto = new Option(t('baseAuto'), '');
+    sel.add(auto);
+    state.rows.forEach((r, i) => {
+      const txt = (r.name || r.tag) ? label(r) : t('rowN', { n: i + 1 });
+      sel.add(new Option(txt, String(r.id)));
+    });
+    sel.value = state.baseId === null ? '' : String(state.baseId);
+    sel.classList.toggle('manual', state.baseId !== null);
   }
 
   function invalidate() {
@@ -208,7 +244,13 @@
     if (!items.length) { showError(t('errNone')); return; }
 
     const maxSec = Math.max(...items.map(i => i.sec));
-    items.forEach(i => { i.delay = maxSec - i.sec; });
+    let baseSec = maxSec, manual = false;
+    if (state.baseId !== null) {
+      const b = items.find(i => i.id === state.baseId);
+      if (!b) { showError(t('errBase')); return; }
+      baseSec = b.sec; manual = true;
+    }
+    items.forEach(i => { i.delay = baseSec - i.sec; });
     items.sort((a, b) => a.delay - b.delay || label(a).localeCompare(label(b)));
 
     // Gruppen mit gleicher Verzögerung = gleichzeitiger Start
@@ -218,7 +260,7 @@
       g ? g.items.push(i) : groups.push({ delay: i.delay, items: [i] });
     });
 
-    state.schedule = { items, groups, maxSec };
+    state.schedule = { items, groups, maxSec, baseSec, manual };
     renderRows();
     renderResult();
     $('resultCard').hidden = false;
@@ -228,21 +270,24 @@
   }
 
   function buildCopyText() {
-    const { groups, maxSec } = state.schedule;
+    const { groups, baseSec } = state.schedule;
     const lines = [t('copyHead'), ''];
     groups.forEach(g => {
-      const when = g.delay === 0 ? 'BASE – GO' : `+${fmt(g.delay)}`;
+      const when = g.delay === 0 ? 'BASE – GO' : fmtDelay(g.delay);
       g.items.forEach(i => lines.push(`${when.padEnd(9)} ${label(i)}`));
     });
-    lines.push('', `Max. ${state.lang === 'de' ? 'Marsch' : 'march'}: ${fmt(maxSec)}`, t('copyFoot'));
+    lines.push('', `Base-${state.lang === 'de' ? 'Marsch' : 'march'}: ${fmt(baseSec)}`);
+    if (groups[0].delay < 0) lines.push(t('copyLegend'));
+    lines.push(t('copyFoot'));
     return lines.join('\n');
   }
 
   function renderResult() {
-    const { items, groups, maxSec } = state.schedule;
-    const base = groups[0].items.map(label).join(', ');
-    $('resultTitle').textContent = groups[0].items.length > 1 ? t('resultMany', { names: base }) : t('resultOne', { names: base });
-    $('resultSub').textContent = t('resultSub', { time: fmt(maxSec) });
+    const { items, groups, baseSec, manual } = state.schedule;
+    const baseGroup = groups.find(g => g.delay === 0);
+    const base = baseGroup.items.map(label).join(', ');
+    $('resultTitle').textContent = baseGroup.items.length > 1 ? t('resultMany', { names: base }) : t('resultOne', { names: base });
+    $('resultSub').textContent = t(manual ? 'resultSubManual' : 'resultSub', { time: fmt(baseSec) });
 
     const list = $('schedule');
     list.textContent = '';
@@ -251,7 +296,7 @@
       if (i.delay === 0) li.className = 'is-base';
       const when = document.createElement('span');
       when.className = 'when';
-      when.textContent = i.delay === 0 ? 'GO' : `+${fmt(i.delay)}`;
+      when.textContent = fmtDelay(i.delay);
       const who = document.createElement('span');
       who.className = 'who';
       who.textContent = label(i);
@@ -284,7 +329,7 @@
 
   async function startTimer() {
     if (!state.schedule) return;
-    hud.lead = state.precount ? SITE.precountSeconds : 0;
+    hud.lead = (state.precount ? SITE.precountSeconds : 0) - state.schedule.groups[0].delay;
     hud.t0 = performance.now();
     hud.fired = new Set();
     buildHudList();
@@ -312,7 +357,7 @@
       li.dataset.idx = idx;
       const tt = document.createElement('span');
       tt.className = 't';
-      tt.textContent = g.delay === 0 ? 'GO' : `+${fmt(g.delay)}`;
+      tt.textContent = fmtDelay(g.delay);
       const who = document.createElement('span');
       who.textContent = g.items.map(label).join(', ');
       li.append(tt, who);
@@ -340,10 +385,10 @@
     const nextGroup = groups.find(g => g.delay > now);
     nextIdx = nextGroup ? groups.indexOf(nextGroup) : -1;
 
-    if (now < 0) {
+    if (now < groups[0].delay) {
       mode = 'pre';
-      labelTxt = t('hudPre');
-      big = String(Math.ceil(-now));
+      labelTxt = groups[0].delay === 0 ? t('hudPre') : t('hudFirst');
+      big = String(Math.ceil(groups[0].delay - now));
       names = groups[0].items.map(label).join(', ');
     } else if (flashing) {
       mode = 'go';
@@ -368,7 +413,7 @@
     setText('hudLabel', labelTxt);
     setText('hudBig', big);
     setText('hudNames', names);
-    setText('hudClock', now < 0 ? `T−${Math.ceil(-now)}` : `T+${fmt(Math.floor(now))}`);
+    setText('hudClock', now < 0 ? `T−${fmt(Math.ceil(-now))}` : `T+${fmt(Math.floor(now))}`);
     setText('hudCount', `${hud.fired.size}/${groups.length}`);
 
     $('hudList').querySelectorAll('li').forEach(li => {
@@ -400,13 +445,20 @@
       { tag: 'XYZ', name: 'Lead 3', march: '0:57', pet: false },
       { tag: 'XYZ', name: 'Lead 4', march: '1m 12s', pet: true },
     ].map(r => ({ id: ++uid, ...r }));
+    state.baseId = null;
     invalidate(); persist(); renderRows();
   });
   $('clearBtn').addEventListener('click', () => {
     if (!confirm(t('confirmClear'))) return;
     state.rows = Array.from({ length: SITE.defaultRows }, blankRow);
+    state.baseId = null;
     invalidate(); persist(); renderRows();
     $('formError').hidden = true;
+  });
+  $('baseSelect').addEventListener('change', e => {
+    state.baseId = e.target.value === '' ? null : +e.target.value;
+    e.target.classList.toggle('manual', state.baseId !== null);
+    invalidate(); persist();
   });
   $('precount').checked = state.precount;
   $('precount').addEventListener('change', e => { state.precount = e.target.checked; persist(); });
