@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f1115">
+  <meta name="description" content="Rally Sync für Kingshot: Startverzögerungen berechnen, damit alle Rallys gleichzeitig einschlagen.">
+  <title>Rally Sync · Kingshot</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚔️</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="mark" aria-hidden="true">⚔</span>
+      <div>
+        <p class="eyebrow">Kingshot</p>
+        <h1>Rally Sync</h1>
+      </div>
+    </div>
+    <button id="langBtn" class="ghost small" type="button" aria-label="Sprache wechseln">EN</button>
+  </header>
+
+  <main>
+    <p class="lead" data-i18n="lead"></p>
+
+    <section class="card" id="inputCard" aria-labelledby="inputTitle">
+      <h2 id="inputTitle" class="sr-only" data-i18n="inputTitle"></h2>
+      <div class="row row-head" aria-hidden="true">
+        <span class="c-tag" data-i18n="colTag"></span>
+        <span class="c-name" data-i18n="colName"></span>
+        <span class="c-march" data-i18n="colMarch"></span>
+        <span class="c-pet" data-i18n="colPet"></span>
+        <span class="c-delay" data-i18n="colDelay"></span>
+        <span class="c-del"></span>
+      </div>
+      <div id="rows"></div>
+
+      <div class="actions">
+        <button id="addBtn" type="button" data-i18n="add"></button>
+        <button id="exampleBtn" type="button" class="ghost" data-i18n="example"></button>
+        <button id="clearBtn" type="button" class="ghost" data-i18n="clear"></button>
+      </div>
+
+      <p class="hint" data-i18n="hint"></p>
+
+      <label class="check">
+        <input type="checkbox" id="precount" checked>
+        <span data-i18n="precount"></span>
+      </label>
+
+      <button id="calcBtn" type="button" class="primary big" data-i18n="calc"></button>
+      <p id="formError" class="error" role="alert" hidden></p>
+    </section>
+
+    <section class="card" id="resultCard" hidden aria-live="polite">
+      <h2 id="resultTitle"></h2>
+      <p id="resultSub" class="muted"></p>
+      <ol id="schedule" class="schedule"></ol>
+      <pre id="copyPreview" class="preview"></pre>
+      <div class="actions">
+        <button id="copyBtn" type="button" data-i18n="copy"></button>
+        <button id="timerBtn" type="button" class="primary" data-i18n="timer"></button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span id="footerText"></span>
+  </footer>
+
+  <div id="hud" class="hud" hidden role="dialog" aria-modal="true" aria-labelledby="hudLabel">
+    <div class="hud-top">
+      <span id="hudClock" class="mono">T+0:00</span>
+      <span id="hudCount" class="mono"></span>
+    </div>
+    <div class="hud-main">
+      <p id="hudLabel" class="hud-label"></p>
+      <p id="hudBig" class="hud-big mono"></p>
+      <p id="hudNames" class="hud-names"></p>
+    </div>
+    <ol id="hudList" class="hud-list"></ol>
+    <div class="hud-actions">
+      <button id="restartBtn" type="button" data-i18n="restart"></button>
+      <button id="exitBtn" type="button" class="ghost" data-i18n="exit"></button>
+    </div>
+  </div>
+
+  <template id="rowTpl">
+    <div class="row">
+      <input class="c-tag f-tag" type="text" maxlength="6" autocomplete="off" autocapitalize="characters" spellcheck="false">
+      <input class="c-name f-name" type="text" maxlength="32" autocomplete="off" spellcheck="false">
+      <input class="c-march f-march mono" type="text" inputmode="text" autocomplete="off" spellcheck="false">
+      <label class="c-pet pet-toggle">
+        <input class="f-pet" type="checkbox">
+        <span aria-hidden="true">🐾</span>
+      </label>
+      <span class="c-delay delay mono">—</span>
+      <button class="c-del del" type="button">×</button>
+    </div>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
