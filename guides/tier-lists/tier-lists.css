@@ -4,6 +4,7 @@
   --t-a: #ffc94d;
   --t-b: #2fd27a;
   --t-c: #5aa9ff;
+  --t-d: #9aa3b2;
   --t-avoid: #ff6161;
 }
 
@@ -53,6 +54,7 @@
 .tier[data-tier="A"] .tier-label { background: var(--t-a); }
 .tier[data-tier="B"] .tier-label { background: var(--t-b); }
 .tier[data-tier="C"] .tier-label { background: var(--t-c); }
+.tier[data-tier="D"] .tier-label { background: var(--t-d); }
 .tier[data-tier="Avoid"] .tier-label { background: var(--t-avoid); }
 .tier[data-tier="Avoid"] { border-color: rgba(255, 97, 97, .35); }
 
@@ -90,3 +92,5 @@
 .source { text-align: center; font-size: 13px; color: var(--muted); margin: 4px 0 0; }
 .source a { color: var(--text); }
 .row-ctl[hidden] { display: none; }
+.split-note { display: block; margin-top: 4px; }
+.split-note:empty { display: none; }

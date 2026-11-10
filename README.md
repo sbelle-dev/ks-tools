@@ -46,9 +46,9 @@ Füllt die Burg zwischen mehreren Gegner-Rallys wieder auf.
 
 ## 🏆 Hero-Tier-Listen (Guides)
 
-Tier-Listen für **Bear Trap** (Rally-Leader und -Joiner), **Burg / KvK** (angreifender Leader) und **Arena 3v3**, jeweils für Gen 1–7. Dazu Truppen-Aufstellung und Hinweise je Modus. Die Auswahl steckt in der URL (z.B. `#bear-7-joiners`) und lässt sich direkt teilen.
+Tier-Listen für **Bear Trap** (Rally-Leader und -Joiner), **Burg / KvK** (Angriff Rally-Lead, Angriff Rally-Joiner, Garnison-Lead, Garnison-Joiner) und **Arena 3v3**, jeweils für Gen 1–7. Dazu Truppen-Aufstellung und Hinweise je Modus. Die Auswahl steckt in der URL (z.B. `#bear-7-joiners`) und lässt sich direkt teilen.
 
-**Daten pflegen:** Alle Tiers stehen in `guides/tier-lists/data.js`. Heroes einfach zwischen den Listen `S`, `A`, `B`, `C`, `Avoid` verschieben und `updated` anpassen. Quelle der aktuellen Daten: [kingshotapp.com](https://www.kingshotapp.com/heroes/tier-lists).
+**Daten pflegen:** Alle Tiers stehen in `guides/tier-lists/data.js`. Heroes einfach zwischen den Listen `S`, `A`, `B`, `C`, `Avoid` verschieben und `updated` anpassen. Quellen: [kingshotapp.com](https://www.kingshotapp.com/heroes/tier-lists) (Bear Trap, Burg-Angriff-Lead, Arena) und [kingshotoptimizer.com](https://kingshotoptimizer.com/heroes/tier-list/) (Burg-Angriff-Joiner, Garnison-Lead, Garnison-Joiner). Den dortigen gemeinsamen PvP-Joiner-Pool haben wir nach dem ersten Skill jedes Heroes aufgeteilt: offensiv → Angriff, defensiv → Garnison.
 
 ---
 
