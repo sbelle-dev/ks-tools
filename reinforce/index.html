@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f1115">
+  <meta name="description" content="Reinforcement Timer für Kingshot: Verstärkungen zwischen Gegner-Rallys timen.">
+  <title>Reinforcement Timer · Kingshot</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="stylesheet" href="reinforce.css">
+</head>
+<body>
+  <nav class="crumb"><a class="back" href="../" data-i18n="back"></a></nav>
+  <header class="top">
+    <div class="brand">
+      <span class="mark shield" aria-hidden="true">🛡</span>
+      <div>
+        <p class="eyebrow">Kingshot</p>
+        <h1>Reinforcement Timer</h1>
+      </div>
+    </div>
+    <button id="langBtn" class="ghost small" type="button">EN</button>
+  </header>
+
+  <main>
+    <p class="lead" data-i18n="lead"></p>
+
+    <!-- 1 · Gegner-Rallys -->
+    <section class="card">
+      <h2 data-i18n="enemyTitle"></h2>
+      <p class="hint" data-i18n="enemyHint"></p>
+      <div id="enemies" class="stack"></div>
+      <div class="actions">
+        <button id="addEnemy" type="button" data-i18n="addEnemy"></button>
+      </div>
+    </section>
+
+    <!-- 2 · Verstärker -->
+    <section class="card">
+      <h2 data-i18n="playerTitle"></h2>
+      <p class="hint" data-i18n="playerHint"></p>
+      <div class="buffer">
+        <label for="buffer" data-i18n="bufferLabel"></label>
+        <div class="buffer-input">
+          <input id="buffer" type="number" min="0" max="30" step="1" inputmode="numeric">
+          <span data-i18n="sec"></span>
+        </div>
+      </div>
+      <div id="players" class="stack"></div>
+      <div class="actions">
+        <button id="addPlayer" type="button" data-i18n="addPlayer"></button>
+      </div>
+    </section>
+
+    <!-- 3 · Ablauf -->
+    <section class="card" aria-live="off">
+      <h2 data-i18n="flowTitle"></h2>
+      <div id="nextCard" class="next"></div>
+      <ol id="timeline" class="timeline"></ol>
+      <div class="actions">
+        <button id="copyBtn" type="button" data-i18n="copy"></button>
+        <button id="hudBtn" type="button" class="primary" data-i18n="hud"></button>
+      </div>
+    </section>
+
+    <div class="actions bottom">
+      <button id="exampleBtn" type="button" class="ghost" data-i18n="example"></button>
+      <button id="resetBtn" type="button" class="ghost" data-i18n="reset"></button>
+      <button id="clearBtn" type="button" class="ghost" data-i18n="clear"></button>
+    </div>
+  </main>
+
+  <footer class="foot"><span></span></footer>
+
+  <!-- Vollbild-Timer -->
+  <div id="hud" class="hud" hidden role="dialog" aria-modal="true" aria-labelledby="hudLabel">
+    <div class="hud-top">
+      <span id="hudEnemy" class="mono"></span>
+      <span id="hudCount" class="mono"></span>
+    </div>
+    <div class="hud-main">
+      <p id="hudLabel" class="hud-label"></p>
+      <p id="hudBig" class="hud-big mono"></p>
+      <p id="hudNames" class="hud-names"></p>
+      <p id="hudSub" class="hud-sub"></p>
+    </div>
+    <ol id="hudList" class="hud-list"></ol>
+    <div class="hud-actions">
+      <button id="exitBtn" type="button" class="ghost" data-i18n="exit"></button>
+    </div>
+  </div>
+
+  <template id="enemyTpl">
+    <div class="erow">
+      <div class="erow-head">
+        <input class="f-label" type="text" maxlength="24" autocomplete="off" spellcheck="false">
+        <span class="chip"></span>
+        <button class="del" type="button">×</button>
+      </div>
+      <div class="pair">
+        <label class="mini">
+          <span class="mini-l l-cd"></span>
+          <input class="f-cd mono" type="text" autocomplete="off" spellcheck="false">
+        </label>
+        <label class="mini">
+          <span class="mini-l l-march"></span>
+          <input class="f-march mono" type="text" autocomplete="off" spellcheck="false">
+        </label>
+      </div>
+      <p class="estatus"></p>
+    </div>
+  </template>
+
+  <template id="playerTpl">
+    <div class="prow">
+      <div class="prow-head">
+        <input class="f-name" type="text" maxlength="32" autocomplete="off" spellcheck="false">
+        <button class="del" type="button">×</button>
+      </div>
+      <div class="pair">
+        <label class="mini">
+          <span class="mini-l l-pmarch"></span>
+          <input class="f-pmarch mono" type="text" autocomplete="off" spellcheck="false">
+        </label>
+        <label class="mini">
+          <span class="mini-l l-target"></span>
+          <select class="f-target"></select>
+        </label>
+      </div>
+      <div class="pstatus">
+        <span class="pwhen mono"></span>
+        <span class="pinfo"></span>
+      </div>
+    </div>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>

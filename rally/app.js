@@ -46,6 +46,7 @@
       removeRow: 'Zeile entfernen', pet: 'Pet-Buff aktiv',
       ariaTag: 'Allianz-Tag', ariaName: 'Spielername', ariaMarch: 'Marschzeit',
       langSwitch: 'Switch to English',
+      back: '← Alle Tools',
     },
     en: {
       lead: "Enter each rally lead's march time to the target. The slowest march becomes the base rally – everyone else launches after a delay so all rallies land together.",
@@ -79,6 +80,7 @@
       removeRow: 'Remove row', pet: 'Pet buff active',
       ariaTag: 'Alliance tag', ariaName: 'Player name', ariaMarch: 'March time',
       langSwitch: 'Auf Deutsch wechseln',
+      back: '← All tools',
     },
   };
 
@@ -90,7 +92,7 @@
 
   const saved = store.get() || {};
   const state = {
-    lang: saved.lang || ((navigator.language || '').toLowerCase().startsWith('de') ? 'de' : 'en'),
+    lang: (() => { try { return localStorage.getItem('kstools.lang'); } catch { return null; } })() || saved.lang || ((navigator.language || '').toLowerCase().startsWith('de') ? 'de' : 'en'),
     precount: saved.precount !== false,
     rows: Array.isArray(saved.rows) && saved.rows.length ? saved.rows : [],
     baseIdx: Number.isInteger(saved.baseIdx) ? saved.baseIdx : -1,
@@ -432,7 +434,11 @@
   });
 
   // ---------- Events ----------
-  $('langBtn').addEventListener('click', () => { state.lang = state.lang === 'de' ? 'en' : 'de'; persist(); applyLang(); });
+  $('langBtn').addEventListener('click', () => {
+    state.lang = state.lang === 'de' ? 'en' : 'de';
+    try { localStorage.setItem('kstools.lang', state.lang); } catch { /* egal */ }
+    persist(); applyLang();
+  });
   $('addBtn').addEventListener('click', () => {
     state.rows.push(blankRow()); invalidate(); persist(); renderRows();
     const inputs = document.querySelectorAll('#rows .f-name');

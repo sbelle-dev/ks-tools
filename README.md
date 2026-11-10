@@ -1,11 +1,22 @@
-# ⚔️ Rally Sync · Kingshot
+# ⚔️ Kingshot Tools
+
+Kleine Community-Tools für Kingshot – laufen komplett im Browser, ohne Backend und Anmeldung.
+
+| Tool | Pfad | Zweck |
+|---|---|---|
+| **Rally Sync** | `/rally/` | Startverzögerungen, damit mehrere Rallys gleichzeitig einschlagen |
+| **Reinforcement Timer** | `/reinforce/` | Verstärkungen so timen, dass sie direkt nach einer Gegner-Rally landen |
+
+---
+
+## ⚔️ Rally Sync
 
 Kleines Web-Tool, damit mehrere Rallys **gleichzeitig einschlagen**.
 Marschzeiten der Rally-Leads eintragen → das Tool berechnet, wer die Base-Rally startet und mit welcher Verzögerung alle anderen folgen. Dazu gibt's einen stillen, visuellen Vollbild-Timer fürs Handy.
 
 Läuft komplett im Browser – kein Backend, keine Anmeldung, keine Tracker.
 
-## Features
+### Features
 
 - Beliebig viele Rally-Leads mit Allianz-Tag, Name, Pet-Markierung und Marschzeit
 - Flexible Zeiteingabe: `45`, `1:05`, `1m 5s`, `00:01:05`
@@ -16,20 +27,34 @@ Läuft komplett im Browser – kein Backend, keine Anmeldung, keine Tracker.
 - Deutsch/Englisch umschaltbar
 - Eingaben bleiben im Browser gespeichert
 
+---
+
+## 🛡️ Reinforcement Timer
+
+Füllt die Burg zwischen mehreren Gegner-Rallys wieder auf.
+
+**Ablauf:**
+1. **Gegner-Rally anlegen:** Rally-Countdown so eintippen, wie er im Spiel steht – es zählt der Moment des ersten Tastendrucks.
+2. **Marschzeit des Angreifers** erst schätzen, dann aktualisieren, sobald die Rally losmarschiert (angezeigte Restzeit eintragen). Läuft die Rally schon, Countdown leer lassen und nur die Restzeit eintragen.
+3. **Verstärker** mit eigener Marschzeit und Zielfenster („nach Rally 1“ …) eintragen.
+4. Startzeiten werden live berechnet: `Start = Einschlag + Puffer − eigene Marschzeit`.
+
+**Features:** Live-Status je Rally (Start / Marsch / Einschlag), Lücke zur nächsten Rally, Warnung bei zu knappem Fenster, Start-Hinweis „losschicken bei Einschlag-Countdown X“ (unabhängig von Uhrzeiten), Live-Ablauf, Plan kopieren, Vollbild-Timer mit GO-Signal und Vibration. Alles bleibt auch nach Neuladen erhalten.
+
+---
+
 ## Auf GitHub Pages veröffentlichen
 
-1. Neues Repository auf GitHub anlegen (z.B. `rally-sync`, öffentlich).
-2. Die Dateien `index.html`, `styles.css`, `app.js` und `README.md` hochladen
-   (*Add file → Upload files*).
-3. *Settings → Pages* → **Source:** „Deploy from a branch“, Branch `main`, Ordner `/ (root)` → *Save*.
-4. Nach ca. 1 Minute ist das Tool erreichbar unter
-   `https://<dein-github-name>.github.io/rally-sync/`
+1. Alle Dateien und Ordner ins Repository hochladen.
+2. *Settings → Pages* → **Source:** „Deploy from a branch“, Branch `main`, Ordner `/ (root)` → *Save*.
+3. Nach ca. 1 Minute ist das Tool erreichbar unter
+   `https://<dein-github-name>.github.io/<repo>/` (Startseite mit allen Tools)
 
 Tipp: Wenn das Repo `<dein-github-name>.github.io` heißt, läuft es direkt unter der Hauptadresse.
 
 ## Anpassen
 
-Oben in `app.js` im Block `SITE`:
+Oben in `rally/app.js` bzw. `reinforce/app.js` im Block `SITE`:
 
 | Einstellung | Bedeutung |
 |---|---|
@@ -38,9 +63,9 @@ Oben in `app.js` im Block `SITE`:
 | `goFlashSeconds` | Wie lange das grüne GO angezeigt wird |
 | `defaultRows` | Anzahl leerer Zeilen beim Start |
 
-Farben stehen als Variablen ganz oben in `styles.css` (`--accent` = Orange, `--go` = Grün).
+Farben stehen als Variablen ganz oben in `assets/styles.css` (`--accent` = Orange, `--go` = Grün).
 
-## So funktioniert die Rechnung
+## Rechnung Rally Sync
 
 Alle Rallys werden mit **derselben Rally-Dauer** erstellt. Dann gilt:
 `Verzögerung = langsamste Marschzeit − eigene Marschzeit`.

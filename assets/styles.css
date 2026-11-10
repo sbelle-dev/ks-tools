@@ -41,6 +41,10 @@ body {
 }
 
 /* ---------- Header ---------- */
+.crumb { max-width: 860px; width: 100%; margin: 0 auto; padding: 14px 16px 0; }
+.back { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 600; }
+.back:hover { color: var(--text); }
+.crumb + .top { padding-top: 8px; }
 .top {
   display: flex; align-items: center; justify-content: space-between;
   max-width: 860px; width: 100%; margin: 0 auto;
