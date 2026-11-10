@@ -1,17 +1,37 @@
 /* Hero-Tier-Listen. Quelle: kingshotapp.com/heroes/tier-lists (Stand: November 2026).
+   Gen 8 komplett von kingshotoptimizer.com (kingshotapp.com hat nur Gen 1–7).
    Burg/KvK: Angriffs-Leader von kingshotapp.com; Angriffs-Joiner, Garrison-Leader und Garrison-Joiner von kingshotoptimizer.com
    (Joiner-Pool dort nach erstem Skill aufgeteilt: offensiv -> Angriff, defensiv -> Garrison).
    Aufbau: TIERS[modus][rolle][generation] = { S: [...], A: [...], B: [...], C: [...], Avoid: [...] } */
 window.TIER_DATA = {
-  updated: '2026-11',
-  source: { name: 'Kingshot WebApps (kingshotapp.com)', url: 'https://www.kingshotapp.com/heroes/tier-lists' },
-  // Abweichende Quellen je Modus/Rolle
-  sources: {
-    'castle/atk-join': { name: 'Kingshot Optimizer (kingshotoptimizer.com)', url: 'https://kingshotoptimizer.com/heroes/tier-list/', split: true },
-    'castle/gar-lead': { name: 'Kingshot Optimizer (kingshotoptimizer.com)', url: 'https://kingshotoptimizer.com/heroes/tier-list/' },
-    'castle/gar-join': { name: 'Kingshot Optimizer (kingshotoptimizer.com)', url: 'https://kingshotoptimizer.com/heroes/tier-list/', split: true },
+  "updated": "2026-11",
+  "source": {
+    "name": "Kingshot WebApps (kingshotapp.com)",
+    "url": "https://www.kingshotapp.com/heroes/tier-lists"
   },
-  tiers: {
+  "sources": {
+    "castle/atk-join": {
+      "name": "Kingshot Optimizer (kingshotoptimizer.com)",
+      "url": "https://kingshotoptimizer.com/heroes/tier-list/",
+      "split": true
+    },
+    "castle/gar-lead": {
+      "name": "Kingshot Optimizer (kingshotoptimizer.com)",
+      "url": "https://kingshotoptimizer.com/heroes/tier-list/"
+    },
+    "castle/gar-join": {
+      "name": "Kingshot Optimizer (kingshotoptimizer.com)",
+      "url": "https://kingshotoptimizer.com/heroes/tier-list/",
+      "split": true
+    }
+  },
+  "genSources": {
+    "8": {
+      "name": "Kingshot Optimizer (kingshotoptimizer.com)",
+      "url": "https://kingshotoptimizer.com/heroes/tier-list/"
+    }
+  },
+  "tiers": {
     "bear": {
       "leaders": {
         "1": {
@@ -159,6 +179,55 @@ window.TIER_DATA = {
             "Triton",
             "Alcar"
           ]
+        },
+        "8": {
+          "S": [
+            "Amadeus",
+            "Ava",
+            "Luna"
+          ],
+          "A": [
+            "Helga",
+            "Petra",
+            "Wee & Woo",
+            "Yang"
+          ],
+          "B": [
+            "Diego",
+            "Liz"
+          ],
+          "C": [
+            "Margot",
+            "Triton",
+            "Alcar",
+            "Zoe",
+            "Thrud",
+            "Rosa",
+            "Vivian"
+          ],
+          "D": [
+            "Olive",
+            "Seth",
+            "Forrest",
+            "Edwin",
+            "Diana",
+            "Fahd",
+            "Howard",
+            "Eric",
+            "Gordon",
+            "Quinn",
+            "Yeonwoo",
+            "Amane",
+            "Chenko",
+            "Saul",
+            "Jabel",
+            "Hilde",
+            "Charles",
+            "Long Fei",
+            "Sophia",
+            "Marlin",
+            "Jaeger"
+          ]
         }
       },
       "joiners": {
@@ -279,6 +348,55 @@ window.TIER_DATA = {
             "Rosa",
             "Petra",
             "Marlin"
+          ]
+        },
+        "8": {
+          "S": [
+            "Amadeus",
+            "Chenko",
+            "Yeonwoo",
+            "Amane",
+            "Margot",
+            "Vivian",
+            "Ava",
+            "Wee & Woo",
+            "Luna"
+          ],
+          "A": [
+            "Petra"
+          ],
+          "B": [
+            "Rosa",
+            "Yang"
+          ],
+          "C": [
+            "Jaeger",
+            "Thrud",
+            "Hilde",
+            "Marlin",
+            "Liz"
+          ],
+          "D": [
+            "Jabel",
+            "Saul",
+            "Helga",
+            "Quinn",
+            "Diana",
+            "Gordon",
+            "Howard",
+            "Fahd",
+            "Olive",
+            "Seth",
+            "Forrest",
+            "Edwin",
+            "Zoe",
+            "Eric",
+            "Alcar",
+            "Long Fei",
+            "Triton",
+            "Sophia",
+            "Charles",
+            "Diego"
           ]
         }
       }
@@ -423,6 +541,55 @@ window.TIER_DATA = {
             "Alcar",
             "Long Fei",
             "Eric"
+          ]
+        },
+        "8": {
+          "S": [
+            "Ava",
+            "Diego",
+            "Luna"
+          ],
+          "A": [
+            "Charles",
+            "Triton",
+            "Liz",
+            "Yang"
+          ],
+          "B": [
+            "Long Fei",
+            "Sophia",
+            "Thrud",
+            "Wee & Woo"
+          ],
+          "C": [
+            "Saul",
+            "Zoe",
+            "Helga",
+            "Jabel",
+            "Hilde",
+            "Eric",
+            "Jaeger",
+            "Marlin",
+            "Margot",
+            "Amadeus",
+            "Alcar",
+            "Petra",
+            "Vivian",
+            "Rosa"
+          ],
+          "D": [
+            "Olive",
+            "Seth",
+            "Forrest",
+            "Edwin",
+            "Diana",
+            "Fahd",
+            "Yeonwoo",
+            "Amane",
+            "Quinn",
+            "Gordon",
+            "Howard",
+            "Chenko"
           ]
         }
       },
@@ -618,6 +785,45 @@ window.TIER_DATA = {
             "Alcar",
             "Long Fei",
             "Sophia"
+          ],
+          "D": [
+            "Olive",
+            "Seth",
+            "Forrest",
+            "Edwin",
+            "Diana"
+          ]
+        },
+        "8": {
+          "S": [
+            "Amadeus",
+            "Chenko",
+            "Yeonwoo",
+            "Amane",
+            "Margot",
+            "Wee & Woo",
+            "Ava",
+            "Luna"
+          ],
+          "A": [
+            "Rosa",
+            "Vivian"
+          ],
+          "B": [
+            "Petra",
+            "Thrud",
+            "Yang"
+          ],
+          "C": [
+            "Jabel",
+            "Helga",
+            "Marlin",
+            "Zoe",
+            "Jaeger",
+            "Alcar",
+            "Long Fei",
+            "Sophia",
+            "Liz"
           ],
           "D": [
             "Olive",
@@ -887,6 +1093,55 @@ window.TIER_DATA = {
             "Howard",
             "Chenko"
           ]
+        },
+        "8": {
+          "S": [
+            "Wee & Woo",
+            "Diego",
+            "Liz"
+          ],
+          "A": [
+            "Charles",
+            "Thrud",
+            "Sophia",
+            "Luna"
+          ],
+          "B": [
+            "Yang",
+            "Margot",
+            "Triton",
+            "Ava",
+            "Vivian"
+          ],
+          "C": [
+            "Helga",
+            "Amadeus",
+            "Jabel",
+            "Petra",
+            "Saul",
+            "Marlin",
+            "Zoe",
+            "Eric",
+            "Hilde",
+            "Rosa",
+            "Alcar",
+            "Jaeger",
+            "Long Fei"
+          ],
+          "D": [
+            "Olive",
+            "Seth",
+            "Forrest",
+            "Edwin",
+            "Diana",
+            "Fahd",
+            "Yeonwoo",
+            "Amane",
+            "Quinn",
+            "Gordon",
+            "Howard",
+            "Chenko"
+          ]
         }
       },
       "gar-join": {
@@ -1076,6 +1331,41 @@ window.TIER_DATA = {
             "Alcar",
             "Long Fei",
             "Sophia"
+          ],
+          "D": [
+            "Olive",
+            "Seth",
+            "Forrest",
+            "Edwin",
+            "Diana"
+          ]
+        },
+        "8": {
+          "S": [
+            "Saul",
+            "Gordon",
+            "Hilde",
+            "Triton",
+            "Ava",
+            "Diego"
+          ],
+          "A": [
+            "Howard",
+            "Quinn",
+            "Fahd",
+            "Charles",
+            "Eric"
+          ],
+          "C": [
+            "Jabel",
+            "Helga",
+            "Marlin",
+            "Zoe",
+            "Jaeger",
+            "Alcar",
+            "Long Fei",
+            "Sophia",
+            "Liz"
           ],
           "D": [
             "Olive",
@@ -1296,17 +1586,126 @@ window.TIER_DATA = {
             "Quinn",
             "Fahd"
           ]
+        },
+        "8": {
+          "S": [
+            "Yang",
+            "Charles",
+            "Wee & Woo",
+            "Diego",
+            "Liz",
+            "Luna"
+          ],
+          "A": [
+            "Thrud",
+            "Sophia",
+            "Triton",
+            "Ava"
+          ],
+          "B": [
+            "Margot",
+            "Long Fei",
+            "Vivian"
+          ],
+          "C": [
+            "Petra",
+            "Rosa",
+            "Alcar"
+          ],
+          "D": [
+            "Edwin",
+            "Forrest",
+            "Seth",
+            "Olive",
+            "Fahd",
+            "Diana",
+            "Gordon",
+            "Amane",
+            "Howard",
+            "Quinn",
+            "Chenko",
+            "Yeonwoo",
+            "Helga",
+            "Saul",
+            "Hilde",
+            "Jabel",
+            "Jaeger",
+            "Zoe",
+            "Marlin",
+            "Eric",
+            "Amadeus"
+          ]
         }
       }
     }
   },
-  // Truppen-Aufstellung je Modus/Generation: [Infanterie, Kavallerie, Bogenschützen] in %
-  formations: {
-    bear: {
-      leaders: { 1: [30, 30, 40], 2: [20, 30, 50], 3: [10, 20, 70], 4: [10, 10, 80], 5: [10, 10, 80], 6: [10, 10, 80], 7: [10, 10, 80] },
-      joiners: 'archers90',
+  "formations": {
+    "bear": {
+      "leaders": {
+        "1": [
+          30,
+          30,
+          40
+        ],
+        "2": [
+          20,
+          30,
+          50
+        ],
+        "3": [
+          10,
+          20,
+          70
+        ],
+        "4": [
+          10,
+          10,
+          80
+        ],
+        "5": [
+          10,
+          10,
+          80
+        ],
+        "6": [
+          10,
+          10,
+          80
+        ],
+        "7": [
+          10,
+          10,
+          80
+        ],
+        "8": [
+          10,
+          10,
+          80
+        ]
+      },
+      "joiners": "archers90"
     },
-    castle: { attack: [50, 20, 30], garrison: [60, 40, 0] },
-    arena: { 1: 'synergy', 2: 'synergy', 3: 'synergy', 4: 'tankDps', 5: 'tankDps', 6: 'tankDps', 7: 'tankDps' },
-  },
+    "castle": {
+      "attack": [
+        50,
+        20,
+        30
+      ],
+      "garrison": [
+        60,
+        40,
+        0
+      ]
+    },
+    "arena": {
+      "1": "synergy",
+      "2": "synergy",
+      "3": "synergy",
+      "4": "tankDps",
+      "5": "tankDps",
+      "6": "tankDps",
+      "7": "tankDps",
+      "8": "tankDps"
+    }
+  }
 };

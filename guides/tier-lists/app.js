@@ -3,7 +3,7 @@
   'use strict';
 
   const DATA = window.TIER_DATA;
-  const GENS = [1, 2, 3, 4, 5, 6, 7];
+  const GENS = [1, 2, 3, 4, 5, 6, 7, 8];
   const TIER_ORDER = ['S', 'A', 'B', 'C', 'D', 'Avoid'];
   const ALWAYS_SHOWN = ['S', 'A', 'B'];
   const STORAGE_KEY = 'kstierlist.v2';
@@ -62,8 +62,8 @@
       ],
       'tips_castle_atk-lead': [
         'Heroes in the Avoid row are mostly defensive and weak in attack.',
-        'This list comes from a different source than the other Castle lists, so rankings can differ.',
       ],
+      tipSourceDiff: 'This list comes from a different source than the other Castle lists, so rankings can differ.',
       'tips_castle_atk-join': [
         'Only the 4 strongest joiner skills in a rally count – a maxed first skill wins over a stronger hero with a lower skill level.',
         'Mix skill types (e.g. attack + lethality): different types multiply, identical ones only add up. Two of each beats four of the same.',
@@ -125,8 +125,8 @@
       ],
       'tips_castle_atk-lead': [
         'Heroes in der Avoid-Reihe sind meist defensiv und im Angriff schwach.',
-        'Diese Liste stammt aus einer anderen Quelle als die übrigen Burg-Listen, Rangfolgen können daher abweichen.',
       ],
+      tipSourceDiff: 'Diese Liste stammt aus einer anderen Quelle als die übrigen Burg-Listen, Rangfolgen können daher abweichen.',
       'tips_castle_atk-join': [
         'Pro Rally zählen nur die 4 stärksten Joiner-Skills – ein maximierter erster Skill schlägt einen stärkeren Hero mit niedrigerem Skill-Level.',
         'Skill-Typen mischen (z. B. Angriff + Lethality): Verschiedene Typen multiplizieren sich, gleiche addieren sich nur. Zwei von jedem schlägt vier gleiche.',
@@ -188,8 +188,8 @@
       ],
       'tips_castle_atk-lead': [
         "Les héros de la ligne « Éviter » sont surtout défensifs et faibles en attaque.",
-        "Cette liste provient d'une autre source que les autres listes château, les classements peuvent donc différer.",
       ],
+      tipSourceDiff: "Cette liste provient d'une autre source que les autres listes château, les classements peuvent donc différer.",
       'tips_castle_atk-join': [
         "Seules les 4 meilleures compétences de participants comptent par rally – une première compétence au max bat un héros plus fort avec un niveau plus bas.",
         "Mélange les types (ex. attaque + létalité) : des types différents se multiplient, des types identiques s'additionnent. Deux de chaque battent quatre identiques.",
@@ -224,7 +224,7 @@
   const state = {
     lang: KSLang.get(),
     mode: ['bear', 'castle', 'arena'].includes(saved.mode) ? saved.mode : 'bear',
-    gen: GENS.includes(+saved.gen) ? +saved.gen : 7,
+    gen: GENS.includes(+saved.gen) ? +saved.gen : GENS[GENS.length - 1],
     roles: { bear: 'leaders', castle: 'atk-lead', ...(saved.roles || {}) },
   };
   const validRole = (mode, r) => ROLES[mode].some(x => x.id === r);
@@ -273,7 +273,9 @@
     return (m[role] || {})[String(state.gen)] || {};
   }
   function currentSource() {
-    return DATA.sources?.[`${state.mode}/${state.roles[state.mode]}`] || DATA.source;
+    return DATA.sources?.[`${state.mode}/${state.roles[state.mode]}`]
+      || DATA.genSources?.[state.gen]
+      || DATA.source;
   }
 
   // ---------- Rendering ----------
@@ -338,9 +340,7 @@
     });
 
     const src = currentSource();
-    const link = $('sourceLink');
-    link.href = src.url;
-    link.textContent = src.name;
+    $('sourceLink').textContent = src.name;
     $('splitNote').textContent = src.split ? t('splitNote') : '';
   }
 
@@ -393,8 +393,9 @@
 
     const tips = $('tips');
     tips.textContent = '';
-    const list = t(`tips_${ctxKey()}`);
-    (Array.isArray(list) ? list : []).forEach(x => tips.appendChild(el('li', null, x)));
+    const list = [...(t(`tips_${ctxKey()}`) || [])];
+    if (ctxKey() === 'castle_atk-lead' && !DATA.genSources?.[state.gen]) list.push(t('tipSourceDiff'));
+    list.forEach(x => tips.appendChild(el('li', null, x)));
   }
 
   function renderStatic() {

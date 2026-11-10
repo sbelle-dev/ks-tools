@@ -33,7 +33,7 @@
 .modes, .gens, .roles { display: grid; overflow: visible; }
 .modes { grid-template-columns: repeat(3, 1fr); }
 .modes button { white-space: normal; line-height: 1.2; padding: 8px 6px; font-size: 14px; min-width: 0; }
-.gens { grid-template-columns: repeat(7, 1fr); }
+.gens { grid-template-columns: repeat(8, 1fr); }
 .gens button { padding: 8px 0; font-family: var(--mono); font-weight: 700; min-width: 0; }
 .roles { grid-template-columns: 1fr 1fr; }
 .roles button { white-space: normal; line-height: 1.2; min-width: 0; }
@@ -90,7 +90,7 @@
 .tips li::marker { color: var(--accent); }
 
 .source { text-align: center; font-size: 13px; color: var(--muted); margin: 4px 0 0; }
-.source a { color: var(--text); }
+.source .src-name { color: var(--text); }
 .row-ctl[hidden] { display: none; }
 .split-note { display: block; margin-top: 4px; }
 .split-note:empty { display: none; }
