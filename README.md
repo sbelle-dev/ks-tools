@@ -61,6 +61,10 @@ Tier-Listen für **Bear Trap** (Rally-Leader und -Joiner), **Burg / KvK** (Angri
 
 Tipp: Wenn das Repo `<dein-github-name>.github.io` heißt, läuft es direkt unter der Hauptadresse.
 
+## Updates und Browser-Cache
+
+Alle Skripte und Styles werden mit `?v=…` eingebunden. Nach Änderungen an `.js`- oder `.css`-Dateien die Versionsnummer in den HTML-Dateien hochzählen, damit Besucher sofort die neue Version bekommen statt einer zwischengespeicherten.
+
 ## Anpassen
 
 Oben in `rally/app.js` bzw. `reinforce/app.js` im Block `SITE`:
