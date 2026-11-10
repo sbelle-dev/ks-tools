@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -37,7 +37,11 @@
         <h1 data-i18n="title">Tools</h1>
       </div>
     </div>
-    <button id="langBtn" class="ghost small" type="button">EN</button>
+    <div id="langSwitch" class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="de">DE</button>
+      <button type="button" data-lang="fr">FR</button>
+    </div>
   </header>
 
   <main>
@@ -58,8 +62,9 @@
     </div>
   </main>
 
-  <footer class="foot"><span data-i18n="foot"></span></footer>
+  <footer class="foot"><span data-i18n="foot"></span><span class="credit">provided for free with love by HUGO</span></footer>
 
+  <script src="assets/lang.js"></script>
   <script>
     (() => {
       const T = {
@@ -79,21 +84,21 @@
           open: 'Open →',
           foot: 'Community tools for Kingshot',
         },
+        fr: {
+          title: 'Outils',
+          lead: 'Petits outils pour les rallys et la défense – fonctionnent entièrement dans le navigateur, sans inscription.',
+          rallyDesc: 'Calcule les délais de départ pour que plusieurs rallys frappent en même temps. Avec compte à rebours visuel.',
+          reinfDesc: 'Synchronise tes renforts pour qu\'ils arrivent juste après l\'impact d\'un rally ennemi – avant le suivant.',
+          open: 'Ouvrir →',
+          foot: 'Outils communautaires pour Kingshot',
+        },
       };
-      let lang;
-      try { lang = localStorage.getItem('kstools.lang'); } catch { lang = null; }
-      if (!lang) lang = (navigator.language || '').toLowerCase().startsWith('de') ? 'de' : 'en';
-      const btn = document.getElementById('langBtn');
+      let lang = KSLang.get();
       function apply() {
-        document.documentElement.lang = lang;
+        KSLang.mark(lang);
         document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = T[lang][el.dataset.i18n]; });
-        btn.textContent = lang === 'de' ? 'EN' : 'DE';
       }
-      btn.addEventListener('click', () => {
-        lang = lang === 'de' ? 'en' : 'de';
-        try { localStorage.setItem('kstools.lang', lang); } catch { /* egal */ }
-        apply();
-      });
+      KSLang.bind(l => { lang = l; apply(); });
       apply();
     })();
   </script>

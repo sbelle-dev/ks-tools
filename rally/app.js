@@ -4,7 +4,7 @@
 
   // ---------- Anpassbar ----------
   const SITE = {
-    footer: { de: 'Rally Sync · Community-Tool für Kingshot', en: 'Rally Sync · Community tool for Kingshot' },
+    footer: { en: 'Rally Sync · Community tool for Kingshot', de: 'Rally Sync · Community-Tool für Kingshot', fr: 'Rally Sync · Outil communautaire pour Kingshot' },
     precountSeconds: 3,   // Vorlauf vor der Base-Rally
     goFlashSeconds: 1.5,  // wie lange "GO" angezeigt wird
     defaultRows: 3,
@@ -45,7 +45,7 @@
       unnamed: 'Unbenannt', confirmClear: 'Alle Zeilen löschen?',
       removeRow: 'Zeile entfernen', pet: 'Pet-Buff aktiv',
       ariaTag: 'Allianz-Tag', ariaName: 'Spielername', ariaMarch: 'Marschzeit',
-      langSwitch: 'Switch to English',
+      copyBaseMarch: 'Base-Marsch: {t}',
       back: '← Alle Tools',
     },
     en: {
@@ -79,8 +79,42 @@
       unnamed: 'Unnamed', confirmClear: 'Delete all rows?',
       removeRow: 'Remove row', pet: 'Pet buff active',
       ariaTag: 'Alliance tag', ariaName: 'Player name', ariaMarch: 'March time',
-      langSwitch: 'Auf Deutsch wechseln',
+      copyBaseMarch: 'Base march: {t}',
       back: '← All tools',
+    },
+    fr: {
+      lead: "Saisis le temps de marche de chaque leader de rally jusqu'à la cible. La marche la plus lente devient le rally de base – tous les autres partent avec un délai pour que tous les rallys frappent en même temps.",
+      inputTitle: 'Leaders de rally',
+      colTag: 'Tag', colName: 'Joueur', colMarch: 'Marche', colPet: 'Pet', colDelay: 'Délai',
+      phTag: 'TAG', phName: 'Nom du joueur', phMarch: 'ex. 1:05',
+      add: '＋ Rally', example: 'Exemple', clear: 'Effacer',
+      hint: 'Formats : 45 · 1:05 · 1m 5s · 00:01:05. Mesure le temps de marche avec un rally test en jeu. Important : tout le monde choisit la même durée de rally.',
+      precount: 'Pré-décompte de 3 secondes avant le minuteur',
+      baseLabel: 'Rally de base (optionnel)',
+      baseAuto: 'Automatique – marche la plus lente',
+      baseHint: 'Si tu choisis un rally plus rapide comme base, les plus lents partent avant lui (−).',
+      rowN: 'Ligne {n}',
+      calc: "⚔️ Calculer l'ordre des rallys",
+      errNone: 'Saisis au moins un temps de marche valide.',
+      errInvalid: 'Temps de marche invalide dans les lignes marquées.',
+      resultOne: '{names} lance le rally de base',
+      resultMany: 'Lancer ensemble comme base : {names}',
+      resultSub: 'Marche la plus lente : {time}. Tous les autres partent après le délai indiqué.',
+      resultSubManual: 'Base choisie manuellement (marche {time}). + = partir après la base, − = partir avant la base.',
+      errBase: "Le rally de base choisi n'a pas de temps de marche valide.",
+      copy: '📋 Copier', copied: '✓ Copié', copyFail: 'Échec de la copie',
+      timer: '▶ Lancer le minuteur',
+      copyHead: '⚔️ ORDRE DES RALLYS',
+      copyFoot: 'Tout le monde avec la même durée de rally !',
+      copyLegend: '− = partir avant la base, + = après',
+      copyBaseMarch: 'Marche de base : {t}',
+      hudPre: 'Le rally de base part dans', hudFirst: 'Premier départ dans', hudGo: 'Lance maintenant', hudNext: 'Prochain départ dans',
+      hudDone: 'Tous les rallys sont lancés',
+      restart: '↺ Recommencer', exit: 'Retour',
+      unnamed: 'Sans nom', confirmClear: 'Supprimer toutes les lignes ?',
+      removeRow: 'Supprimer la ligne', pet: 'Bonus pet actif',
+      ariaTag: "Tag d'alliance", ariaName: 'Nom du joueur', ariaMarch: 'Temps de marche',
+      back: '← Tous les outils',
     },
   };
 
@@ -92,7 +126,7 @@
 
   const saved = store.get() || {};
   const state = {
-    lang: (() => { try { return localStorage.getItem('kstools.lang'); } catch { return null; } })() || saved.lang || ((navigator.language || '').toLowerCase().startsWith('de') ? 'de' : 'en'),
+    lang: KSLang.get(),
     precount: saved.precount !== false,
     rows: Array.isArray(saved.rows) && saved.rows.length ? saved.rows : [],
     baseIdx: Number.isInteger(saved.baseIdx) ? saved.baseIdx : -1,
@@ -107,7 +141,7 @@
   function blankRow() { return { id: ++uid, tag: '', name: '', march: '', pet: false }; }
   function persist() {
     const baseIdx = state.rows.findIndex(r => r.id === state.baseId);
-    store.set({ lang: state.lang, precount: state.precount, baseIdx, rows: state.rows.map(({ tag, name, march, pet }) => ({ tag, name, march, pet })) });
+    store.set({ precount: state.precount, baseIdx, rows: state.rows.map(({ tag, name, march, pet }) => ({ tag, name, march, pet })) });
   }
 
   // ---------- Helfer ----------
@@ -146,10 +180,8 @@
 
   // ---------- Sprache ----------
   function applyLang() {
-    document.documentElement.lang = state.lang;
+    KSLang.mark(state.lang);
     document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
-    $('langBtn').textContent = state.lang === 'de' ? 'EN' : 'DE';
-    $('langBtn').setAttribute('aria-label', t('langSwitch'));
     $('footerText').textContent = SITE.footer[state.lang] || SITE.footer.en;
     renderRows();
     if (state.schedule) renderResult();
@@ -278,7 +310,7 @@
       const when = g.delay === 0 ? 'BASE – GO' : fmtDelay(g.delay);
       g.items.forEach(i => lines.push(`${when.padEnd(9)} ${label(i)}`));
     });
-    lines.push('', `Base-${state.lang === 'de' ? 'Marsch' : 'march'}: ${fmt(baseSec)}`);
+    lines.push('', t('copyBaseMarch', { t: fmt(baseSec) }));
     if (groups[0].delay < 0) lines.push(t('copyLegend'));
     lines.push(t('copyFoot'));
     return lines.join('\n');
@@ -434,11 +466,7 @@
   });
 
   // ---------- Events ----------
-  $('langBtn').addEventListener('click', () => {
-    state.lang = state.lang === 'de' ? 'en' : 'de';
-    try { localStorage.setItem('kstools.lang', state.lang); } catch { /* egal */ }
-    persist(); applyLang();
-  });
+  KSLang.bind(l => { state.lang = l; applyLang(); });
   $('addBtn').addEventListener('click', () => {
     state.rows.push(blankRow()); invalidate(); persist(); renderRows();
     const inputs = document.querySelectorAll('#rows .f-name');

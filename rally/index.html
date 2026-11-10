@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -10,7 +10,14 @@
   <link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body>
-  <nav class="crumb"><a class="back" href="../" data-i18n="back">← Alle Tools</a></nav>
+  <nav class="crumb">
+    <a class="back" href="../" data-i18n="back">← Alle Tools</a>
+    <div id="langSwitch" class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="de">DE</button>
+      <button type="button" data-lang="fr">FR</button>
+    </div>
+  </nav>
   <header class="top">
     <div class="brand">
       <span class="mark" aria-hidden="true">⚔</span>
@@ -19,7 +26,6 @@
         <h1>Rally Sync</h1>
       </div>
     </div>
-    <button id="langBtn" class="ghost small" type="button" aria-label="Sprache wechseln">EN</button>
   </header>
 
   <main>
@@ -74,6 +80,7 @@
 
   <footer class="foot">
     <span id="footerText"></span>
+    <span class="credit">provided for free with love by HUGO</span>
   </footer>
 
   <div id="hud" class="hud" hidden role="dialog" aria-modal="true" aria-labelledby="hudLabel">
@@ -107,6 +114,7 @@
     </div>
   </template>
 
+  <script src="../assets/lang.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

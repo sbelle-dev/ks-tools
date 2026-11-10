@@ -4,13 +4,12 @@
 
   // ---------- Anpassbar ----------
   const SITE = {
-    footer: { de: 'Reinforcement Timer · Community-Tool für Kingshot', en: 'Reinforcement Timer · Community tool for Kingshot' },
+    footer: { en: 'Reinforcement Timer · Community tool for Kingshot', de: 'Reinforcement Timer · Community-Tool für Kingshot', fr: 'Reinforcement Timer · Outil communautaire pour Kingshot' },
     defaultBuffer: 1,     // Sekunden Landung nach Einschlag
     goFlashSeconds: 1.5,  // wie lange "GO" angezeigt wird
     soonSeconds: 5,       // ab wann ein Start gelb markiert wird
   };
   const STORAGE_KEY = 'ksreinforce.v1';
-  const LANG_KEY = 'kstools.lang';
 
   // ---------- Texte ----------
   const I18N = {
@@ -58,7 +57,7 @@
       copyFoot: 'Landung {b} s nach Einschlag',
       hudNext: 'Nächster Start in', hudGo: 'Jetzt verstärken', hudNone: 'Keine Starts ausstehend',
       hudEnemy: '⚔ {label} {t}',
-      exit: 'Zurück', unnamed: 'Unbenannt', removeRow: 'Entfernen', langSwitch: 'Switch to English',
+      exit: 'Zurück', unnamed: 'Unbenannt', removeRow: 'Entfernen', examplePlayer: 'Spieler {x}',
     },
     en: {
       back: '← All tools',
@@ -104,7 +103,53 @@
       copyFoot: 'Landing {b} s after hit',
       hudNext: 'Next launch in', hudGo: 'Reinforce now', hudNone: 'No launches pending',
       hudEnemy: '⚔ {label} {t}',
-      exit: 'Back', unnamed: 'Unnamed', removeRow: 'Remove', langSwitch: 'Auf Deutsch wechseln',
+      exit: 'Back', unnamed: 'Unnamed', removeRow: 'Remove', examplePlayer: 'Player {x}',
+    },
+    fr: {
+      back: '← Tous les outils',
+      lead: "Synchronise tes renforts pour qu'ils arrivent au château juste après l'impact d'un rally ennemi – avant le suivant.",
+      enemyTitle: '1 · Rallys ennemis',
+      enemyHint: "Tape le compte à rebours du rally tel qu'il s'affiche en jeu – c'est le moment de la première frappe qui compte. Estime d'abord le temps de marche, puis mets-le à jour dès que le rally part (saisis le temps restant affiché). Si le rally marche déjà, laisse le compte à rebours vide et saisis seulement le temps de marche restant.",
+      lCd: 'Compte à rebours', lMarchEst: 'Marche (estimation)', lMarchLive: 'Marche restante',
+      phCd: 'ex. 3:00', phMarch: 'ex. 1:30', enemyDefault: 'Rally {n}',
+      chipIdle: '—', chipWait: 'Départ {t}', chipMarch: 'Impact {t}', chipEst: '≈ {t}', chipHit: 'impact', chipNeed: 'Marche ?',
+      eNeed: 'Saisis le compte à rebours ou le temps de marche restant.',
+      eWaitNoMarch: 'Départ dans {t} · temps de marche manquant',
+      eMarchingNoMarch: 'En marche – saisis le temps de marche restant !',
+      eHitIn: 'Impact dans {t}', eEst: ' (estimation – mets à jour dès qu\'il marche)',
+      eEstLive: 'En marche – mets à jour le temps de marche restant !',
+      eHitAgo: 'Impact il y a {t}',
+      eGap: 'Écart avec le suivant : {t}', eGapSmall: 'Écart avec le suivant seulement {t} – plus petit que la marge !', eGapLast: 'Dernier rally – fenêtre ouverte',
+      addEnemy: '＋ Rally ennemi',
+      playerTitle: '2 · Renforts',
+      playerHint: "Chaque renfort reçoit une fenêtre cible : il arrive juste après l'impact de ce rally et remplit à nouveau le château.",
+      bufferLabel: "Arrivée après l'impact", sec: 's',
+      lPMarch: 'Ton temps de marche', lTarget: 'Arriver après', phName: 'Nom du joueur', targetOpt: 'après {label}',
+      addPlayer: '＋ Renfort',
+      pNoTarget: "Ajoute d'abord un rally ennemi.",
+      pNeedMarch: 'Saisis ton propre temps de marche.',
+      pWaitEnemy: "En attente de l'heure d'impact de {label}.",
+      pLands: 'arrive {b} s après {label}',
+      pCueHit: "envoyer quand le compte à rebours d'impact affiche {t}",
+      pCueRally: 'envoyer quand le compte à rebours du rally affiche {t}',
+      pEst: 'marche ennemie estimée',
+      pTooLate: 'arrive après {next} – fenêtre trop serrée !',
+      pMissed: 'Si pas envoyé : choisis une fenêtre plus tardive.',
+      whenIn: 'dans {t}', whenNow: 'MAINTENANT', whenAgo: 'il y a {t}',
+      flowTitle: '3 · Déroulement (en direct)',
+      nextLabel: 'Prochain départ', nextHitLabel: 'Prochain impact',
+      nextNone: 'Rien de prévu – ajoute des rallys ennemis et des renforts.',
+      tlHit: '{label} frappe', tlLaunch: '{name} → après {label}',
+      copy: '📋 Copier le plan', copied: '✓ Copié', copyFail: 'Échec de la copie',
+      hud: '▶ Minuteur plein écran',
+      example: 'Exemple', reset: 'Nouvelle manche', clear: 'Tout effacer',
+      confirmClear: 'Supprimer toutes les saisies ?', confirmReset: 'Réinitialiser les temps des rallys ennemis ? Les renforts sont conservés.',
+      copyHead: '🛡️ PLAN DE RENFORT', copyEnemy: '⚔ {label} : impact dans {t}{est}', copyEstShort: ' (estimation)',
+      copyPlayer: '🛡 {name} → après {label} : envoyer dans {t} ({cue})', copyPlayerOpen: '🛡 {name} → après {label} : {info}',
+      copyFoot: "Arrivée {b} s après l'impact",
+      hudNext: 'Prochain départ dans', hudGo: 'Renforce maintenant', hudNone: 'Aucun départ en attente',
+      hudEnemy: '⚔ {label} {t}',
+      exit: 'Retour', unnamed: 'Sans nom', removeRow: 'Supprimer', examplePlayer: 'Joueur {x}',
     },
   };
 
@@ -119,11 +164,9 @@
   const newPlayer = (target = null) => ({ id: ++uid, name: '', march: '', target });
 
   const saved = store.get(STORAGE_KEY) || {};
-  let langSaved = null;
-  try { langSaved = localStorage.getItem(LANG_KEY); } catch { /* egal */ }
 
   const state = {
-    lang: langSaved || ((navigator.language || '').toLowerCase().startsWith('de') ? 'de' : 'en'),
+    lang: KSLang.get(),
     buffer: Number.isFinite(saved.buffer) ? saved.buffer : SITE.defaultBuffer,
     enemies: [], players: [],
   };
@@ -608,21 +651,15 @@
 
   // ---------- Sprache ----------
   function applyLang() {
-    document.documentElement.lang = state.lang;
+    KSLang.mark(state.lang);
     document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
-    $('langBtn').textContent = state.lang === 'de' ? 'EN' : 'DE';
-    $('langBtn').setAttribute('aria-label', t('langSwitch'));
-    document.querySelector('.foot span').textContent = SITE.footer[state.lang] || SITE.footer.en;
+    $('footerText').textContent = SITE.footer[state.lang] || SITE.footer.en;
     lastTimelineKey = ''; lastHudKey = '';
     renderAll();
   }
 
   // ---------- Events ----------
-  $('langBtn').addEventListener('click', () => {
-    state.lang = state.lang === 'de' ? 'en' : 'de';
-    try { localStorage.setItem(LANG_KEY, state.lang); } catch { /* egal */ }
-    applyLang();
-  });
+  KSLang.bind(l => { state.lang = l; applyLang(); });
   $('buffer').value = state.buffer;
   $('buffer').addEventListener('input', e => {
     const v = parseInt(e.target.value, 10);
@@ -646,9 +683,9 @@
     const e2 = { ...newEnemy(), label: 'Rally 2', cd: { text: '3:05', sec: 185, at: now }, march: { text: '1:30', sec: 90, at: now } };
     state.enemies = [e1, e2];
     state.players = [
-      { ...newPlayer(e1.id), name: 'Spieler A', march: '1:15' },
-      { ...newPlayer(e1.id), name: 'Spieler B', march: '1:30' },
-      { ...newPlayer(e2.id), name: 'Spieler C', march: '2:10' },
+      { ...newPlayer(e1.id), name: t('examplePlayer', { x: 'A' }), march: '1:15' },
+      { ...newPlayer(e1.id), name: t('examplePlayer', { x: 'B' }), march: '1:30' },
+      { ...newPlayer(e2.id), name: t('examplePlayer', { x: 'C' }), march: '2:10' },
     ];
     state.buffer = SITE.defaultBuffer; $('buffer').value = state.buffer;
     persist(); renderAll();

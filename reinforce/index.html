@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -11,7 +11,14 @@
   <link rel="stylesheet" href="reinforce.css">
 </head>
 <body>
-  <nav class="crumb"><a class="back" href="../" data-i18n="back"></a></nav>
+  <nav class="crumb">
+    <a class="back" href="../" data-i18n="back"></a>
+    <div id="langSwitch" class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="de">DE</button>
+      <button type="button" data-lang="fr">FR</button>
+    </div>
+  </nav>
   <header class="top">
     <div class="brand">
       <span class="mark shield" aria-hidden="true">🛡</span>
@@ -20,7 +27,6 @@
         <h1>Reinforcement Timer</h1>
       </div>
     </div>
-    <button id="langBtn" class="ghost small" type="button">EN</button>
   </header>
 
   <main>
@@ -71,7 +77,7 @@
     </div>
   </main>
 
-  <footer class="foot"><span></span></footer>
+  <footer class="foot"><span id="footerText"></span><span class="credit">provided for free with love by HUGO</span></footer>
 
   <!-- Vollbild-Timer -->
   <div id="hud" class="hud" hidden role="dialog" aria-modal="true" aria-labelledby="hudLabel">
@@ -135,6 +141,7 @@
     </div>
   </template>
 
+  <script src="../assets/lang.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

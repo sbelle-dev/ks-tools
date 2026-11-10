@@ -41,7 +41,10 @@ body {
 }
 
 /* ---------- Header ---------- */
-.crumb { max-width: 860px; width: 100%; margin: 0 auto; padding: 14px 16px 0; }
+.crumb {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  max-width: 860px; width: 100%; margin: 0 auto; padding: 12px 16px 0;
+}
 .back { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 600; }
 .back:hover { color: var(--text); }
 .crumb + .top { padding-top: 8px; }
@@ -58,6 +61,19 @@ body {
   font-size: 24px; font-weight: 700;
   box-shadow: 0 6px 24px rgba(255, 138, 61, .35);
 }
+.lang {
+  display: inline-flex; flex: none; padding: 3px; gap: 2px;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--surface);
+}
+.lang button {
+  min-height: 32px; padding: 4px 9px; font-size: 13px; letter-spacing: .04em;
+  border: 0; border-radius: 7px; background: transparent; color: var(--muted);
+}
+.lang button[aria-pressed="true"] { background: var(--surface-2); color: var(--text); box-shadow: inset 0 0 0 1px var(--line); }
+.lang button:hover { color: var(--text); }
+.brand { min-width: 0; }
+.top { gap: 12px; }
+
 .eyebrow {
   margin: 0; font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
   color: var(--accent); font-weight: 700;
@@ -217,7 +233,9 @@ select.manual { border-color: var(--accent); }
 }
 
 /* ---------- Footer ---------- */
+.credit { font-size: 12px; opacity: .8; }
 .foot {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
   text-align: center; color: var(--muted); font-size: 13px;
   padding: 0 16px calc(20px + env(safe-area-inset-bottom));
 }
