@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f1115">
+  <meta name="description" content="Kingshot guides: hero tier lists and more.">
+  <title>Guides · Kingshot</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    .tools { display: grid; gap: 14px; }
+    @media (min-width: 680px) { .tools { grid-template-columns: 1fr 1fr; } }
+    .tool {
+      display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: var(--text);
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 18px; transition: border-color .15s;
+    }
+    .tool:hover { border-color: var(--accent); }
+    .tool .ico { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--surface-2); font-size: 22px; }
+    .tool h2 { margin: 4px 0 0; }
+    .tool p { margin: 0; color: var(--muted); }
+    .tool .go { margin-top: auto; padding-top: 6px; color: var(--accent); font-weight: 700; }
+    .mark.book { background: #b48cff; color: #12051f; box-shadow: 0 6px 24px rgba(180, 140, 255, .3); }
+  </style>
+</head>
+<body>
+  <nav class="crumb">
+    <a class="back" href="../" data-i18n="back"></a>
+    <div id="langSwitch" class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="de">DE</button>
+      <button type="button" data-lang="fr">FR</button>
+    </div>
+  </nav>
+  <header class="top">
+    <div class="brand">
+      <span class="mark book" aria-hidden="true">📖</span>
+      <div>
+        <p class="eyebrow">Kingshot</p>
+        <h1>Guides</h1>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <p class="lead" data-i18n="lead"></p>
+    <div class="tools">
+      <a class="tool" href="tier-lists/">
+        <span class="ico" aria-hidden="true">🏆</span>
+        <h2 data-i18n="tierTitle"></h2>
+        <p data-i18n="tierDesc"></p>
+        <span class="go" data-i18n="read"></span>
+      </a>
+    </div>
+  </main>
+
+  <footer class="foot"><span data-i18n="foot"></span><span class="credit">provided for free with love by HUGO</span></footer>
+
+  <script src="../assets/lang.js"></script>
+  <script>
+    (() => {
+      const T = {
+        en: {
+          back: '← Home', lead: 'Background knowledge for Kingshot – more guides will follow.',
+          tierTitle: 'Hero Tier Lists', tierDesc: 'The best heroes for Bear Trap, Castle / KvK and Arena – per generation, for rally leaders and joiners.',
+          read: 'Read →', foot: 'Community guides for Kingshot',
+        },
+        de: {
+          back: '← Startseite', lead: 'Hintergrundwissen für Kingshot – weitere Guides folgen.',
+          tierTitle: 'Hero-Tier-Listen', tierDesc: 'Die besten Heroes für Bear Trap, Burg / KvK und Arena – je Generation, für Rally-Leader und Joiner.',
+          read: 'Lesen →', foot: 'Community-Guides für Kingshot',
+        },
+        fr: {
+          back: '← Accueil', lead: "Des connaissances de fond sur Kingshot – d'autres guides suivront.",
+          tierTitle: 'Tier lists des héros', tierDesc: "Les meilleurs héros pour le Bear Trap, le château / KvK et l'arène – par génération, pour leaders et participants.",
+          read: 'Lire →', foot: 'Guides communautaires pour Kingshot',
+        },
+      };
+      let lang = KSLang.get();
+      function apply() {
+        KSLang.mark(lang);
+        document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = T[lang][el.dataset.i18n]; });
+      }
+      KSLang.bind(l => { lang = l; apply(); });
+      apply();
+    })();
+  </script>
+</body>
+</html>

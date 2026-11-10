@@ -26,6 +26,8 @@
     .tool h2 { margin: 4px 0 0; }
     .tool p { margin: 0; color: var(--muted); }
     .tool .go { margin-top: auto; padding-top: 6px; color: var(--accent); font-weight: 700; }
+    .sec-title { font-size: 13px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin: 26px 0 10px; }
+    .sec-title:first-of-type { margin-top: 6px; }
   </style>
 </head>
 <body>
@@ -46,6 +48,7 @@
 
   <main>
     <p class="lead" data-i18n="lead"></p>
+    <h2 class="sec-title" data-i18n="secTools"></h2>
     <div class="tools">
       <a class="tool" href="rally/">
         <span class="ico" aria-hidden="true">⚔️</span>
@@ -60,6 +63,16 @@
         <span class="go" data-i18n="open"></span>
       </a>
     </div>
+
+    <h2 class="sec-title" data-i18n="secGuides"></h2>
+    <div class="tools">
+      <a class="tool" href="guides/tier-lists/">
+        <span class="ico" aria-hidden="true">🏆</span>
+        <h2 data-i18n="tierTitle"></h2>
+        <p data-i18n="tierDesc"></p>
+        <span class="go" data-i18n="read"></span>
+      </a>
+    </div>
   </main>
 
   <footer class="foot"><span data-i18n="foot"></span><span class="credit">provided for free with love by HUGO</span></footer>
@@ -69,28 +82,31 @@
     (() => {
       const T = {
         de: {
-          title: 'Tools',
+          title: 'Tools & Guides',
           lead: 'Kleine Helfer für Rallys und Verteidigung – laufen komplett im Browser, ohne Anmeldung.',
           rallyDesc: 'Startverzögerungen berechnen, damit mehrere Rallys gleichzeitig einschlagen. Mit visuellem Countdown.',
           reinfDesc: 'Verstärkungen so timen, dass sie direkt nach einer Gegner-Rally landen – bevor die nächste einschlägt.',
           open: 'Öffnen →',
           foot: 'Community-Tools für Kingshot',
+          secTools: 'Tools', secGuides: 'Guides', tierTitle: 'Hero-Tier-Listen', tierDesc: 'Die besten Heroes für Bear Trap, Burg / KvK und Arena – je Generation, für Rally-Leader und Joiner.', read: 'Lesen →',
         },
         en: {
-          title: 'Tools',
+          title: 'Tools & Guides',
           lead: 'Small helpers for rallies and defense – running entirely in your browser, no sign-in.',
           rallyDesc: 'Calculate launch delays so multiple rallies land together. With a visual countdown.',
           reinfDesc: 'Time reinforcements to land right after an enemy rally hits – before the next one arrives.',
           open: 'Open →',
           foot: 'Community tools for Kingshot',
+          secTools: 'Tools', secGuides: 'Guides', tierTitle: 'Hero Tier Lists', tierDesc: 'The best heroes for Bear Trap, Castle / KvK and Arena – per generation, for rally leaders and joiners.', read: 'Read →',
         },
         fr: {
-          title: 'Outils',
+          title: 'Outils & guides',
           lead: 'Petits outils pour les rallys et la défense – fonctionnent entièrement dans le navigateur, sans inscription.',
           rallyDesc: 'Calcule les délais de départ pour que plusieurs rallys frappent en même temps. Avec compte à rebours visuel.',
           reinfDesc: 'Synchronise tes renforts pour qu\'ils arrivent juste après l\'impact d\'un rally ennemi – avant le suivant.',
           open: 'Ouvrir →',
           foot: 'Outils communautaires pour Kingshot',
+          secTools: 'Outils', secGuides: 'Guides', tierTitle: 'Tier lists des héros', tierDesc: 'Les meilleurs héros pour le Bear Trap, le château / KvK et l\'arène – par génération, pour leaders et participants.', read: 'Lire →',
         },
       };
       let lang = KSLang.get();

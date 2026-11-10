@@ -1,0 +1,92 @@
+/* Hero-Tier-Listen – ergänzt ../../assets/styles.css */
+:root {
+  --t-s: #ff8a3d;
+  --t-a: #ffc94d;
+  --t-b: #2fd27a;
+  --t-c: #5aa9ff;
+  --t-avoid: #ff6161;
+}
+
+.mark.trophy { background: #ffc94d; color: #1c1404; box-shadow: 0 6px 24px rgba(255, 201, 77, .3); }
+
+/* ---------- Steuerung ---------- */
+.controls { display: flex; flex-direction: column; gap: 14px; }
+.row-ctl { display: flex; flex-direction: column; gap: 6px; }
+.ctl-label { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 700; }
+
+.seg {
+  display: flex; gap: 4px; padding: 4px; border-radius: 12px;
+  background: var(--bg); border: 1px solid var(--line);
+  overflow-x: auto; scrollbar-width: none;
+}
+.seg::-webkit-scrollbar { display: none; }
+.seg button {
+  flex: 1 0 auto; min-height: 40px; padding: 8px 12px; font-size: 15px;
+  border: 0; border-radius: 9px; background: transparent; color: var(--muted); white-space: nowrap;
+}
+.seg button:hover { color: var(--text); }
+.seg button[aria-selected="true"], .seg button[aria-pressed="true"] {
+  background: var(--surface-2); color: var(--text); box-shadow: inset 0 0 0 1px var(--line);
+}
+.modes button[aria-selected="true"] { box-shadow: inset 0 0 0 1px var(--accent); }
+.modes, .gens, .roles { display: grid; overflow: visible; }
+.modes { grid-template-columns: repeat(3, 1fr); }
+.modes button { white-space: normal; line-height: 1.2; padding: 8px 6px; font-size: 14px; min-width: 0; }
+.gens { grid-template-columns: repeat(7, 1fr); }
+.gens button { padding: 8px 0; font-family: var(--mono); font-weight: 700; min-width: 0; }
+.roles { grid-template-columns: 1fr 1fr; }
+.roles button { white-space: normal; line-height: 1.2; min-width: 0; }
+
+/* ---------- Tiers ---------- */
+.card > h2 { margin-bottom: 4px; }
+.tiers { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+.tier {
+  display: grid; grid-template-columns: 3.25rem 1fr; gap: 10px; align-items: stretch;
+  padding: 8px; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--line);
+}
+.tier-label {
+  display: grid; place-items: center; border-radius: 9px;
+  font-weight: 900; font-size: 22px; color: #111; min-height: 48px;
+}
+.tier-label.small { font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
+.tier[data-tier="S"] .tier-label { background: var(--t-s); }
+.tier[data-tier="A"] .tier-label { background: var(--t-a); }
+.tier[data-tier="B"] .tier-label { background: var(--t-b); }
+.tier[data-tier="C"] .tier-label { background: var(--t-c); }
+.tier[data-tier="Avoid"] .tier-label { background: var(--t-avoid); }
+.tier[data-tier="Avoid"] { border-color: rgba(255, 97, 97, .35); }
+
+.heroes { display: flex; flex-wrap: wrap; gap: 6px; align-content: center; }
+.hero {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 12px 5px 5px; border-radius: 999px;
+  background: var(--bg); border: 1px solid var(--line); font-weight: 600; font-size: 15px;
+}
+.hero .av {
+  display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%;
+  font-size: 12px; font-weight: 800; color: #0f1115;
+}
+.empty-tier { color: var(--muted); font-size: 14px; align-self: center; }
+
+/* ---------- Info ---------- */
+.info .mt { margin-top: 18px; }
+.formation { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+.form-line .form-head { font-size: 14px; color: var(--muted); margin-bottom: 6px; font-weight: 600; }
+.bar { display: flex; height: 30px; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+.bar span {
+  display: grid; place-items: center; font-size: 12px; font-weight: 800; color: #0f1115;
+  white-space: nowrap; overflow: hidden; min-width: 0;
+}
+.bar .inf { background: #9aa3b2; }
+.bar .cav { background: #5aa9ff; }
+.bar .arc { background: #2fd27a; }
+.legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 13px; color: var(--muted); margin-top: 6px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+.form-text { margin: 10px 0 0; color: var(--text); }
+
+.tips { margin: 8px 0 0; padding-left: 20px; color: var(--muted); display: flex; flex-direction: column; gap: 6px; }
+.tips li::marker { color: var(--accent); }
+
+.source { text-align: center; font-size: 13px; color: var(--muted); margin: 4px 0 0; }
+.source a { color: var(--text); }
+.row-ctl[hidden] { display: none; }

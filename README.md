@@ -6,6 +6,7 @@ Kleine Community-Tools für Kingshot – laufen komplett im Browser, ohne Backen
 |---|---|---|
 | **Rally Sync** | `/rally/` | Startverzögerungen, damit mehrere Rallys gleichzeitig einschlagen |
 | **Reinforcement Timer** | `/reinforce/` | Verstärkungen so timen, dass sie direkt nach einer Gegner-Rally landen |
+| **Hero-Tier-Listen** (Guide) | `/guides/tier-lists/` | Beste Heroes für Bear Trap, Burg / KvK und Arena je Generation |
 
 ---
 
@@ -40,6 +41,14 @@ Füllt die Burg zwischen mehreren Gegner-Rallys wieder auf.
 4. Startzeiten werden live berechnet: `Start = Einschlag + Puffer − eigene Marschzeit`.
 
 **Features:** Live-Status je Rally (Start / Marsch / Einschlag), Lücke zur nächsten Rally, Warnung bei zu knappem Fenster, Start-Hinweis „losschicken bei Einschlag-Countdown X“ (unabhängig von Uhrzeiten), Live-Ablauf, Plan kopieren, Vollbild-Timer mit GO-Signal und Vibration. Alles bleibt auch nach Neuladen erhalten.
+
+---
+
+## 🏆 Hero-Tier-Listen (Guides)
+
+Tier-Listen für **Bear Trap** (Rally-Leader und -Joiner), **Burg / KvK** (angreifender Leader) und **Arena 3v3**, jeweils für Gen 1–7. Dazu Truppen-Aufstellung und Hinweise je Modus. Die Auswahl steckt in der URL (z.B. `#bear-7-joiners`) und lässt sich direkt teilen.
+
+**Daten pflegen:** Alle Tiers stehen in `guides/tier-lists/data.js`. Heroes einfach zwischen den Listen `S`, `A`, `B`, `C`, `Avoid` verschieben und `updated` anpassen. Quelle der aktuellen Daten: [kingshotapp.com](https://www.kingshotapp.com/heroes/tier-lists).
 
 ---
 
