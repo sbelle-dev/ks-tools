@@ -49,6 +49,8 @@
       joinTitle: 'Joiner marches',
       joinIntro: 'Save these 6 marches as presets before the event. Only the first hero (slot 1) brings its skill into the rally – slots 2 and 3 just make sure no hero is used twice.',
       marchN: 'March {n}', counts: 'Skill counts', slots: 'Slots 2 + 3:',
+      noHeroTitle: 'Missing one of these heroes?',
+      noHeroText: 'Then join with no heroes at all – troops only. That is better than putting the wrong hero in slot 1.',
       skill_leth: '+25% Lethality', skill_atk: '+25% Attack', skill_split: 'Attack + Lethality', skill_dmg: '+25% damage taken by the bear',
       troopsTitle: 'Joiner troops',
       troopsIntro: 'Ratio 5 / 10 / 85. The limit per join is announced before each hunt – usually 100k, sometimes more. Enter it and send exactly these troops:',
@@ -93,6 +95,8 @@
       joinTitle: 'Joiner-Märsche',
       joinIntro: 'Diese 6 Märsche vor dem Event als Presets speichern. Nur der erste Hero (Slot 1) bringt seinen Skill in die Rally – Slot 2 und 3 sorgen nur dafür, dass kein Hero doppelt verwendet wird.',
       marchN: 'Marsch {n}', counts: 'Skill zählt', slots: 'Slot 2 + 3:',
+      noHeroTitle: 'Dir fehlt einer dieser Heroes?',
+      noHeroText: 'Dann join lieber ganz ohne Heroes – nur mit Truppen. Das ist besser, als einen falschen Hero auf Slot 1 zu setzen.',
       skill_leth: '+25 % Lethality', skill_atk: '+25 % Angriff', skill_split: 'Angriff + Lethality', skill_dmg: '+25 % Schaden am Bären',
       troopsTitle: 'Joiner-Truppen',
       troopsIntro: 'Verhältnis 5 / 10 / 85. Das Limit pro Join wird vor jeder Jagd angesagt – meist 100k, manchmal mehr. Eintragen und genau diese Truppen schicken:',
@@ -137,6 +141,8 @@
       joinTitle: 'Marches de participation',
       joinIntro: "Enregistre ces 6 marches en préréglage avant l'événement. Seul le premier héros (emplacement 1) apporte sa compétence au rally – les emplacements 2 et 3 évitent seulement d'utiliser un héros deux fois.",
       marchN: 'Marche {n}', counts: 'Compétence active', slots: 'Empl. 2 + 3 :',
+      noHeroTitle: 'Il te manque un de ces héros ?',
+      noHeroText: "Alors rejoins sans aucun héros – uniquement avec des troupes. C'est mieux que de mettre le mauvais héros en emplacement 1.",
       skill_leth: '+25 % létalité', skill_atk: '+25 % attaque', skill_split: 'Attaque + létalité', skill_dmg: "+25 % dégâts subis par l'ours",
       troopsTitle: 'Troupes de participation',
       troopsIntro: "Ratio 5 / 10 / 85. La limite par participation est annoncée avant chaque chasse – en général 100k, parfois plus. Saisis-la et envoie exactement ces troupes :",
@@ -390,6 +396,7 @@
     lines.push(PLAN.lead.heroes.map(h => `${t(h.type)}: ${h.name}`).join(' · '), '');
     lines.push(t('copyJoin'));
     PLAN.join.marches.forEach((m, i) => lines.push(`#${i + 1} ${m.main} (${t(`skill_${m.skill}`)}) + ${m.fill.join(', ')}`));
+    lines.push(`💡 ${t('noHeroTitle')} ${t('noHeroText')}`);
     lines.push('');
     lines.push(`${t('copyTroops')} (${PLAN.join.ratio.join('/')}) · ${short(state.joinLimit)}`);
     lines.push(`${t('inf')} ${num(ji)} · ${t('cav')} ${num(jc)} · ${t('arc')} ${num(ja)}`);

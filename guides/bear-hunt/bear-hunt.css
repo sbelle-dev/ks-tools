@@ -78,6 +78,15 @@
 .march .fill { grid-area: fill; font-size: 13px; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 8px; margin-top: 6px; }
 .march .fill b { color: var(--text); font-weight: 600; }
 
+.tipbox {
+  display: flex; gap: 12px; align-items: flex-start; margin-top: 12px;
+  padding: 12px 14px; border-radius: 12px;
+  background: rgba(255, 201, 77, .08); border: 1px solid rgba(255, 201, 77, .35);
+}
+.tipbox .tip-ic { font-size: 20px; line-height: 1.3; }
+.tipbox p { margin: 0; font-size: 15px; color: var(--text); }
+.tipbox b { color: var(--soon); }
+
 /* ---------- Aufstellung & Rechner ---------- */
 .formation { margin: 14px 0 0; }
 .form-head { font-size: 14px; color: var(--muted); margin-bottom: 6px; font-weight: 600; }
