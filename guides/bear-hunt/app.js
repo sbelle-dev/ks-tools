@@ -71,11 +71,8 @@
         { ic: '💯', t: '{limit} limit', s: 'Per join' },
         { ic: '⏱️', t: 'Stagger', s: 'By distance' },
       ],
-      copy: '📋 Copy plan for alliance chat', copied: '✓ Copied', copyFail: 'Copy failed',
-      copyHead: '🐻 BEAR HUNT PLAN',
-      copyRules: 'RULES', copyLead: 'RALLY LEAD', copyJoin: 'JOINER MARCHES', copyTroops: 'JOINER TROOPS',
-      copyStagger: 'Stagger: front row now, +1 min per row back',
-      copyLimit: 'Max {limit} per join, hosts no limit', copyLead: 'Lead', copyLeadTip: 'or your 3 best', copyJoinTroops: 'Join', copyNoHero: 'Missing a hero? Join with troops only.',
+      
+      
       footer: 'Bear Hunt Guide · Community guide for Kingshot',
     },
     de: {
@@ -120,11 +117,8 @@
         { ic: '💯', t: '{limit} Limit', s: 'Pro Join' },
         { ic: '⏱️', t: 'Staggering', s: 'Nach Entfernung' },
       ],
-      copy: '📋 Plan für den Allianz-Chat kopieren', copied: '✓ Kopiert', copyFail: 'Kopieren fehlgeschlagen',
-      copyHead: '🐻 BEAR-HUNT-PLAN',
-      copyRules: 'REGELN', copyLead: 'RALLY-LEAD', copyJoin: 'JOINER-MÄRSCHE', copyTroops: 'JOINER-TRUPPEN',
-      copyStagger: 'Staggering: vorne sofort, +1 Min. pro Reihe dahinter',
-      copyLimit: 'Max. {limit} pro Join, Hosts ohne Limit', copyLead: 'Lead', copyLeadTip: 'sonst deine 3 besten', copyJoinTroops: 'Join', copyNoHero: 'Hero fehlt? Nur mit Truppen joinen.',
+      
+      
       footer: 'Bear Hunt Guide · Community-Guide für Kingshot',
     },
     fr: {
@@ -169,11 +163,8 @@
         { ic: '💯', t: 'Limite {limit}', s: 'Par participation' },
         { ic: '⏱️', t: 'Staggering', s: 'Selon la distance' },
       ],
-      copy: "📋 Copier le plan pour le chat d'alliance", copied: '✓ Copié', copyFail: 'Échec de la copie',
-      copyHead: '🐻 PLAN BEAR HUNT',
-      copyRules: 'RÈGLES', copyLead: 'LEADER DU RALLY', copyJoin: 'MARCHES DE PARTICIPATION', copyTroops: 'TROUPES DE PARTICIPATION',
-      copyStagger: 'Staggering : 1re rangée tout de suite, +1 min par rangée',
-      copyLimit: 'Max {limit} par participation, hôtes sans limite', copyLead: 'Leader', copyLeadTip: 'sinon tes 3 meilleurs', copyJoinTroops: 'Participants', copyNoHero: 'Héros manquant ? Rejoins avec des troupes seules.',
+      
+      
       footer: 'Bear Hunt Guide · Guide communautaire pour Kingshot',
     },
   };
@@ -372,7 +363,6 @@
     renderResult('joinResult', state.joinLimit, PLAN.join.ratio);
     renderPresets();
     renderSummary();
-    if (!$('chatParts').hidden) KSChat.render($('chatParts'), KSChat.split(buildCopyLines()));
   }
 
   function renderAll() {
@@ -390,26 +380,6 @@
     renderDynamic();
   }
 
-  // ---------- Kopieren (Chat: max. 150 Zeichen pro Nachricht, siehe assets/chat.js) ----------
-  const k = n => (n % 1000 === 0 ? `${n / 1000}k` : `${+(n / 1000).toFixed(1)}k`);
-  function buildCopyLines() {
-    const [ji, jc, ja] = split(state.joinLimit, PLAN.join.ratio);
-    const r = t('rules');
-    const lines = [t('copyHead')];
-    lines.push(`📣 ${r[0].t} · ⬆️ ${r[1].t}`);
-    lines.push(`💯 ${t('copyLimit', { limit: k(state.joinLimit) })}`);
-    lines.push(`⏱️ ${t('copyStagger')}`);
-    lines.push(`👑 ${t('copyLead')} ${PLAN.lead.ratio.join('/')}: ${PLAN.lead.heroes.map(h => h.name).join(', ')} (${t('copyLeadTip')})`);
-    lines.push(`🤝 ${t('copyJoinTroops')} ${PLAN.join.ratio.join('/')} = ${k(ji)}/${k(jc)}/${k(ja)}`);
-    PLAN.join.marches.forEach((m, i) => lines.push(`#${i + 1} ${m.main} + ${m.fill.join(', ')}`));
-    lines.push(`💡 ${t('copyNoHero')}`);
-    return lines;
-  }
-
-  function copyPlan() {
-    KSChat.share($('chatParts'), buildCopyLines(), $('copyBtn'), { idle: t('copy') });
-  }
-
   // ---------- Events ----------
   function bindNumber(input, key) {
     input.addEventListener('input', () => {
@@ -422,7 +392,6 @@
   }
   bindNumber($('leadSize'), 'leadSize');
   bindNumber($('joinLimit'), 'joinLimit');
-  $('copyBtn').addEventListener('click', copyPlan);
   KSLang.bind(l => { state.lang = l; renderAll(); });
 
   renderAll();

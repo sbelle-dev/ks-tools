@@ -48,14 +48,11 @@
       nextLabel: 'Nächster Start', nextHitLabel: 'Nächster Einschlag',
       nextNone: 'Noch nichts geplant – Gegner-Rallys und Verstärker eintragen.',
       tlHit: '{label} schlägt ein', tlLaunch: '{name} → nach {label}',
-      copy: '📋 Plan kopieren', copied: '✓ Kopiert', copyFail: 'Kopieren fehlgeschlagen',
       hud: '▶ Vollbild-Timer',
       example: 'Beispiel', reset: 'Neue Runde', clear: 'Alles leeren',
       confirmClear: 'Alle Eingaben löschen?', confirmReset: 'Zeiten der Gegner-Rallys zurücksetzen? Verstärker bleiben erhalten.',
-      copyHead: '🛡️ VERSTÄRKUNGSPLAN', copyEnemy: '⚔ {label}: Einschlag in {t}{est}', copyEstShort: ' (geschätzt)',
-      copyPlayer: '🛡 {name} → nach {label}: in {t} starten ({cue})', copyPlayerOpen: '🛡 {name} → nach {label}: {info}',
-      copyFoot: 'Landung {b} s nach Einschlag',
-      copyCueHit: 'bei Einschlag {t}', copyCueRally: 'bei Rally-Timer {t}',
+      
+      
       hudNext: 'Nächster Start in', hudGo: 'Jetzt verstärken', hudNone: 'Keine Starts ausstehend',
       hudEnemy: '⚔ {label} {t}',
       exit: 'Zurück', unnamed: 'Unbenannt', removeRow: 'Entfernen', examplePlayer: 'Spieler {x}',
@@ -95,14 +92,11 @@
       nextLabel: 'Next launch', nextHitLabel: 'Next hit',
       nextNone: 'Nothing planned yet – add enemy rallies and reinforcers.',
       tlHit: '{label} hits', tlLaunch: '{name} → after {label}',
-      copy: '📋 Copy plan', copied: '✓ Copied', copyFail: 'Copy failed',
       hud: '▶ Fullscreen timer',
       example: 'Example', reset: 'New round', clear: 'Clear all',
       confirmClear: 'Delete all inputs?', confirmReset: 'Reset enemy rally times? Reinforcers are kept.',
-      copyHead: '🛡️ REINFORCEMENT PLAN', copyEnemy: '⚔ {label}: hits in {t}{est}', copyEstShort: ' (estimate)',
-      copyPlayer: '🛡 {name} → after {label}: send in {t} ({cue})', copyPlayerOpen: '🛡 {name} → after {label}: {info}',
-      copyFoot: 'Landing {b} s after hit',
-      copyCueHit: 'at hit timer {t}', copyCueRally: 'at rally timer {t}',
+      
+      
       hudNext: 'Next launch in', hudGo: 'Reinforce now', hudNone: 'No launches pending',
       hudEnemy: '⚔ {label} {t}',
       exit: 'Back', unnamed: 'Unnamed', removeRow: 'Remove', examplePlayer: 'Player {x}',
@@ -142,14 +136,11 @@
       nextLabel: 'Prochain départ', nextHitLabel: 'Prochain impact',
       nextNone: 'Rien de prévu – ajoute des rallys ennemis et des renforts.',
       tlHit: '{label} frappe', tlLaunch: '{name} → après {label}',
-      copy: '📋 Copier le plan', copied: '✓ Copié', copyFail: 'Échec de la copie',
       hud: '▶ Minuteur plein écran',
       example: 'Exemple', reset: 'Nouvelle manche', clear: 'Tout effacer',
       confirmClear: 'Supprimer toutes les saisies ?', confirmReset: 'Réinitialiser les temps des rallys ennemis ? Les renforts sont conservés.',
-      copyHead: '🛡️ PLAN DE RENFORT', copyEnemy: '⚔ {label} : impact dans {t}{est}', copyEstShort: ' (estimation)',
-      copyPlayer: '🛡 {name} → après {label} : envoyer dans {t} ({cue})', copyPlayerOpen: '🛡 {name} → après {label} : {info}',
-      copyFoot: "Arrivée {b} s après l'impact",
-      copyCueHit: "à l'impact {t}", copyCueRally: 'au timer du rally {t}',
+      
+      
       hudNext: 'Prochain départ dans', hudGo: 'Renforce maintenant', hudNone: 'Aucun départ en attente',
       hudEnemy: '⚔ {label} {t}',
       exit: 'Retour', unnamed: 'Sans nom', removeRow: 'Supprimer', examplePlayer: 'Joueur {x}',
@@ -606,40 +597,6 @@
     });
   }
 
-  // ---------- Kopieren ----------
-  function buildCopyLines() {
-    const c = compute(Date.now());
-    const lines = [t('copyHead')];
-    c.hits.filter(h => h.hitAt > c.now).forEach(h => {
-      lines.push(t('copyEnemy', {
-        label: enemyName(h.e), t: fmtLeft(h.hitAt - c.now),
-        est: c.times.get(h.e.id).marchMode === 'est' ? t('copyEstShort') : '',
-      }));
-    });
-    c.plans
-      .filter(p => p.status !== 'noTarget' && (p.p.name.trim() || p.p.march.trim()))
-      .sort((a, b) => (a.launchAt ?? Infinity) - (b.launchAt ?? Infinity))
-      .forEach(p => {
-        if (p.status === 'ok' && p.launchAt > c.now) {
-          lines.push(t('copyPlayer', {
-            name: playerName(p.p), label: enemyName(p.e), t: fmtLeft(p.launchAt - c.now),
-            cue: t(p.cue.type === 'hit' ? 'copyCueHit' : 'copyCueRally', { t: fmt(Math.round(p.cue.ms / 1000)) }),
-          }));
-        } else {
-          const info = p.status === 'needMarch' ? t('pNeedMarch')
-            : p.status === 'waitEnemy' ? t('pWaitEnemy', { label: enemyName(p.e) })
-            : t('pMissed');
-          lines.push(t('copyPlayerOpen', { name: playerName(p.p), label: enemyName(p.e), info }));
-        }
-      });
-    lines.push(t('copyFoot', { b: state.buffer }));
-    return lines;
-  }
-
-  function copyPlan() {
-    KSChat.share($('chatParts'), buildCopyLines(), $('copyBtn'), { idle: t('copy') });
-  }
-
   // ---------- Sprache ----------
   function applyLang() {
     KSLang.mark(state.lang);
@@ -693,7 +650,6 @@
     state.buffer = SITE.defaultBuffer; $('buffer').value = state.buffer;
     persist(); renderAll();
   });
-  $('copyBtn').addEventListener('click', copyPlan);
   $('hudBtn').addEventListener('click', openHud);
   $('exitBtn').addEventListener('click', closeHud);
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('hud').hidden) closeHud(); });

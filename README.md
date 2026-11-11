@@ -24,7 +24,6 @@ Läuft komplett im Browser – kein Backend, keine Anmeldung, keine Tracker.
 - Flexible Zeiteingabe: `45`, `1:05`, `1m 5s`, `00:01:05`
 - Berechnung: langsamster Marsch = Base (GO), alle anderen `+Verzögerung`
 - Optional: Base-Rally manuell wählen – langsamere Rallys starten dann vor der Base (`−Vorlauf`)
-- Reihenfolge als Text kopieren (für den Allianz-Chat)
 - Visueller Timer: optionaler 3-s-Vorlauf, Countdown mit Zehntelsekunden, grünes GO-Signal, Vibration (Android), Bildschirm bleibt an
 - Deutsch/Englisch umschaltbar
 - Eingaben bleiben im Browser gespeichert
@@ -41,7 +40,7 @@ Füllt die Burg zwischen mehreren Gegner-Rallys wieder auf.
 3. **Verstärker** mit eigener Marschzeit und Zielfenster („nach Rally 1“ …) eintragen.
 4. Startzeiten werden live berechnet: `Start = Einschlag + Puffer − eigene Marschzeit`.
 
-**Features:** Live-Status je Rally (Start / Marsch / Einschlag), Lücke zur nächsten Rally, Warnung bei zu knappem Fenster, Start-Hinweis „losschicken bei Einschlag-Countdown X“ (unabhängig von Uhrzeiten), Live-Ablauf, Plan kopieren, Vollbild-Timer mit GO-Signal und Vibration. Alles bleibt auch nach Neuladen erhalten.
+**Features:** Live-Status je Rally (Start / Marsch / Einschlag), Lücke zur nächsten Rally, Warnung bei zu knappem Fenster, Start-Hinweis „losschicken bei Einschlag-Countdown X“ (unabhängig von Uhrzeiten), Live-Ablauf, Vollbild-Timer mit GO-Signal und Vibration. Alles bleibt auch nach Neuladen erhalten.
 
 ---
 
@@ -55,7 +54,7 @@ Tier-Listen für **Bear Trap** (Rally-Leader und -Joiner), **Burg / KvK** (Angri
 
 ## 🐻 Bear Hunt Guide
 
-Die Allianz-Strategie für die Bear Hunt auf einer Seite: Kernregeln inkl. Staggering, Rally-Leader (1/9/90), sechs Joiner-Märsche (5/10/85) und ein Truppen-Rechner für das jeweils angesagte Limit (z.B. 100k oder 110k). Mit „Plan kopieren“ für den Allianz-Chat.
+Die Allianz-Strategie für die Bear Hunt auf einer Seite: Kernregeln inkl. Staggering, Rally-Leader (1/9/90), sechs Joiner-Märsche (5/10/85) und ein Truppen-Rechner für das jeweils angesagte Limit (z.B. 100k oder 110k).
 
 **Anpassen:** Heroes, Verhältnisse und Limit-Vorschläge stehen oben in `guides/bear-hunt/app.js` im Block `PLAN`.
 
@@ -73,10 +72,6 @@ Die Porträts in `assets/heroes/` (160 px, WebP) stammen von kingshotoptimizer.c
    `https://<dein-github-name>.github.io/<repo>/` (Startseite mit allen Tools)
 
 Tipp: Wenn das Repo `<dein-github-name>.github.io` heißt, läuft es direkt unter der Hauptadresse.
-
-## Chat-Limit (150 Zeichen)
-
-Alle „Kopieren“-Funktionen teilen den Text automatisch in Chat-Nachrichten mit max. 150 Zeichen auf – nummeriert „(1/3)“, „(2/3)“ … und mit eigenem Kopier-Button je Nachricht. Zeilen werden mit „|“ getrennt, weil Zeilenumbrüche im Spiel-Chat verloren gehen. Limit und Trenner stehen oben in `assets/chat.js`.
 
 ## Updates und Browser-Cache
 

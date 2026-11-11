@@ -34,18 +34,14 @@
       resultSub: 'Langsamster Marsch: {time}. Alle anderen starten nach der angezeigten Verzögerung.',
       resultSubManual: 'Base manuell gewählt (Marsch {time}). + = nach der Base starten, − = vor der Base starten.',
       errBase: 'Die gewählte Base-Rally hat keine gültige Marschzeit.',
-      copy: '📋 Kopieren', copied: '✓ Kopiert', copyFail: 'Kopieren fehlgeschlagen',
       timer: '▶ Timer starten',
-      copyHead: '⚔️ RALLY-REIHENFOLGE',
-      copyFoot: 'Alle mit derselben Rally-Dauer starten!',
-      copyLegend: '− = vor der Base starten, + = danach',
+      
       hudPre: 'Base-Rally startet in', hudFirst: 'Erster Start in', hudGo: 'Jetzt starten', hudNext: 'Nächster Start in',
       hudDone: 'Alle Rallys gestartet',
       restart: '↺ Neustart', exit: 'Zurück',
       unnamed: 'Unbenannt', confirmClear: 'Alle Zeilen löschen?',
       removeRow: 'Zeile entfernen', pet: 'Pet-Buff aktiv',
       ariaTag: 'Allianz-Tag', ariaName: 'Spielername', ariaMarch: 'Marschzeit',
-      copyBaseMarch: 'Base-Marsch: {t}',
       back: '← Alle Tools',
     },
     en: {
@@ -68,18 +64,14 @@
       resultSub: 'Slowest march: {time}. Everyone else launches after the delay shown.',
       resultSubManual: 'Base picked manually (march {time}). + = launch after the base, − = launch before the base.',
       errBase: 'The selected base rally has no valid march time.',
-      copy: '📋 Copy', copied: '✓ Copied', copyFail: 'Copy failed',
       timer: '▶ Start timer',
-      copyHead: '⚔️ RALLY ORDER',
-      copyFoot: 'Everyone use the same rally duration!',
-      copyLegend: '− = launch before the base, + = after',
+      
       hudPre: 'Base rally starts in', hudFirst: 'First launch in', hudGo: 'Launch now', hudNext: 'Next launch in',
       hudDone: 'All rallies launched',
       restart: '↺ Restart', exit: 'Back',
       unnamed: 'Unnamed', confirmClear: 'Delete all rows?',
       removeRow: 'Remove row', pet: 'Pet buff active',
       ariaTag: 'Alliance tag', ariaName: 'Player name', ariaMarch: 'March time',
-      copyBaseMarch: 'Base march: {t}',
       back: '← All tools',
     },
     fr: {
@@ -102,12 +94,9 @@
       resultSub: 'Marche la plus lente : {time}. Tous les autres partent après le délai indiqué.',
       resultSubManual: 'Base choisie manuellement (marche {time}). + = partir après la base, − = partir avant la base.',
       errBase: "Le rally de base choisi n'a pas de temps de marche valide.",
-      copy: '📋 Copier', copied: '✓ Copié', copyFail: 'Échec de la copie',
       timer: '▶ Lancer le minuteur',
-      copyHead: '⚔️ ORDRE DES RALLYS',
-      copyFoot: 'Tout le monde avec la même durée de rally !',
-      copyLegend: '− = partir avant la base, + = après',
-      copyBaseMarch: 'Marche de base : {t}',
+      
+      
       hudPre: 'Le rally de base part dans', hudFirst: 'Premier départ dans', hudGo: 'Lance maintenant', hudNext: 'Prochain départ dans',
       hudDone: 'Tous les rallys sont lancés',
       restart: '↺ Recommencer', exit: 'Retour',
@@ -303,19 +292,6 @@
     function showError(msg) { err.textContent = msg; err.hidden = false; }
   }
 
-  function buildCopyLines() {
-    const { groups, baseSec } = state.schedule;
-    const lines = [t('copyHead')];
-    groups.forEach(g => {
-      const when = g.delay === 0 ? 'BASE GO' : fmtDelay(g.delay);
-      g.items.forEach(i => lines.push(`${when} ${label(i)}`));
-    });
-    lines.push(t('copyBaseMarch', { t: fmt(baseSec) }));
-    if (groups[0].delay < 0) lines.push(t('copyLegend'));
-    lines.push(t('copyFoot'));
-    return lines;
-  }
-
   function renderResult() {
     const { items, groups, baseSec, manual } = state.schedule;
     const baseGroup = groups.find(g => g.delay === 0);
@@ -340,12 +316,8 @@
       li.append(when, who, march);
       list.appendChild(li);
     });
-    KSChat.render($('chatParts'), KSChat.split(buildCopyLines()));
   }
 
-  function copyOrder() {
-    KSChat.share($('chatParts'), buildCopyLines(), $('copyBtn'), { idle: t('copy') });
-  }
 
   // ---------- Visueller Timer ----------
   const hud = { raf: 0, t0: 0, lead: 0, fired: new Set(), wakeLock: null };
@@ -486,7 +458,6 @@
   $('precount').checked = state.precount;
   $('precount').addEventListener('change', e => { state.precount = e.target.checked; persist(); });
   $('calcBtn').addEventListener('click', calculate);
-  $('copyBtn').addEventListener('click', copyOrder);
   $('timerBtn').addEventListener('click', startTimer);
   $('restartBtn').addEventListener('click', startTimer);
   $('exitBtn').addEventListener('click', stopTimer);

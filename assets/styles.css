@@ -299,22 +299,3 @@ select.manual { border-color: var(--accent); }
   * { transition: none !important; }
 }
 
-/* ---------- Chat-Nachrichten (assets/chat.js) ---------- */
-.chat-parts { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
-.chat-parts[hidden] { display: none; }
-.chat-intro { margin: 0; font-size: 14px; color: var(--muted); }
-.chat-part {
-  display: grid; grid-template-columns: 1fr auto; grid-template-areas: "head head" "text btn";
-  gap: 6px 10px; align-items: center;
-  padding: 10px 12px; border-radius: 10px; background: var(--bg); border: 1px dashed var(--line);
-}
-.chat-part.done { border-style: solid; border-color: rgba(47, 210, 122, .45); }
-.chat-head { grid-area: head; display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
-.chat-len { font-family: var(--mono); letter-spacing: 0; text-transform: none; }
-.chat-text { grid-area: text; margin: 0; font: 13px/1.5 var(--mono); color: var(--text); overflow-wrap: anywhere; }
-.chat-part button { grid-area: btn; align-self: center; min-height: 40px; padding: 8px 12px; font-size: 14px; white-space: nowrap; }
-.chat-part.done button { color: var(--go); }
-@media (max-width: 480px) {
-  .chat-part { grid-template-columns: 1fr; grid-template-areas: "head" "text" "btn"; }
-  .chat-part button { width: 100%; }
-}
