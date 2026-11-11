@@ -303,17 +303,17 @@
     function showError(msg) { err.textContent = msg; err.hidden = false; }
   }
 
-  function buildCopyText() {
+  function buildCopyLines() {
     const { groups, baseSec } = state.schedule;
-    const lines = [t('copyHead'), ''];
+    const lines = [t('copyHead')];
     groups.forEach(g => {
-      const when = g.delay === 0 ? 'BASE – GO' : fmtDelay(g.delay);
-      g.items.forEach(i => lines.push(`${when.padEnd(9)} ${label(i)}`));
+      const when = g.delay === 0 ? 'BASE GO' : fmtDelay(g.delay);
+      g.items.forEach(i => lines.push(`${when} ${label(i)}`));
     });
-    lines.push('', t('copyBaseMarch', { t: fmt(baseSec) }));
+    lines.push(t('copyBaseMarch', { t: fmt(baseSec) }));
     if (groups[0].delay < 0) lines.push(t('copyLegend'));
     lines.push(t('copyFoot'));
-    return lines.join('\n');
+    return lines;
   }
 
   function renderResult() {
@@ -340,22 +340,11 @@
       li.append(when, who, march);
       list.appendChild(li);
     });
-    $('copyPreview').textContent = buildCopyText();
+    KSChat.render($('chatParts'), KSChat.split(buildCopyLines()));
   }
 
-  async function copyOrder() {
-    const btn = $('copyBtn');
-    const text = buildCopyText();
-    let ok = false;
-    try { await navigator.clipboard.writeText(text); ok = true; } catch {
-      const ta = document.createElement('textarea');
-      ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
-      document.body.appendChild(ta); ta.select();
-      try { ok = document.execCommand('copy'); } catch { ok = false; }
-      ta.remove();
-    }
-    btn.textContent = ok ? t('copied') : t('copyFail');
-    setTimeout(() => { btn.textContent = t('copy'); }, 1600);
+  function copyOrder() {
+    KSChat.share($('chatParts'), buildCopyLines(), $('copyBtn'), { idle: t('copy') });
   }
 
   // ---------- Visueller Timer ----------

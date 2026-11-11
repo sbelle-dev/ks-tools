@@ -55,6 +55,7 @@
       copyHead: '🛡️ VERSTÄRKUNGSPLAN', copyEnemy: '⚔ {label}: Einschlag in {t}{est}', copyEstShort: ' (geschätzt)',
       copyPlayer: '🛡 {name} → nach {label}: in {t} starten ({cue})', copyPlayerOpen: '🛡 {name} → nach {label}: {info}',
       copyFoot: 'Landung {b} s nach Einschlag',
+      copyCueHit: 'bei Einschlag {t}', copyCueRally: 'bei Rally-Timer {t}',
       hudNext: 'Nächster Start in', hudGo: 'Jetzt verstärken', hudNone: 'Keine Starts ausstehend',
       hudEnemy: '⚔ {label} {t}',
       exit: 'Zurück', unnamed: 'Unbenannt', removeRow: 'Entfernen', examplePlayer: 'Spieler {x}',
@@ -101,6 +102,7 @@
       copyHead: '🛡️ REINFORCEMENT PLAN', copyEnemy: '⚔ {label}: hits in {t}{est}', copyEstShort: ' (estimate)',
       copyPlayer: '🛡 {name} → after {label}: send in {t} ({cue})', copyPlayerOpen: '🛡 {name} → after {label}: {info}',
       copyFoot: 'Landing {b} s after hit',
+      copyCueHit: 'at hit timer {t}', copyCueRally: 'at rally timer {t}',
       hudNext: 'Next launch in', hudGo: 'Reinforce now', hudNone: 'No launches pending',
       hudEnemy: '⚔ {label} {t}',
       exit: 'Back', unnamed: 'Unnamed', removeRow: 'Remove', examplePlayer: 'Player {x}',
@@ -147,6 +149,7 @@
       copyHead: '🛡️ PLAN DE RENFORT', copyEnemy: '⚔ {label} : impact dans {t}{est}', copyEstShort: ' (estimation)',
       copyPlayer: '🛡 {name} → après {label} : envoyer dans {t} ({cue})', copyPlayerOpen: '🛡 {name} → après {label} : {info}',
       copyFoot: "Arrivée {b} s après l'impact",
+      copyCueHit: "à l'impact {t}", copyCueRally: 'au timer du rally {t}',
       hudNext: 'Prochain départ dans', hudGo: 'Renforce maintenant', hudNone: 'Aucun départ en attente',
       hudEnemy: '⚔ {label} {t}',
       exit: 'Retour', unnamed: 'Sans nom', removeRow: 'Supprimer', examplePlayer: 'Joueur {x}',
@@ -604,16 +607,15 @@
   }
 
   // ---------- Kopieren ----------
-  function buildCopyText() {
+  function buildCopyLines() {
     const c = compute(Date.now());
-    const lines = [t('copyHead'), ''];
+    const lines = [t('copyHead')];
     c.hits.filter(h => h.hitAt > c.now).forEach(h => {
       lines.push(t('copyEnemy', {
         label: enemyName(h.e), t: fmtLeft(h.hitAt - c.now),
         est: c.times.get(h.e.id).marchMode === 'est' ? t('copyEstShort') : '',
       }));
     });
-    lines.push('');
     c.plans
       .filter(p => p.status !== 'noTarget' && (p.p.name.trim() || p.p.march.trim()))
       .sort((a, b) => (a.launchAt ?? Infinity) - (b.launchAt ?? Infinity))
@@ -621,7 +623,7 @@
         if (p.status === 'ok' && p.launchAt > c.now) {
           lines.push(t('copyPlayer', {
             name: playerName(p.p), label: enemyName(p.e), t: fmtLeft(p.launchAt - c.now),
-            cue: t(p.cue.type === 'hit' ? 'pCueHit' : 'pCueRally', { t: fmt(Math.round(p.cue.ms / 1000)) }),
+            cue: t(p.cue.type === 'hit' ? 'copyCueHit' : 'copyCueRally', { t: fmt(Math.round(p.cue.ms / 1000)) }),
           }));
         } else {
           const info = p.status === 'needMarch' ? t('pNeedMarch')
@@ -630,23 +632,12 @@
           lines.push(t('copyPlayerOpen', { name: playerName(p.p), label: enemyName(p.e), info }));
         }
       });
-    lines.push('', t('copyFoot', { b: state.buffer }));
-    return lines.join('\n');
+    lines.push(t('copyFoot', { b: state.buffer }));
+    return lines;
   }
 
-  async function copyPlan() {
-    const btn = $('copyBtn');
-    const text = buildCopyText();
-    let ok = false;
-    try { await navigator.clipboard.writeText(text); ok = true; } catch {
-      const ta = document.createElement('textarea');
-      ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
-      document.body.appendChild(ta); ta.select();
-      try { ok = document.execCommand('copy'); } catch { ok = false; }
-      ta.remove();
-    }
-    btn.textContent = ok ? t('copied') : t('copyFail');
-    setTimeout(() => { btn.textContent = t('copy'); }, 1600);
+  function copyPlan() {
+    KSChat.share($('chatParts'), buildCopyLines(), $('copyBtn'), { idle: t('copy') });
   }
 
   // ---------- Sprache ----------

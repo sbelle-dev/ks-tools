@@ -74,6 +74,10 @@ Die Porträts in `assets/heroes/` (160 px, WebP) stammen von kingshotoptimizer.c
 
 Tipp: Wenn das Repo `<dein-github-name>.github.io` heißt, läuft es direkt unter der Hauptadresse.
 
+## Chat-Limit (150 Zeichen)
+
+Alle „Kopieren“-Funktionen teilen den Text automatisch in Chat-Nachrichten mit max. 150 Zeichen auf – nummeriert „(1/3)“, „(2/3)“ … und mit eigenem Kopier-Button je Nachricht. Zeilen werden mit „|“ getrennt, weil Zeilenumbrüche im Spiel-Chat verloren gehen. Limit und Trenner stehen oben in `assets/chat.js`.
+
 ## Updates und Browser-Cache
 
 Alle Skripte und Styles werden mit `?v=…` eingebunden. Nach Änderungen an `.js`- oder `.css`-Dateien die Versionsnummer in den HTML-Dateien hochzählen, damit Besucher sofort die neue Version bekommen statt einer zwischengespeicherten.
