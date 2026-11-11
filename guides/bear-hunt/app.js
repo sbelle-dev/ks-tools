@@ -46,6 +46,8 @@
       inf: 'Infantry', cav: 'Cavalry', arc: 'Archers',
       formation: 'Formation',
       leadCalc: 'Your march size',
+      leadTipTitle: 'This is the best option.',
+      leadTipText: 'If you are missing one of these heroes, simply use the three best heroes you have for your own rally.',
       joinTitle: 'Joiner marches',
       joinIntro: 'Save these 6 marches as presets before the event. Only the first hero (slot 1) brings its skill into the rally – slots 2 and 3 just make sure no hero is used twice.',
       marchN: 'March {n}', counts: 'Skill counts', slots: 'Slots 2 + 3:',
@@ -92,6 +94,8 @@
       inf: 'Infanterie', cav: 'Kavallerie', arc: 'Bogenschützen',
       formation: 'Aufstellung',
       leadCalc: 'Deine Marschgröße',
+      leadTipTitle: 'Das ist die beste Option.',
+      leadTipText: 'Wenn dir einer dieser Heroes fehlt, nimm einfach die drei besten Heroes, die du hast, für deine eigene Rally.',
       joinTitle: 'Joiner-Märsche',
       joinIntro: 'Diese 6 Märsche vor dem Event als Presets speichern. Nur der erste Hero (Slot 1) bringt seinen Skill in die Rally – Slot 2 und 3 sorgen nur dafür, dass kein Hero doppelt verwendet wird.',
       marchN: 'Marsch {n}', counts: 'Skill zählt', slots: 'Slot 2 + 3:',
@@ -138,6 +142,8 @@
       inf: 'Infanterie', cav: 'Cavalerie', arc: 'Archers',
       formation: 'Formation',
       leadCalc: 'Taille de ta marche',
+      leadTipTitle: "C'est la meilleure option.",
+      leadTipText: "S'il te manque un de ces héros, prends simplement les trois meilleurs héros que tu as pour ton propre rally.",
       joinTitle: 'Marches de participation',
       joinIntro: "Enregistre ces 6 marches en préréglage avant l'événement. Seul le premier héros (emplacement 1) apporte sa compétence au rally – les emplacements 2 et 3 évitent seulement d'utiliser un héros deux fois.",
       marchN: 'Marche {n}', counts: 'Compétence active', slots: 'Empl. 2 + 3 :',
@@ -393,7 +399,8 @@
     });
     lines.push('');
     lines.push(`${t('copyLead')} (${PLAN.lead.ratio.join('/')})`);
-    lines.push(PLAN.lead.heroes.map(h => `${t(h.type)}: ${h.name}`).join(' · '), '');
+    lines.push(PLAN.lead.heroes.map(h => `${t(h.type)}: ${h.name}`).join(' · '));
+    lines.push(`💡 ${t('leadTipTitle')} ${t('leadTipText')}`, '');
     lines.push(t('copyJoin'));
     PLAN.join.marches.forEach((m, i) => lines.push(`#${i + 1} ${m.main} (${t(`skill_${m.skill}`)}) + ${m.fill.join(', ')}`));
     lines.push(`💡 ${t('noHeroTitle')} ${t('noHeroText')}`);
