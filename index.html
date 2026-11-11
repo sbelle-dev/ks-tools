@@ -7,7 +7,7 @@
   <meta name="description" content="Community-Tools für Kingshot: Rally Sync und Reinforcement Timer.">
   <title>Kingshot Tools</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚔️</text></svg>">
-  <link rel="stylesheet" href="assets/styles.css?v=20261110d">
+  <link rel="stylesheet" href="assets/styles.css?v=20261111b">
   <style>
     .tools { display: grid; gap: 14px; }
     @media (min-width: 680px) { .tools { grid-template-columns: 1fr 1fr; } }
@@ -72,12 +72,18 @@
         <p data-i18n="tierDesc"></p>
         <span class="go" data-i18n="read"></span>
       </a>
+      <a class="tool" href="guides/bear-hunt/">
+        <span class="ico" aria-hidden="true">🐻</span>
+        <h2 data-i18n="bearTitle"></h2>
+        <p data-i18n="bearDesc"></p>
+        <span class="go" data-i18n="read"></span>
+      </a>
     </div>
   </main>
 
   <footer class="foot"><span data-i18n="foot"></span><span class="credit">provided for free with love by HUGO</span><small class="disclaimer">This is a fan-made website and is not affiliated with, endorsed by, or associated with Century Games or the official developers of Kingshot. All game assets, imagery, and text content are copyrights of their respective owners.</small></footer>
 
-  <script src="assets/lang.js?v=20261110d"></script>
+  <script src="assets/lang.js?v=20261111b"></script>
   <script>
     (() => {
       const T = {
@@ -88,7 +94,8 @@
           reinfDesc: 'Verstärkungen so timen, dass sie direkt nach einer Gegner-Rally landen – bevor die nächste einschlägt.',
           open: 'Öffnen →',
           foot: 'Community-Tools für Kingshot',
-          secTools: 'Tools', secGuides: 'Guides', tierTitle: 'Hero-Tier-Listen', tierDesc: 'Die besten Heroes für Bear Trap, Burg / KvK und Arena – je Generation, für Rally-Leader und Joiner.', read: 'Lesen →',
+          secTools: 'Tools', secGuides: 'Guides', tierTitle: 'Hero-Tier-Listen', tierDesc: 'Die besten Heroes für Bear Trap, Burg / KvK und Arena – je Generation, für Rally-Leader und Joiner.', bearTitle: 'Bear Hunt Guide', bearDesc: 'Die effizienteste Bear-Hunt-Strategie: Regeln, Staggering, Rally-Leader, Joiner-Märsche und Truppen-Rechner.',
+          read: 'Lesen →',
         },
         en: {
           title: 'Tools & Guides',
@@ -97,7 +104,8 @@
           reinfDesc: 'Time reinforcements to land right after an enemy rally hits – before the next one arrives.',
           open: 'Open →',
           foot: 'Community tools for Kingshot',
-          secTools: 'Tools', secGuides: 'Guides', tierTitle: 'Hero Tier Lists', tierDesc: 'The best heroes for Bear Trap, Castle / KvK and Arena – per generation, for rally leaders and joiners.', read: 'Read →',
+          secTools: 'Tools', secGuides: 'Guides', tierTitle: 'Hero Tier Lists', tierDesc: 'The best heroes for Bear Trap, Castle / KvK and Arena – per generation, for rally leaders and joiners.', bearTitle: 'Bear Hunt Guide', bearDesc: 'The most efficient Bear Hunt strategy: rules, staggering, rally leaders, joiner marches and a troop calculator.',
+          read: 'Read →',
         },
         fr: {
           title: 'Outils & guides',
@@ -106,7 +114,8 @@
           reinfDesc: 'Synchronise tes renforts pour qu\'ils arrivent juste après l\'impact d\'un rally ennemi – avant le suivant.',
           open: 'Ouvrir →',
           foot: 'Outils communautaires pour Kingshot',
-          secTools: 'Outils', secGuides: 'Guides', tierTitle: 'Tier lists des héros', tierDesc: 'Les meilleurs héros pour le Bear Trap, le château / KvK et l\'arène – par génération, pour leaders et participants.', read: 'Lire →',
+          secTools: 'Outils', secGuides: 'Guides', tierTitle: 'Tier lists des héros', tierDesc: 'Les meilleurs héros pour le Bear Trap, le château / KvK et l\'arène – par génération, pour leaders et participants.', bearTitle: 'Guide Bear Hunt', bearDesc: 'La stratégie Bear Hunt la plus efficace : règles, staggering, leaders, marches de participation et calculateur de troupes.',
+          read: 'Lire →',
         },
       };
       let lang = KSLang.get();

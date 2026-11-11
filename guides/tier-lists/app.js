@@ -262,6 +262,7 @@
     for (const ch of name) h = (h * 31 + ch.charCodeAt(0)) % 360;
     return `hsl(${h} 70% 68%)`;
   }
+  const heroSlug = name => name.toLowerCase().replace(/\s*&\s*/g, '-and-').replace(/\s+/g, '-');
   function initials(name) {
     const parts = name.replace('&', ' ').split(/\s+/).filter(Boolean);
     return (parts.length > 1 ? parts[0][0] + parts[parts.length - 1][0] : name.slice(0, 2)).toUpperCase();
@@ -329,6 +330,10 @@
           const av = el('span', 'av', initials(name));
           av.style.background = heroColor(name);
           av.setAttribute('aria-hidden', 'true');
+          const img = new Image();
+          img.alt = ''; img.decoding = 'async';
+          img.onload = () => { av.textContent = ''; av.style.background = ''; av.classList.add('has-img'); av.appendChild(img); };
+          img.src = `../../assets/heroes/${heroSlug(name)}.webp`;
           chip.append(av, document.createTextNode(name));
           box.appendChild(chip);
         });

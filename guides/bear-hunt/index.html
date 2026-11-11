@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f1115">
+  <meta name="description" content="Kingshot Bear Hunt guide: rules, staggering, rally leader and joiner heroes, troop ratios and a troop calculator.">
+  <title>Bear Hunt Guide · Kingshot</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐻</text></svg>">
+  <link rel="stylesheet" href="../../assets/styles.css?v=20261111b">
+  <link rel="stylesheet" href="bear-hunt.css?v=20261111b">
+</head>
+<body>
+  <nav class="crumb">
+    <a class="back" href="../" data-i18n="back"></a>
+    <div id="langSwitch" class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="de">DE</button>
+      <button type="button" data-lang="fr">FR</button>
+    </div>
+  </nav>
+  <header class="top">
+    <div class="brand">
+      <span class="mark bear" aria-hidden="true">🐻</span>
+      <div>
+        <p class="eyebrow" data-i18n="eyebrow"></p>
+        <h1 data-i18n="title"></h1>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <p class="lead" data-i18n="lead"></p>
+
+    <!-- 1 · Kernregeln -->
+    <section class="card">
+      <h2><span class="num">1</span> <span data-i18n="rulesTitle"></span></h2>
+      <ul id="rules" class="rules"></ul>
+    </section>
+
+    <!-- 2 · Rally-Leader -->
+    <section class="card">
+      <h2><span class="num">2</span> <span data-i18n="leadTitle"></span></h2>
+      <p class="muted" data-i18n="leadIntro"></p>
+      <div id="leaders" class="leaders"></div>
+      <div class="formation">
+        <div class="form-head"><span data-i18n="formation"></span> <b class="mono">1 / 9 / 90</b></div>
+        <div id="leadBar" class="bar"></div>
+        <div id="leadLegend" class="legend"></div>
+      </div>
+      <div class="calc">
+        <label for="leadSize" data-i18n="leadCalc"></label>
+        <input id="leadSize" class="mono" type="text" inputmode="numeric" autocomplete="off">
+        <div id="leadResult" class="calc-result"></div>
+      </div>
+    </section>
+
+    <!-- 3 · Joiner-Märsche -->
+    <section class="card">
+      <h2><span class="num">3</span> <span data-i18n="joinTitle"></span></h2>
+      <p class="muted" data-i18n="joinIntro"></p>
+      <div id="marches" class="marches"></div>
+    </section>
+
+    <!-- 4 · Joiner-Truppen -->
+    <section class="card">
+      <h2><span class="num">4</span> <span data-i18n="troopsTitle"></span></h2>
+      <p class="muted" data-i18n="troopsIntro"></p>
+      <div class="formation">
+        <div class="form-head"><span data-i18n="formation"></span> <b class="mono">5 / 10 / 85</b></div>
+        <div id="joinBar" class="bar"></div>
+        <div id="joinLegend" class="legend"></div>
+      </div>
+      <div class="calc">
+        <label for="joinLimit" data-i18n="joinCalc"></label>
+        <div class="calc-row">
+          <input id="joinLimit" class="mono" type="text" inputmode="numeric" autocomplete="off">
+          <div class="presets" id="presets"></div>
+        </div>
+        <div id="joinResult" class="calc-result"></div>
+      </div>
+    </section>
+
+    <!-- 5 · Merksätze -->
+    <section class="card">
+      <h2><span class="num">5</span> <span data-i18n="notesTitle"></span></h2>
+      <ul id="notes" class="notes"></ul>
+    </section>
+
+    <!-- Kurzfassung -->
+    <section class="card summary">
+      <h2 data-i18n="sumTitle"></h2>
+      <div id="summary" class="sum-grid"></div>
+      <button id="copyBtn" type="button" class="primary big" data-i18n="copy"></button>
+      <pre id="copyPreview" class="preview" hidden></pre>
+    </section>
+  </main>
+
+  <footer class="foot"><span id="footerText"></span><span class="credit">provided for free with love by HUGO</span><small class="disclaimer">This is a fan-made website and is not affiliated with, endorsed by, or associated with Century Games or the official developers of Kingshot. All game assets, imagery, and text content are copyrights of their respective owners.</small></footer>
+
+  <script src="../../assets/lang.js?v=20261111b"></script>
+  <script src="app.js?v=20261111b"></script>
+</body>
+</html>

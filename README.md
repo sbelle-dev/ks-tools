@@ -7,6 +7,7 @@ Kleine Community-Tools für Kingshot – laufen komplett im Browser, ohne Backen
 | **Rally Sync** | `/rally/` | Startverzögerungen, damit mehrere Rallys gleichzeitig einschlagen |
 | **Reinforcement Timer** | `/reinforce/` | Verstärkungen so timen, dass sie direkt nach einer Gegner-Rally landen |
 | **Hero-Tier-Listen** (Guide) | `/guides/tier-lists/` | Beste Heroes für Bear Trap, Burg / KvK und Arena je Generation |
+| **Bear Hunt Guide** | `/guides/bear-hunt/` | Strategie, Staggering, Leader- und Joiner-Heroes, Truppen-Rechner |
 
 ---
 
@@ -49,6 +50,18 @@ Füllt die Burg zwischen mehreren Gegner-Rallys wieder auf.
 Tier-Listen für **Bear Trap** (Rally-Leader und -Joiner), **Burg / KvK** (Angriff Rally-Lead, Angriff Rally-Joiner, Garnison-Lead, Garnison-Joiner) und **Arena 3v3**, jeweils für Gen 1–8 (Gen 8 komplett von kingshotoptimizer.com). Dazu Truppen-Aufstellung und Hinweise je Modus. Die Auswahl steckt in der URL (z.B. `#bear-7-joiners`) und lässt sich direkt teilen.
 
 **Daten pflegen:** Alle Tiers stehen in `guides/tier-lists/data.js`. Heroes einfach zwischen den Listen `S`, `A`, `B`, `C`, `Avoid` verschieben und `updated` anpassen. Quellen: [kingshotapp.com](https://www.kingshotapp.com/heroes/tier-lists) (Bear Trap, Burg-Angriff-Lead, Arena) und [kingshotoptimizer.com](https://kingshotoptimizer.com/heroes/tier-list/) (Burg-Angriff-Joiner, Garnison-Lead, Garnison-Joiner). Den dortigen gemeinsamen PvP-Joiner-Pool haben wir nach dem ersten Skill jedes Heroes aufgeteilt: offensiv → Angriff, defensiv → Garnison.
+
+---
+
+## 🐻 Bear Hunt Guide
+
+Die Allianz-Strategie für die Bear Hunt auf einer Seite: Kernregeln inkl. Staggering, Rally-Leader (1/9/90), sechs Joiner-Märsche (5/10/85) und ein Truppen-Rechner für das jeweils angesagte Limit (z.B. 100k oder 110k). Mit „Plan kopieren“ für den Allianz-Chat.
+
+**Anpassen:** Heroes, Verhältnisse und Limit-Vorschläge stehen oben in `guides/bear-hunt/app.js` im Block `PLAN`.
+
+## Hero-Bilder
+
+Die Porträts in `assets/heroes/` (160 px, WebP) stammen von kingshotoptimizer.com und sind Spielgrafiken von Century Games – siehe Hinweis im Footer. Dateiname = Hero-Name klein, Leerzeichen als `-`, `&` als `-and-` (z.B. `wee-and-woo.webp`). Fehlt ein Bild, wird automatisch ein Kürzel-Badge angezeigt.
 
 ---
 
