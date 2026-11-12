@@ -149,3 +149,46 @@
   background: var(--bg); border: 1px dashed var(--line);
   color: var(--muted); font: 13px/1.55 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere;
 }
+
+/* ---------- Leader-Alternativen ---------- */
+.leader .alt {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  margin-top: 4px; padding-top: 8px; border-top: 1px dashed var(--line); width: 100%;
+}
+.leader .alt-l { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 700; }
+.leader .alt .badge { width: 40px; height: 40px; font-size: 13px; }
+.leader .alt-n { font-size: 14px; font-weight: 600; color: var(--muted); }
+
+/* ---------- Verhältnis anpassen ---------- */
+.ratio-edit { margin-top: 14px; }
+.ratio-label { display: block; font-weight: 600; font-size: 15px; margin-bottom: 8px; }
+.ratio-fields { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.rf {
+  display: flex; flex-direction: column; gap: 4px; min-width: 0;
+  padding: 8px; border-radius: 10px; background: var(--bg); border: 1px solid var(--line); border-top: 3px solid var(--line);
+  font-size: 12px; color: var(--muted); font-weight: 600;
+}
+.rf[data-type="inf"] { border-top-color: var(--inf); }
+.rf[data-type="cav"] { border-top-color: var(--cav); }
+.rf[data-type="arc"] { border-top-color: var(--arc); }
+.rf-in { display: flex; align-items: center; gap: 4px; }
+.rf-in i { font-style: normal; color: var(--muted); }
+.rf input {
+  width: 100%; min-width: 0; min-height: 40px; padding: 6px 8px;
+  font-size: 18px; font-weight: 700; color: var(--text);
+  background: var(--surface-2); border: 1px solid var(--line); border-radius: 8px;
+  -moz-appearance: textfield;
+}
+.rf input::-webkit-outer-spin-button, .rf input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.rf input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.rf input.invalid { border-color: var(--danger); }
+.rf input[readonly] { background: transparent; border-style: dashed; color: var(--muted); }
+.ratio-note { margin: 8px 0 0; font-size: 13px; color: var(--muted); }
+.link-btn {
+  min-height: 0; padding: 2px 4px; margin-left: 4px; border: 0; background: none;
+  color: var(--accent); font-size: 13px; font-weight: 700; text-decoration: underline; cursor: pointer;
+}
+.link-btn[hidden] { display: none; }
+.rf > span:first-child { hyphens: auto; overflow-wrap: anywhere; line-height: 1.25; }
+.leader .alt-l { font-size: 10px; letter-spacing: .02em; max-width: 100%; overflow-wrap: anywhere; }
+.leader .type { overflow-wrap: anywhere; max-width: 100%; }

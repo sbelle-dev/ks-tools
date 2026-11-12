@@ -7,14 +7,14 @@
     lead: {
       ratio: [1, 9, 90],
       heroes: [
-        { type: 'inf', name: 'Amadeus' },
-        { type: 'cav', name: 'Ava' },
-        { type: 'arc', name: 'Yang' },
+        { type: 'inf', name: 'Amadeus', alt: 'Diego' },
+        { type: 'cav', name: 'Ava', alt: 'Petra' },
+        { type: 'arc', name: 'Luna', alt: 'Yang' },
       ],
     },
     join: {
       ratio: [5, 10, 85],
-      presets: [100000, 110000],
+      presets: [100000, 110000, 120000],
       marches: [
         { main: 'Chenko', skill: 'leth', fill: ['Diana', 'Triton'] },
         { main: 'Yeonwoo', skill: 'leth', fill: ['Fahd', 'Long Fei'] },
@@ -29,145 +29,292 @@
   const STORAGE_KEY = 'ksbearhunt.v1';
 
   const I18N = {
-    en: {
-      back: '← Guides', eyebrow: 'Kingshot · Guide', title: 'Bear Hunt',
-      lead: 'The most efficient Bear Hunt strategy on one page: how the alliance rallies together, which heroes to bring and how many troops to send.',
-      rulesTitle: 'Core rules',
-      rules: [
-        { ic: '📣', t: 'Rally on cooldown', p: 'Everyone who can host starts a new rally as soon as it is available again. More rallies mean more damage on the bear.' },
-        { ic: '⬆️', t: 'Join from the top', p: 'Join the first open rally in the list, then the next one – up to 6 marches. No waiting for the “strongest” leader, no cherry-picking.' },
-        { ic: '💯', t: 'Troop limit per join', p: 'Send at most the announced limit per join – usually {limit}. Hosts have no limit: fill your own rally as much as you can.' },
-        { ic: '⏱️', t: 'Staggering', p: 'Your start time depends on your distance to the bear trap. This way rallies don’t overlap and every single one fills up.', stagger: true },
+    "en": {
+      "back": "← Guides",
+      "eyebrow": "Kingshot · Guide",
+      "title": "Bear Hunt",
+      "lead": "The most efficient Bear Hunt strategy on one page: how the alliance rallies together, which heroes to bring and how many troops to send.",
+      "rulesTitle": "Core rules",
+      "rules": [
+        {
+          "ic": "📣",
+          "t": "Rally on cooldown",
+          "p": "Everyone who can host starts a new rally as soon as it is available again. More rallies mean more damage on the bear."
+        },
+        {
+          "ic": "⬆️",
+          "t": "Join from the top",
+          "p": "Join the first open rally in the list, then the next one – up to 6 marches. No waiting for the “strongest” leader, no cherry-picking."
+        },
+        {
+          "ic": "💯",
+          "t": "Troop limit per join",
+          "p": "Send at most the announced limit per join – usually {limit}. Hosts have no limit: fill your own rally as much as you can."
+        },
+        {
+          "ic": "⏱️",
+          "t": "Staggering",
+          "p": "Your start time depends on your distance to the bear trap. This way rallies don’t overlap and every single one fills up.",
+          "stagger": true
+        }
       ],
-      staggerRow0: 'Front row (closest)', staggerRow1: '1 castle row further back', staggerRowN: '{n} castle rows further back',
-      staggerNow: 'start now', staggerLater: '+{n} min', staggerMore: '… and so on: +1 min per row',
-      leadTitle: 'Rally leaders',
-      leadIntro: 'As host, all your heroes and stats count. Use one hero per troop type:',
-      inf: 'Infantry', cav: 'Cavalry', arc: 'Archers',
-      formation: 'Formation',
-      leadCalc: 'Your march size',
-      leadTipTitle: 'This is the best option.',
-      leadTipText: 'If you are missing one of these heroes, simply use the three best heroes you have for your own rally.',
-      joinTitle: 'Joiner marches',
-      joinIntro: 'Save these 6 marches as presets before the event. Only the first hero (slot 1) brings its skill into the rally – slots 2 and 3 just make sure no hero is used twice.',
-      marchN: 'March {n}', counts: 'Skill counts', slots: 'Slots 2 + 3:',
-      noHeroTitle: 'Missing one of these heroes?',
-      noHeroText: 'Then join with no heroes at all – troops only. That is better than putting the wrong hero in slot 1.',
-      skill_leth: '+25% Lethality', skill_atk: '+25% Attack', skill_split: 'Attack + Lethality', skill_dmg: '+25% damage taken by the bear',
-      troopsTitle: 'Joiner troops',
-      troopsIntro: 'Ratio 5 / 10 / 85. The limit per join is announced before each hunt – usually 100k, sometimes more. Enter it and send exactly these troops:',
-      joinCalc: 'Troop limit per join',
-      notesTitle: 'Good to know',
-      notes: [
-        '<b>Only the first skill of your first hero counts</b> as a joiner – max out that skill. Stars and gear of joiner heroes barely matter.',
-        '<b>A rally uses at most 4 joiner skills.</b> Different types (lethality, attack, damage taken) multiply each other – that’s why the six marches mix them.',
-        '<b>Stick to your march order</b> and never send a hero twice.',
-        '<b>Consistency beats peaks:</b> steady rallies all event long deal the most damage.',
+      "staggerRow0": "Front row (closest)",
+      "staggerRow1": "1 castle row further back",
+      "staggerRowN": "{n} castle rows further back",
+      "staggerNow": "start now",
+      "staggerLater": "+{n} min",
+      "staggerMore": "… and so on: +1 min per row",
+      "leadTitle": "Rally leaders",
+      "leadIntro": "As host, all your heroes and stats count. Use one hero per troop type:",
+      "inf": "Infantry",
+      "cav": "Cavalry",
+      "arc": "Archers",
+      "formation": "Formation",
+      "leadCalc": "Your march size",
+      "leadTipTitle": "This is a recommendation.",
+      "leadTipText": "If you don't have these heroes, simply use the best heroes you own.",
+      "joinTitle": "Joiner marches",
+      "joinIntro": "Save these 6 marches as presets before the event. Only the first hero (slot 1) brings its skill into the rally – slots 2 and 3 just make sure no hero is used twice.",
+      "marchN": "March {n}",
+      "counts": "Skill counts",
+      "slots": "Slots 2 + 3:",
+      "noHeroTitle": "Missing one of these heroes?",
+      "noHeroText": "Then join with no heroes at all – troops only. That is better than putting the wrong hero in slot 1.",
+      "skill_leth": "+25% Lethality",
+      "skill_atk": "+25% Attack",
+      "skill_split": "Attack + Lethality",
+      "skill_dmg": "+25% damage taken by the bear",
+      "troopsTitle": "Joiner troops",
+      "troopsIntro": "Recommended ratio 5 / 10 / 85 – you can adjust it below if your alliance uses a different one. The limit per join is announced before each hunt – usually 100k, sometimes more. Enter it and send exactly these troops:",
+      "joinCalc": "Troop limit per join",
+      "notesTitle": "Good to know",
+      "notes": [
+        "<b>Only the first skill of your first hero counts</b> as a joiner – max out that skill. Stars and gear of joiner heroes barely matter.",
+        "<b>A rally uses at most 4 joiner skills.</b> Different types (lethality, attack, damage taken) multiply each other – that’s why the six marches mix them.",
+        "<b>Stick to your march order</b> and never send a hero twice.",
+        "<b>Consistency beats peaks:</b> steady rallies all event long deal the most damage."
       ],
-      sumTitle: 'In short',
-      sum: [
-        { ic: '📣', t: 'Rally often', s: 'Everyone hosts' },
-        { ic: '⬆️', t: 'Join the top', s: 'No cherry-picking' },
-        { ic: '💯', t: '{limit} limit', s: 'Per join' },
-        { ic: '⏱️', t: 'Stagger', s: 'By distance' },
+      "sumTitle": "In short",
+      "sum": [
+        {
+          "ic": "📣",
+          "t": "Rally often",
+          "s": "Everyone hosts"
+        },
+        {
+          "ic": "⬆️",
+          "t": "Join the top",
+          "s": "No cherry-picking"
+        },
+        {
+          "ic": "💯",
+          "t": "{limit} limit",
+          "s": "Per join"
+        },
+        {
+          "ic": "⏱️",
+          "t": "Stagger",
+          "s": "By distance"
+        }
       ],
-      
-      
-      footer: 'Bear Hunt Guide · Community guide for Kingshot',
+      "footer": "Bear Hunt Guide · Community guide for Kingshot",
+      "altLabel": "Alternative",
+      "ratioLabel": "Adjust ratio",
+      "ratioAuto": "Archers fill up to 100 % automatically.",
+      "ratioReset": "↺ Reset to {r}",
+      "ratioErr": "Infantry + cavalry may be at most 100 %."
     },
-    de: {
-      back: '← Guides', eyebrow: 'Kingshot · Guide', title: 'Bear Hunt',
-      lead: 'Die effizienteste Bear-Hunt-Strategie auf einer Seite: wie die Allianz zusammen rallyt, welche Heroes rein gehören und wie viele Truppen man schickt.',
-      rulesTitle: 'Kernregeln',
-      rules: [
-        { ic: '📣', t: 'Rallys auf Cooldown', p: 'Jeder, der Rallys starten kann, startet sofort eine neue, sobald es wieder geht. Mehr Rallys heißt mehr Schaden am Bären.' },
-        { ic: '⬆️', t: 'Von oben joinen', p: 'Immer die erste offene Rally in der Liste joinen, dann die nächste – bis zu 6 Märsche. Nicht auf den „stärksten“ Leader warten, kein Rosinenpicken.' },
-        { ic: '💯', t: 'Truppenlimit pro Join', p: 'Pro Join höchstens das angesagte Limit schicken – meist {limit}. Hosts haben kein Limit: die eigene Rally so voll wie möglich machen.' },
-        { ic: '⏱️', t: 'Staggering', p: 'Deine Startzeit hängt von deiner Entfernung zur Bärenfalle ab. So überschneiden sich die Rallys nicht und jede einzelne wird voll.', stagger: true },
+    "de": {
+      "back": "← Guides",
+      "eyebrow": "Kingshot · Guide",
+      "title": "Bear Hunt",
+      "lead": "Die effizienteste Bear-Hunt-Strategie auf einer Seite: wie die Allianz zusammen rallyt, welche Heroes rein gehören und wie viele Truppen man schickt.",
+      "rulesTitle": "Kernregeln",
+      "rules": [
+        {
+          "ic": "📣",
+          "t": "Rallys auf Cooldown",
+          "p": "Jeder, der Rallys starten kann, startet sofort eine neue, sobald es wieder geht. Mehr Rallys heißt mehr Schaden am Bären."
+        },
+        {
+          "ic": "⬆️",
+          "t": "Von oben joinen",
+          "p": "Immer die erste offene Rally in der Liste joinen, dann die nächste – bis zu 6 Märsche. Nicht auf den „stärksten“ Leader warten, kein Rosinenpicken."
+        },
+        {
+          "ic": "💯",
+          "t": "Truppenlimit pro Join",
+          "p": "Pro Join höchstens das angesagte Limit schicken – meist {limit}. Hosts haben kein Limit: die eigene Rally so voll wie möglich machen."
+        },
+        {
+          "ic": "⏱️",
+          "t": "Staggering",
+          "p": "Deine Startzeit hängt von deiner Entfernung zur Bärenfalle ab. So überschneiden sich die Rallys nicht und jede einzelne wird voll.",
+          "stagger": true
+        }
       ],
-      staggerRow0: 'Vorderste Reihe (am nächsten)', staggerRow1: '1 Burgreihe weiter hinten', staggerRowN: '{n} Burgreihen weiter hinten',
-      staggerNow: 'sofort starten', staggerLater: '+{n} Min.', staggerMore: '… und so weiter: +1 Min. pro Reihe',
-      leadTitle: 'Rally-Leader',
-      leadIntro: 'Als Host zählen alle deine Heroes und Werte. Nimm je einen Hero pro Truppentyp:',
-      inf: 'Infanterie', cav: 'Kavallerie', arc: 'Bogenschützen',
-      formation: 'Aufstellung',
-      leadCalc: 'Deine Marschgröße',
-      leadTipTitle: 'Das ist die beste Option.',
-      leadTipText: 'Wenn dir einer dieser Heroes fehlt, nimm einfach die drei besten Heroes, die du hast, für deine eigene Rally.',
-      joinTitle: 'Joiner-Märsche',
-      joinIntro: 'Diese 6 Märsche vor dem Event als Presets speichern. Nur der erste Hero (Slot 1) bringt seinen Skill in die Rally – Slot 2 und 3 sorgen nur dafür, dass kein Hero doppelt verwendet wird.',
-      marchN: 'Marsch {n}', counts: 'Skill zählt', slots: 'Slot 2 + 3:',
-      noHeroTitle: 'Dir fehlt einer dieser Heroes?',
-      noHeroText: 'Dann join lieber ganz ohne Heroes – nur mit Truppen. Das ist besser, als einen falschen Hero auf Slot 1 zu setzen.',
-      skill_leth: '+25 % Lethality', skill_atk: '+25 % Angriff', skill_split: 'Angriff + Lethality', skill_dmg: '+25 % Schaden am Bären',
-      troopsTitle: 'Joiner-Truppen',
-      troopsIntro: 'Verhältnis 5 / 10 / 85. Das Limit pro Join wird vor jeder Jagd angesagt – meist 100k, manchmal mehr. Eintragen und genau diese Truppen schicken:',
-      joinCalc: 'Truppenlimit pro Join',
-      notesTitle: 'Gut zu wissen',
-      notes: [
-        '<b>Als Joiner zählt nur der erste Skill deines ersten Heroes</b> – diesen Skill maximieren. Sterne und Ausrüstung der Joiner-Heroes sind fast egal.',
-        '<b>Eine Rally nutzt höchstens 4 Joiner-Skills.</b> Verschiedene Typen (Lethality, Angriff, Schaden am Gegner) multiplizieren sich – deshalb mischen die sechs Märsche sie.',
-        '<b>Marsch-Reihenfolge einhalten</b> und nie einen Hero doppelt schicken.',
-        '<b>Konstanz schlägt Spitzen:</b> gleichmäßige Rallys über das ganze Event machen den meisten Schaden.',
+      "staggerRow0": "Vorderste Reihe (am nächsten)",
+      "staggerRow1": "1 Burgreihe weiter hinten",
+      "staggerRowN": "{n} Burgreihen weiter hinten",
+      "staggerNow": "sofort starten",
+      "staggerLater": "+{n} Min.",
+      "staggerMore": "… und so weiter: +1 Min. pro Reihe",
+      "leadTitle": "Rally-Leader",
+      "leadIntro": "Als Host zählen alle deine Heroes und Werte. Nimm je einen Hero pro Truppentyp:",
+      "inf": "Infanterie",
+      "cav": "Kavallerie",
+      "arc": "Bogenschützen",
+      "formation": "Aufstellung",
+      "leadCalc": "Deine Marschgröße",
+      "leadTipTitle": "Das ist eine Empfehlung.",
+      "leadTipText": "Wenn du diese Helden nicht hast, nimm einfach die besten Helden, die du besitzt.",
+      "joinTitle": "Joiner-Märsche",
+      "joinIntro": "Diese 6 Märsche vor dem Event als Presets speichern. Nur der erste Hero (Slot 1) bringt seinen Skill in die Rally – Slot 2 und 3 sorgen nur dafür, dass kein Hero doppelt verwendet wird.",
+      "marchN": "Marsch {n}",
+      "counts": "Skill zählt",
+      "slots": "Slot 2 + 3:",
+      "noHeroTitle": "Dir fehlt einer dieser Heroes?",
+      "noHeroText": "Dann join lieber ganz ohne Heroes – nur mit Truppen. Das ist besser, als einen falschen Hero auf Slot 1 zu setzen.",
+      "skill_leth": "+25 % Lethality",
+      "skill_atk": "+25 % Angriff",
+      "skill_split": "Angriff + Lethality",
+      "skill_dmg": "+25 % Schaden am Bären",
+      "troopsTitle": "Joiner-Truppen",
+      "troopsIntro": "Empfohlenes Verhältnis 5 / 10 / 85 – unten kannst du es anpassen, falls eure Allianz ein anderes nutzt. Das Limit pro Join wird vor jeder Jagd angesagt – meist 100k, manchmal mehr. Eintragen und genau diese Truppen schicken:",
+      "joinCalc": "Truppenlimit pro Join",
+      "notesTitle": "Gut zu wissen",
+      "notes": [
+        "<b>Als Joiner zählt nur der erste Skill deines ersten Heroes</b> – diesen Skill maximieren. Sterne und Ausrüstung der Joiner-Heroes sind fast egal.",
+        "<b>Eine Rally nutzt höchstens 4 Joiner-Skills.</b> Verschiedene Typen (Lethality, Angriff, Schaden am Gegner) multiplizieren sich – deshalb mischen die sechs Märsche sie.",
+        "<b>Marsch-Reihenfolge einhalten</b> und nie einen Hero doppelt schicken.",
+        "<b>Konstanz schlägt Spitzen:</b> gleichmäßige Rallys über das ganze Event machen den meisten Schaden."
       ],
-      sumTitle: 'Kurz gesagt',
-      sum: [
-        { ic: '📣', t: 'Oft starten', s: 'Jeder hostet' },
-        { ic: '⬆️', t: 'Oben joinen', s: 'Kein Rosinenpicken' },
-        { ic: '💯', t: '{limit} Limit', s: 'Pro Join' },
-        { ic: '⏱️', t: 'Staggering', s: 'Nach Entfernung' },
+      "sumTitle": "Kurz gesagt",
+      "sum": [
+        {
+          "ic": "📣",
+          "t": "Oft starten",
+          "s": "Jeder hostet"
+        },
+        {
+          "ic": "⬆️",
+          "t": "Oben joinen",
+          "s": "Kein Rosinenpicken"
+        },
+        {
+          "ic": "💯",
+          "t": "{limit} Limit",
+          "s": "Pro Join"
+        },
+        {
+          "ic": "⏱️",
+          "t": "Staggering",
+          "s": "Nach Entfernung"
+        }
       ],
-      
-      
-      footer: 'Bear Hunt Guide · Community-Guide für Kingshot',
+      "footer": "Bear Hunt Guide · Community-Guide für Kingshot",
+      "altLabel": "Alternative",
+      "ratioLabel": "Verhältnis anpassen",
+      "ratioAuto": "Bogenschützen füllen automatisch auf 100 % auf.",
+      "ratioReset": "↺ Zurück auf {r}",
+      "ratioErr": "Infanterie + Kavallerie dürfen zusammen höchstens 100 % sein."
     },
-    fr: {
-      back: '← Guides', eyebrow: 'Kingshot · Guide', title: 'Bear Hunt',
-      lead: "La stratégie Bear Hunt la plus efficace sur une seule page : comment l'alliance rallye ensemble, quels héros emmener et combien de troupes envoyer.",
-      rulesTitle: 'Règles de base',
-      rules: [
-        { ic: '📣', t: 'Rally dès que possible', p: "Tous ceux qui peuvent lancer un rally en relancent un dès qu'il est disponible. Plus de rallys, plus de dégâts sur l'ours." },
-        { ic: '⬆️', t: 'Rejoindre par le haut', p: "Rejoins le premier rally ouvert de la liste, puis le suivant – jusqu'à 6 marches. Pas d'attente pour le leader « le plus fort », pas de tri." },
-        { ic: '💯', t: 'Limite de troupes par participation', p: "Envoie au maximum la limite annoncée – en général {limit}. Les hôtes n'ont pas de limite : remplis ton propre rally au maximum." },
-        { ic: '⏱️', t: 'Staggering', p: "Ton heure de départ dépend de ta distance au piège à ours. Ainsi les rallys ne se chevauchent pas et chacun se remplit.", stagger: true },
+    "fr": {
+      "back": "← Guides",
+      "eyebrow": "Kingshot · Guide",
+      "title": "Bear Hunt",
+      "lead": "La stratégie Bear Hunt la plus efficace sur une seule page : comment l'alliance rallye ensemble, quels héros emmener et combien de troupes envoyer.",
+      "rulesTitle": "Règles de base",
+      "rules": [
+        {
+          "ic": "📣",
+          "t": "Rally dès que possible",
+          "p": "Tous ceux qui peuvent lancer un rally en relancent un dès qu'il est disponible. Plus de rallys, plus de dégâts sur l'ours."
+        },
+        {
+          "ic": "⬆️",
+          "t": "Rejoindre par le haut",
+          "p": "Rejoins le premier rally ouvert de la liste, puis le suivant – jusqu'à 6 marches. Pas d'attente pour le leader « le plus fort », pas de tri."
+        },
+        {
+          "ic": "💯",
+          "t": "Limite de troupes par participation",
+          "p": "Envoie au maximum la limite annoncée – en général {limit}. Les hôtes n'ont pas de limite : remplis ton propre rally au maximum."
+        },
+        {
+          "ic": "⏱️",
+          "t": "Staggering",
+          "p": "Ton heure de départ dépend de ta distance au piège à ours. Ainsi les rallys ne se chevauchent pas et chacun se remplit.",
+          "stagger": true
+        }
       ],
-      staggerRow0: 'Première rangée (la plus proche)', staggerRow1: '1 rangée de châteaux plus loin', staggerRowN: '{n} rangées de châteaux plus loin',
-      staggerNow: 'départ immédiat', staggerLater: '+{n} min', staggerMore: '… et ainsi de suite : +1 min par rangée',
-      leadTitle: 'Leaders de rally',
-      leadIntro: "En tant qu'hôte, tous tes héros et toutes tes stats comptent. Prends un héros par type de troupe :",
-      inf: 'Infanterie', cav: 'Cavalerie', arc: 'Archers',
-      formation: 'Formation',
-      leadCalc: 'Taille de ta marche',
-      leadTipTitle: "C'est la meilleure option.",
-      leadTipText: "S'il te manque un de ces héros, prends simplement les trois meilleurs héros que tu as pour ton propre rally.",
-      joinTitle: 'Marches de participation',
-      joinIntro: "Enregistre ces 6 marches en préréglage avant l'événement. Seul le premier héros (emplacement 1) apporte sa compétence au rally – les emplacements 2 et 3 évitent seulement d'utiliser un héros deux fois.",
-      marchN: 'Marche {n}', counts: 'Compétence active', slots: 'Empl. 2 + 3 :',
-      noHeroTitle: 'Il te manque un de ces héros ?',
-      noHeroText: "Alors rejoins sans aucun héros – uniquement avec des troupes. C'est mieux que de mettre le mauvais héros en emplacement 1.",
-      skill_leth: '+25 % létalité', skill_atk: '+25 % attaque', skill_split: 'Attaque + létalité', skill_dmg: "+25 % dégâts subis par l'ours",
-      troopsTitle: 'Troupes de participation',
-      troopsIntro: "Ratio 5 / 10 / 85. La limite par participation est annoncée avant chaque chasse – en général 100k, parfois plus. Saisis-la et envoie exactement ces troupes :",
-      joinCalc: 'Limite de troupes par participation',
-      notesTitle: 'Bon à savoir',
-      notes: [
+      "staggerRow0": "Première rangée (la plus proche)",
+      "staggerRow1": "1 rangée de châteaux plus loin",
+      "staggerRowN": "{n} rangées de châteaux plus loin",
+      "staggerNow": "départ immédiat",
+      "staggerLater": "+{n} min",
+      "staggerMore": "… et ainsi de suite : +1 min par rangée",
+      "leadTitle": "Leaders de rally",
+      "leadIntro": "En tant qu'hôte, tous tes héros et toutes tes stats comptent. Prends un héros par type de troupe :",
+      "inf": "Infanterie",
+      "cav": "Cavalerie",
+      "arc": "Archers",
+      "formation": "Formation",
+      "leadCalc": "Taille de ta marche",
+      "leadTipTitle": "C'est une recommandation.",
+      "leadTipText": "Si tu n'as pas ces héros, prends simplement les meilleurs héros que tu possèdes.",
+      "joinTitle": "Marches de participation",
+      "joinIntro": "Enregistre ces 6 marches en préréglage avant l'événement. Seul le premier héros (emplacement 1) apporte sa compétence au rally – les emplacements 2 et 3 évitent seulement d'utiliser un héros deux fois.",
+      "marchN": "Marche {n}",
+      "counts": "Compétence active",
+      "slots": "Empl. 2 + 3 :",
+      "noHeroTitle": "Il te manque un de ces héros ?",
+      "noHeroText": "Alors rejoins sans aucun héros – uniquement avec des troupes. C'est mieux que de mettre le mauvais héros en emplacement 1.",
+      "skill_leth": "+25 % létalité",
+      "skill_atk": "+25 % attaque",
+      "skill_split": "Attaque + létalité",
+      "skill_dmg": "+25 % dégâts subis par l'ours",
+      "troopsTitle": "Troupes de participation",
+      "troopsIntro": "Ratio recommandé 5 / 10 / 85 – tu peux l'ajuster ci-dessous si ton alliance en utilise un autre. La limite par participation est annoncée avant chaque chasse – en général 100k, parfois plus. Saisis-la et envoie exactement ces troupes :",
+      "joinCalc": "Limite de troupes par participation",
+      "notesTitle": "Bon à savoir",
+      "notes": [
         "<b>Seule la première compétence de ton premier héros compte</b> en participation – monte-la au maximum. Étoiles et équipement des héros participants importent peu.",
         "<b>Un rally utilise au maximum 4 compétences de participants.</b> Des types différents (létalité, attaque, dégâts subis) se multiplient – c'est pourquoi les six marches les mélangent.",
         "<b>Respecte l'ordre de tes marches</b> et n'envoie jamais un héros deux fois.",
-        "<b>La régularité bat les pics :</b> des rallys constants pendant tout l'événement font le plus de dégâts.",
+        "<b>La régularité bat les pics :</b> des rallys constants pendant tout l'événement font le plus de dégâts."
       ],
-      sumTitle: 'En bref',
-      sum: [
-        { ic: '📣', t: 'Rallye souvent', s: 'Tout le monde lance' },
-        { ic: '⬆️', t: 'Par le haut', s: 'Pas de tri' },
-        { ic: '💯', t: 'Limite {limit}', s: 'Par participation' },
-        { ic: '⏱️', t: 'Staggering', s: 'Selon la distance' },
+      "sumTitle": "En bref",
+      "sum": [
+        {
+          "ic": "📣",
+          "t": "Rallye souvent",
+          "s": "Tout le monde lance"
+        },
+        {
+          "ic": "⬆️",
+          "t": "Par le haut",
+          "s": "Pas de tri"
+        },
+        {
+          "ic": "💯",
+          "t": "Limite {limit}",
+          "s": "Par participation"
+        },
+        {
+          "ic": "⏱️",
+          "t": "Staggering",
+          "s": "Selon la distance"
+        }
       ],
-      
-      
-      footer: 'Bear Hunt Guide · Guide communautaire pour Kingshot',
+      "footer": "Bear Hunt Guide · Guide communautaire pour Kingshot",
+      "altLabel": "Alternative",
+      "ratioLabel": "Ajuster le ratio",
+      "ratioAuto": "Les archers complètent automatiquement jusqu’à 100 %.",
+      "ratioReset": "↺ Revenir à {r}",
+      "ratioErr": "Infanterie + cavalerie : 100 % maximum."
     },
-    tr: {
+    "tr": {
       "back": "← Rehberler",
       "eyebrow": "Kingshot · Rehber",
       "title": "Bear Hunt",
@@ -209,8 +356,8 @@
       "arc": "Okçu",
       "formation": "Dizilim",
       "leadCalc": "Yürüyüş büyüklüğün",
-      "leadTipTitle": "En iyi seçenek bu.",
-      "leadTipText": "Bu kahramanlardan biri sende yoksa, kendi rally'n için elindeki en iyi üç kahramanı kullan.",
+      "leadTipTitle": "Bu bir öneridir.",
+      "leadTipText": "Bu kahramanlara sahip değilsen, sahip olduğun en iyi kahramanları kullan.",
       "joinTitle": "Katılımcı yürüyüşleri",
       "joinIntro": "Bu 6 yürüyüşü etkinlikten önce hazır ayar olarak kaydet. Sadece ilk kahraman (slot 1) yeteneğini rally'ye getirir – slot 2 ve 3 sadece hiçbir kahramanın iki kez kullanılmamasını sağlar.",
       "marchN": "Yürüyüş {n}",
@@ -223,7 +370,7 @@
       "skill_split": "Saldırı + Lethality",
       "skill_dmg": "Ayıya +%25 hasar",
       "troopsTitle": "Katılımcı birlikleri",
-      "troopsIntro": "Oran 5 / 10 / 85. Katılım başına limit her avdan önce duyurulur – genellikle 100k, bazen daha fazla. Limiti gir ve tam olarak bu birlikleri gönder:",
+      "troopsIntro": "Önerilen oran 5 / 10 / 85 – ittifakın farklı bir oran kullanıyorsa aşağıdan ayarlayabilirsin. Katılım başına limit her avdan önce duyurulur – genellikle 100k, bazen daha fazla. Limiti gir ve tam olarak bu birlikleri gönder:",
       "joinCalc": "Katılım başına birlik limiti",
       "notesTitle": "Bilmekte fayda var",
       "notes": [
@@ -255,9 +402,14 @@
           "s": "Uzaklığa göre"
         }
       ],
-      "footer": "Bear Hunt Rehberi · Kingshot için topluluk rehberi"
+      "footer": "Bear Hunt Rehberi · Kingshot için topluluk rehberi",
+      "altLabel": "Alternatif",
+      "ratioLabel": "Oranı ayarla",
+      "ratioAuto": "Okçular otomatik olarak %100'e tamamlanır.",
+      "ratioReset": "↺ {r} değerine dön",
+      "ratioErr": "Piyade + süvari en fazla %100 olabilir."
     },
-    es: {
+    "es": {
       "back": "← Guías",
       "eyebrow": "Kingshot · Guía",
       "title": "Bear Hunt",
@@ -299,8 +451,8 @@
       "arc": "Arqueros",
       "formation": "Formación",
       "leadCalc": "Tamaño de tu marcha",
-      "leadTipTitle": "Esta es la mejor opción.",
-      "leadTipText": "Si te falta alguno de estos héroes, usa simplemente los tres mejores héroes que tengas para tu propio rally.",
+      "leadTipTitle": "Esto es una recomendación.",
+      "leadTipText": "Si no tienes estos héroes, usa simplemente los mejores héroes que tengas.",
       "joinTitle": "Marchas de participante",
       "joinIntro": "Guarda estas 6 marchas como preajustes antes del evento. Solo el primer héroe (ranura 1) aporta su habilidad al rally – las ranuras 2 y 3 solo evitan usar un héroe dos veces.",
       "marchN": "Marcha {n}",
@@ -313,7 +465,7 @@
       "skill_split": "Ataque + letalidad",
       "skill_dmg": "+25 % daño recibido por el oso",
       "troopsTitle": "Tropas de participante",
-      "troopsIntro": "Proporción 5 / 10 / 85. El límite por unión se anuncia antes de cada caza – normalmente 100k, a veces más. Introdúcelo y envía exactamente estas tropas:",
+      "troopsIntro": "Proporción recomendada 5 / 10 / 85 – puedes ajustarla abajo si tu alianza usa otra. El límite por unión se anuncia antes de cada caza – normalmente 100k, a veces más. Introdúcelo y envía exactamente estas tropas:",
       "joinCalc": "Límite de tropas por unión",
       "notesTitle": "Bueno saber",
       "notes": [
@@ -345,8 +497,13 @@
           "s": "Según distancia"
         }
       ],
-      "footer": "Guía Bear Hunt · Guía de la comunidad para Kingshot"
-    },
+      "footer": "Guía Bear Hunt · Guía de la comunidad para Kingshot",
+      "altLabel": "Alternativa",
+      "ratioLabel": "Ajustar proporción",
+      "ratioAuto": "Los arqueros completan automáticamente hasta el 100 %.",
+      "ratioReset": "↺ Volver a {r}",
+      "ratioErr": "Infantería + caballería: máximo 100 %."
+    }
   };
 
   // ---------- Zustand ----------
@@ -359,8 +516,12 @@
     lang: KSLang.get(),
     joinLimit: Number.isFinite(saved.joinLimit) && saved.joinLimit > 0 ? saved.joinLimit : PLAN.join.presets[0],
     leadSize: Number.isFinite(saved.leadSize) && saved.leadSize > 0 ? saved.leadSize : 200000,
+    joinRatio: validRatio(saved.joinRatio) ? saved.joinRatio : [...PLAN.join.ratio],
   };
-  const persist = () => store.set({ joinLimit: state.joinLimit, leadSize: state.leadSize });
+  function validRatio(r) {
+    return Array.isArray(r) && r.length === 3 && r.every(v => Number.isInteger(v) && v >= 0 && v <= 100) && r[0] + r[1] + r[2] === 100;
+  }
+  const persist = () => store.set({ joinLimit: state.joinLimit, leadSize: state.leadSize, joinRatio: state.joinRatio });
 
   // ---------- Helfer ----------
   const $ = id => document.getElementById(id);
@@ -455,6 +616,11 @@
       const c = el('div', 'leader');
       c.dataset.type = h.type;
       c.append(el('span', 'type', t(h.type)), badge(h.name), el('span', 'name', h.name));
+      if (h.alt) {
+        const alt = el('div', 'alt');
+        alt.append(el('span', 'alt-l', t('altLabel')), badge(h.alt), el('span', 'alt-n', h.alt));
+        c.appendChild(alt);
+      }
       box.appendChild(c);
     });
   }
@@ -540,7 +706,13 @@
   function renderDynamic() {
     renderRules();
     renderResult('leadResult', state.leadSize, PLAN.lead.ratio);
-    renderResult('joinResult', state.joinLimit, PLAN.join.ratio);
+    renderResult('joinResult', state.joinLimit, state.joinRatio);
+    renderBar('joinBar', 'joinLegend', state.joinRatio);
+    $('joinRatioText').textContent = state.joinRatio.join(' / ');
+    const isDefault = state.joinRatio.join() === PLAN.join.ratio.join();
+    $('ratioReset').hidden = isDefault;
+    $('ratioReset').textContent = t('ratioReset', { r: PLAN.join.ratio.join(' / ') });
+    $('rArc').value = state.joinRatio[2];
     renderPresets();
     renderSummary();
   }
@@ -552,13 +724,36 @@
     $('footerText').textContent = t('footer');
     renderLeaders();
     renderBar('leadBar', 'leadLegend', PLAN.lead.ratio);
-    renderBar('joinBar', 'joinLegend', PLAN.join.ratio);
     renderMarches();
     renderNotes();
     $('leadSize').value = num(state.leadSize);
     $('joinLimit').value = num(state.joinLimit);
+    $('rInf').value = state.joinRatio[0];
+    $('rCav').value = state.joinRatio[1];
+    $('ratioErr').textContent = t('ratioErr');
     renderDynamic();
   }
+
+  // ---------- Verhältnis anpassen ----------
+  function onRatioInput() {
+    const inf = parseInt($('rInf').value, 10), cav = parseInt($('rCav').value, 10);
+    const ok = [inf, cav].every(v => Number.isInteger(v) && v >= 0 && v <= 100) && inf + cav <= 100;
+    $('rInf').classList.toggle('invalid', !ok);
+    $('rCav').classList.toggle('invalid', !ok);
+    $('ratioErr').hidden = ok || $('rInf').value === '' || $('rCav').value === '';
+    if (!ok) return;
+    state.joinRatio = [inf, cav, 100 - inf - cav];
+    persist(); renderDynamic();
+  }
+  ['rInf', 'rCav'].forEach(id => {
+    $(id).addEventListener('input', onRatioInput);
+    $(id).addEventListener('change', () => { $('rInf').value = state.joinRatio[0]; $('rCav').value = state.joinRatio[1]; onRatioInput(); });
+  });
+  $('ratioReset').addEventListener('click', () => {
+    state.joinRatio = [...PLAN.join.ratio];
+    $('rInf').value = state.joinRatio[0]; $('rCav').value = state.joinRatio[1];
+    onRatioInput();
+  });
 
   // ---------- Events ----------
   function bindNumber(input, key) {

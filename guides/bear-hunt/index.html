@@ -7,8 +7,8 @@
   <meta name="description" content="Kingshot Bear Hunt guide: rules, staggering, rally leader and joiner heroes, troop ratios and a troop calculator.">
   <title>Bear Hunt Guide · Kingshot</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐻</text></svg>">
-  <link rel="stylesheet" href="../../assets/styles.css?v=20261112b">
-  <link rel="stylesheet" href="bear-hunt.css?v=20261112b">
+  <link rel="stylesheet" href="../../assets/styles.css?v=20261112c">
+  <link rel="stylesheet" href="bear-hunt.css?v=20261112c">
 </head>
 <body>
   <nav class="crumb">
@@ -77,9 +77,19 @@
       <h2><span class="num">4</span> <span data-i18n="troopsTitle"></span></h2>
       <p class="muted" data-i18n="troopsIntro"></p>
       <div class="formation">
-        <div class="form-head"><span data-i18n="formation"></span> <b class="mono">5 / 10 / 85</b></div>
+        <div class="form-head"><span data-i18n="formation"></span> <b id="joinRatioText" class="mono">5 / 10 / 85</b></div>
         <div id="joinBar" class="bar"></div>
         <div id="joinLegend" class="legend"></div>
+      </div>
+      <div class="ratio-edit">
+        <span class="ratio-label" data-i18n="ratioLabel"></span>
+        <div class="ratio-fields">
+          <label class="rf" data-type="inf"><span data-i18n="inf"></span><span class="rf-in"><input id="rInf" class="mono" type="number" min="0" max="100" step="1" inputmode="numeric"><i>%</i></span></label>
+          <label class="rf" data-type="cav"><span data-i18n="cav"></span><span class="rf-in"><input id="rCav" class="mono" type="number" min="0" max="100" step="1" inputmode="numeric"><i>%</i></span></label>
+          <label class="rf" data-type="arc"><span data-i18n="arc"></span><span class="rf-in"><input id="rArc" class="mono" type="number" readonly tabindex="-1"><i>%</i></span></label>
+        </div>
+        <p id="ratioErr" class="error" hidden></p>
+        <p class="ratio-note"><span data-i18n="ratioAuto"></span> <button id="ratioReset" type="button" class="link-btn" hidden></button></p>
       </div>
       <div class="calc">
         <label for="joinLimit" data-i18n="joinCalc"></label>
@@ -106,7 +116,7 @@
 
   <footer class="foot"><span id="footerText"></span><span class="credit">provided for free with love by HUGO</span><small class="disclaimer">This is a fan-made website and is not affiliated with, endorsed by, or associated with Century Games or the official developers of Kingshot. All game assets, imagery, and text content are copyrights of their respective owners.</small></footer>
 
-  <script src="../../assets/lang.js?v=20261112b"></script>
-  <script src="app.js?v=20261112b"></script>
+  <script src="../../assets/lang.js?v=20261112c"></script>
+  <script src="app.js?v=20261112c"></script>
 </body>
 </html>

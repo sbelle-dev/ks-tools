@@ -52,5 +52,5 @@ guides/bear-hunt/          Bear Hunt Guide – Strategie im Block PLAN (app.js)
   - kingshotapp.com: Bear Trap, Burg Angriff-Lead, Arena (Gen 1–7)
   - kingshotoptimizer.com: Burg Angriff-Joiner, Garnison-Lead, Garnison-Joiner, sowie komplett Gen 8
   - PvP-Joiner-Pool von kingshotoptimizer wird nach dem **ersten Skill** aufgeteilt: offensiv → Angriff, defensiv → Garnison (Ava in beiden).
-- **Bear Hunt:** Leader 1/9/90 (Amadeus, Ava, Yang); Joiner 5/10/85 mit sechs festen Märschen (Slot 1 zählt, Slot 2+3 nur gegen Doppelungen); Truppenlimit meist 100k, manchmal 110k; Staggering nach Entfernung zur Bärenfalle. Vorgaben stammen von Sebastian – nicht eigenmächtig ändern.
+- **Bear Hunt:** Leader 1/9/90 (Amadeus → Alt. Diego, Ava → Alt. Petra, Luna → Alt. Yang); Joiner 5/10/85 (vom Nutzer anpassbar, Bogenschützen = Rest) mit sechs festen Märschen (Slot 1 zählt, Slot 2+3 nur gegen Doppelungen); Truppenlimit-Presets 100k/110k/120k; Staggering nach Entfernung zur Bärenfalle. Vorgaben stammen von Sebastian – nicht eigenmächtig ändern.
 - Spielbegriffe (Rally, Pet, Staggering, Lethality …) in allen Sprachen so lassen, wie die Community sie nutzt.

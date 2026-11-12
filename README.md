@@ -54,7 +54,7 @@ Tier-Listen für **Bear Trap** (Rally-Leader und -Joiner), **Burg / KvK** (Angri
 
 ## 🐻 Bear Hunt Guide
 
-Die Allianz-Strategie für die Bear Hunt auf einer Seite: Kernregeln inkl. Staggering, Rally-Leader (1/9/90), sechs Joiner-Märsche (5/10/85) und ein Truppen-Rechner für das jeweils angesagte Limit (z.B. 100k oder 110k).
+Die Allianz-Strategie für die Bear Hunt auf einer Seite: Kernregeln inkl. Staggering, Rally-Leader (1/9/90) mit Alternativen, sechs Joiner-Märsche (5/10/85, Verhältnis anpassbar) und ein Truppen-Rechner für das jeweils angesagte Limit (Presets 100k/110k/120k oder frei).
 
 **Anpassen:** Heroes, Verhältnisse und Limit-Vorschläge stehen oben in `guides/bear-hunt/app.js` im Block `PLAN`.
 
