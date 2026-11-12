@@ -3,7 +3,8 @@
 Community-Website für das Mobile-Game **Kingshot**: Tools und Guides für Allianzen. Statisches HTML/CSS/JS ohne Build, ohne Backend, ohne Tracker.
 
 - **Repo:** `sbelle-dev/ks-tools` (Branch `main`)
-- **Live:** https://sbelle-dev.github.io/ks-tools/ (GitHub Pages, Root)
+- **Live:** https://ks-hugo.com (eigene Domain über Hostinger, GitHub Pages; alte Adresse sbelle-dev.github.io/ks-tools leitet weiter)
+- **Domain:** `ks-hugo.com` – DNS bei Hostinger (4 A-Records auf GitHub-IPs, `www` → CNAME `sbelle-dev.github.io`). Die Datei `CNAME` im Repo-Root **nicht löschen**, sonst fällt die Domain weg.
 - **Projektordner (Doku):** `C:\Users\hello\OneDrive\_MyCLAUDE\_Projekte\Kingshot-Tools Website Github`
 - **Owner:** Sebastian – kommuniziert auf Deutsch, locker und direkt
 

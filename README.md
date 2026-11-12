@@ -1,5 +1,7 @@
 # ⚔️ Kingshot Tools
 
+**Live:** https://ks-hugo.com
+
 Kleine Community-Tools für Kingshot – laufen komplett im Browser, ohne Backend und Anmeldung.
 
 | Tool | Pfad | Zweck |
@@ -72,6 +74,10 @@ Die Porträts in `assets/heroes/` (160 px, WebP) stammen von kingshotoptimizer.c
    `https://<dein-github-name>.github.io/<repo>/` (Startseite mit allen Tools)
 
 Tipp: Wenn das Repo `<dein-github-name>.github.io` heißt, läuft es direkt unter der Hauptadresse.
+
+## Eigene Domain
+
+Die Seite läuft unter **ks-hugo.com** (DNS bei Hostinger: A-Records `@` → 185.199.108.153 / .109.153 / .110.153 / .111.153, CNAME `www` → `sbelle-dev.github.io`). Die Datei `CNAME` im Repo-Root enthält die Domain und darf nicht gelöscht werden. HTTPS ist in den Pages-Einstellungen erzwungen.
 
 ## Updates und Browser-Cache
 
