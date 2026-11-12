@@ -25,7 +25,7 @@ Läuft komplett im Browser – kein Backend, keine Anmeldung, keine Tracker.
 - Berechnung: langsamster Marsch = Base (GO), alle anderen `+Verzögerung`
 - Optional: Base-Rally manuell wählen – langsamere Rallys starten dann vor der Base (`−Vorlauf`)
 - Visueller Timer: optionaler 3-s-Vorlauf, Countdown mit Zehntelsekunden, grünes GO-Signal, Vibration (Android), Bildschirm bleibt an
-- Deutsch/Englisch umschaltbar
+- Sprachen: Englisch, Deutsch, Französisch, Türkisch, Spanisch
 - Eingaben bleiben im Browser gespeichert
 
 ---

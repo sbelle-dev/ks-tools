@@ -167,6 +167,186 @@
       
       footer: 'Bear Hunt Guide · Guide communautaire pour Kingshot',
     },
+    tr: {
+      "back": "← Rehberler",
+      "eyebrow": "Kingshot · Rehber",
+      "title": "Bear Hunt",
+      "lead": "Tek sayfada en verimli Bear Hunt stratejisi: ittifak birlikte nasıl rally yapar, hangi kahramanlar götürülür ve kaç birlik gönderilir.",
+      "rulesTitle": "Temel kurallar",
+      "rules": [
+        {
+          "ic": "📣",
+          "t": "Cooldown biter bitmez rally",
+          "p": "Rally başlatabilen herkes, tekrar mümkün olur olmaz yeni bir rally başlatır. Daha fazla rally, ayıya daha fazla hasar demek."
+        },
+        {
+          "ic": "⬆️",
+          "t": "Yukarıdan katıl",
+          "p": "Listedeki ilk açık rally'ye katıl, sonra bir sonrakine – en fazla 6 yürüyüş. \"En güçlü\" lideri bekleme, seçicilik yapma."
+        },
+        {
+          "ic": "💯",
+          "t": "Katılım başına birlik limiti",
+          "p": "Katılım başına en fazla duyurulan limiti gönder – genellikle {limit}. Host'ların limiti yok: kendi rally'ni olabildiğince doldur."
+        },
+        {
+          "ic": "⏱️",
+          "t": "Staggering",
+          "p": "Başlama zamanın ayı tuzağına olan uzaklığına bağlıdır. Böylece rally'ler çakışmaz ve her biri dolar.",
+          "stagger": true
+        }
+      ],
+      "staggerRow0": "En ön sıra (en yakın)",
+      "staggerRow1": "1 kale sırası daha geride",
+      "staggerRowN": "{n} kale sırası daha geride",
+      "staggerNow": "hemen başla",
+      "staggerLater": "+{n} dk",
+      "staggerMore": "… ve böyle devam: sıra başına +1 dk",
+      "leadTitle": "Rally liderleri",
+      "leadIntro": "Host olarak tüm kahramanların ve değerlerin sayılır. Her birlik türü için bir kahraman kullan:",
+      "inf": "Piyade",
+      "cav": "Süvari",
+      "arc": "Okçu",
+      "formation": "Dizilim",
+      "leadCalc": "Yürüyüş büyüklüğün",
+      "leadTipTitle": "En iyi seçenek bu.",
+      "leadTipText": "Bu kahramanlardan biri sende yoksa, kendi rally'n için elindeki en iyi üç kahramanı kullan.",
+      "joinTitle": "Katılımcı yürüyüşleri",
+      "joinIntro": "Bu 6 yürüyüşü etkinlikten önce hazır ayar olarak kaydet. Sadece ilk kahraman (slot 1) yeteneğini rally'ye getirir – slot 2 ve 3 sadece hiçbir kahramanın iki kez kullanılmamasını sağlar.",
+      "marchN": "Yürüyüş {n}",
+      "counts": "Yetenek sayılır",
+      "slots": "Slot 2 + 3:",
+      "noHeroTitle": "Bu kahramanlardan biri eksik mi?",
+      "noHeroText": "O zaman hiç kahraman olmadan katıl – sadece birliklerle. Bu, slot 1'e yanlış kahraman koymaktan daha iyi.",
+      "skill_leth": "+%25 Lethality",
+      "skill_atk": "+%25 Saldırı",
+      "skill_split": "Saldırı + Lethality",
+      "skill_dmg": "Ayıya +%25 hasar",
+      "troopsTitle": "Katılımcı birlikleri",
+      "troopsIntro": "Oran 5 / 10 / 85. Katılım başına limit her avdan önce duyurulur – genellikle 100k, bazen daha fazla. Limiti gir ve tam olarak bu birlikleri gönder:",
+      "joinCalc": "Katılım başına birlik limiti",
+      "notesTitle": "Bilmekte fayda var",
+      "notes": [
+        "<b>Katılımcı olarak sadece ilk kahramanının ilk yeteneği sayılır</b> – o yeteneği maksimuma çıkar. Katılımcı kahramanların yıldız ve ekipmanı neredeyse önemsiz.",
+        "<b>Bir rally en fazla 4 katılımcı yeteneği kullanır.</b> Farklı türler (lethality, saldırı, alınan hasar) birbirini çarpar – bu yüzden altı yürüyüş bunları karıştırır.",
+        "<b>Yürüyüş sırana sadık kal</b> ve hiçbir kahramanı iki kez gönderme.",
+        "<b>İstikrar zirveyi yener:</b> etkinlik boyunca düzenli rally'ler en fazla hasarı verir."
+      ],
+      "sumTitle": "Kısaca",
+      "sum": [
+        {
+          "ic": "📣",
+          "t": "Sık rally",
+          "s": "Herkes host olur"
+        },
+        {
+          "ic": "⬆️",
+          "t": "Yukarıdan katıl",
+          "s": "Seçicilik yok"
+        },
+        {
+          "ic": "💯",
+          "t": "{limit} limit",
+          "s": "Katılım başına"
+        },
+        {
+          "ic": "⏱️",
+          "t": "Staggering",
+          "s": "Uzaklığa göre"
+        }
+      ],
+      "footer": "Bear Hunt Rehberi · Kingshot için topluluk rehberi"
+    },
+    es: {
+      "back": "← Guías",
+      "eyebrow": "Kingshot · Guía",
+      "title": "Bear Hunt",
+      "lead": "La estrategia de Bear Hunt más eficiente en una sola página: cómo hace rallies la alianza en conjunto, qué héroes llevar y cuántas tropas enviar.",
+      "rulesTitle": "Reglas básicas",
+      "rules": [
+        {
+          "ic": "📣",
+          "t": "Rally en cuanto se pueda",
+          "p": "Todo el que pueda lanzar rallies lanza uno nuevo en cuanto vuelve a estar disponible. Más rallies, más daño al oso."
+        },
+        {
+          "ic": "⬆️",
+          "t": "Unirse desde arriba",
+          "p": "Únete al primer rally abierto de la lista, luego al siguiente – hasta 6 marchas. Sin esperar al líder \"más fuerte\", sin elegir."
+        },
+        {
+          "ic": "💯",
+          "t": "Límite de tropas por unión",
+          "p": "Envía como máximo el límite anunciado por unión – normalmente {limit}. Los anfitriones no tienen límite: llena tu propio rally todo lo que puedas."
+        },
+        {
+          "ic": "⏱️",
+          "t": "Staggering",
+          "p": "Tu hora de salida depende de tu distancia a la trampa del oso. Así los rallies no se solapan y cada uno se llena.",
+          "stagger": true
+        }
+      ],
+      "staggerRow0": "Primera fila (la más cercana)",
+      "staggerRow1": "1 fila de castillos más atrás",
+      "staggerRowN": "{n} filas de castillos más atrás",
+      "staggerNow": "sal ya",
+      "staggerLater": "+{n} min",
+      "staggerMore": "… y así sucesivamente: +1 min por fila",
+      "leadTitle": "Líderes de rally",
+      "leadIntro": "Como anfitrión cuentan todos tus héroes y estadísticas. Usa un héroe por tipo de tropa:",
+      "inf": "Infantería",
+      "cav": "Caballería",
+      "arc": "Arqueros",
+      "formation": "Formación",
+      "leadCalc": "Tamaño de tu marcha",
+      "leadTipTitle": "Esta es la mejor opción.",
+      "leadTipText": "Si te falta alguno de estos héroes, usa simplemente los tres mejores héroes que tengas para tu propio rally.",
+      "joinTitle": "Marchas de participante",
+      "joinIntro": "Guarda estas 6 marchas como preajustes antes del evento. Solo el primer héroe (ranura 1) aporta su habilidad al rally – las ranuras 2 y 3 solo evitan usar un héroe dos veces.",
+      "marchN": "Marcha {n}",
+      "counts": "Habilidad activa",
+      "slots": "Ranuras 2 + 3:",
+      "noHeroTitle": "¿Te falta alguno de estos héroes?",
+      "noHeroText": "Entonces únete sin ningún héroe – solo con tropas. Es mejor que poner el héroe equivocado en la ranura 1.",
+      "skill_leth": "+25 % letalidad",
+      "skill_atk": "+25 % ataque",
+      "skill_split": "Ataque + letalidad",
+      "skill_dmg": "+25 % daño recibido por el oso",
+      "troopsTitle": "Tropas de participante",
+      "troopsIntro": "Proporción 5 / 10 / 85. El límite por unión se anuncia antes de cada caza – normalmente 100k, a veces más. Introdúcelo y envía exactamente estas tropas:",
+      "joinCalc": "Límite de tropas por unión",
+      "notesTitle": "Bueno saber",
+      "notes": [
+        "<b>Como participante solo cuenta la primera habilidad de tu primer héroe</b> – súbela al máximo. Las estrellas y el equipo de los héroes participantes casi no importan.",
+        "<b>Un rally usa como máximo 4 habilidades de participantes.</b> Los tipos distintos (letalidad, ataque, daño recibido) se multiplican – por eso las seis marchas los mezclan.",
+        "<b>Respeta el orden de tus marchas</b> y nunca envíes un héroe dos veces.",
+        "<b>La constancia gana a los picos:</b> rallies regulares durante todo el evento hacen el mayor daño."
+      ],
+      "sumTitle": "En resumen",
+      "sum": [
+        {
+          "ic": "📣",
+          "t": "Rally a menudo",
+          "s": "Todos lanzan"
+        },
+        {
+          "ic": "⬆️",
+          "t": "Desde arriba",
+          "s": "Sin elegir"
+        },
+        {
+          "ic": "💯",
+          "t": "Límite {limit}",
+          "s": "Por unión"
+        },
+        {
+          "ic": "⏱️",
+          "t": "Staggering",
+          "s": "Según distancia"
+        }
+      ],
+      "footer": "Guía Bear Hunt · Guía de la comunidad para Kingshot"
+    },
   };
 
   // ---------- Zustand ----------

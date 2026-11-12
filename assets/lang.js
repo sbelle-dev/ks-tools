@@ -1,7 +1,7 @@
-/* Gemeinsame Sprachwahl für alle Tools: Standard Englisch, dann Deutsch und Französisch. */
+/* Gemeinsame Sprachwahl für alle Tools: Standard Englisch, dazu Deutsch, Französisch, Türkisch und Spanisch. */
 window.KSLang = (() => {
   const KEY = 'kstools.lang';
-  const LANGS = ['en', 'de', 'fr'];
+  const LANGS = ['en', 'de', 'fr', 'tr', 'es'];
 
   function get() {
     try {

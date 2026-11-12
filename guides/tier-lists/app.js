@@ -213,6 +213,162 @@
       splitNote: "Liste des participants répartie entre attaque et garnison selon la première compétence de chaque héros.",
       footer: 'Tier lists des héros · Guide communautaire pour Kingshot',
     },
+    tr: {
+      "back": "← Rehberler",
+      "eyebrow": "Kingshot · Rehber",
+      "title": "Kahraman Tier Listeleri",
+      "lead": "Bear Trap, Kale / KvK ve Arena için hangi kahramanları kullanmalı – kahraman nesline göre sıralı. Modu ve sunucunun şu anki nesli seç.",
+      "modeBear": "Bear Trap",
+      "modeCastle": "Kale / KvK",
+      "modeArena": "Arena",
+      "genLabel": "Kahraman nesli",
+      "roleLabel": "Rol",
+      "roleLeaders": "Rally lideri",
+      "roleJoiners": "Rally katılımcısı",
+      "roleAtkLead": "Saldırı · Rally lideri",
+      "roleAtkJoin": "Saldırı · Katılımcı",
+      "roleGarLead": "Garnizon · Lider",
+      "roleGarJoin": "Garnizon · Katılımcı",
+      "title_bear_leaders": "Bear Trap · Gen {g} · Rally liderleri",
+      "title_bear_joiners": "Bear Trap · Gen {g} · Rally katılımcıları",
+      "title_castle_atk-lead": "Kale / KvK · Gen {g} · Saldırı rally lideri",
+      "title_castle_atk-join": "Kale / KvK · Gen {g} · Saldırı katılımcısı",
+      "title_castle_gar-lead": "Kale / KvK · Gen {g} · Garnizon lideri",
+      "title_castle_gar-join": "Kale / KvK · Gen {g} · Garnizon katılımcısı",
+      "title_arena": "Arena 3v3 · Gen {g}",
+      "intro_bear_leaders": "Rally lideri olarak tüm değerlerin ve kahramanlarının tüm yetenekleri sayılır. Ham değerlere (yıldızlar, ekipman) ve saldırı artıran widget'lı kahramanlara öncelik ver.",
+      "intro_bear_joiners": "Katılımcı olarak sadece ilk kahramanının ilk yeteneği (sağ üst) sayılır – ilk yeteneği hasar veya lethality ekleyen kahramanları seç.",
+      "intro_castle_atk-lead": "Düşman kalesine veya KvK hedefine rally'yi sen yönetiyorsun. Tüm değerlerin ve kahramanlarının tüm yetenekleri sayılır – saldırı widget'ları ve yüksek saldırı belirleyicidir.",
+      "intro_castle_atk-join": "Bir saldırı rally'sine katılıyorsun. Sadece ilk kahramanının ilk yeteneği sayılır – saldırgan olmalı (saldırı, lethality, düşmana ek hasar).",
+      "intro_castle_gar-lead": "Kaleyi garnizon kaptanı olarak tutuyorsun. Tüm değerlerin ve yeteneklerin sayılır – savunma widget'ları ve yüksek savunma/can en önemlisi.",
+      "intro_castle_gar-join": "Bir garnizonu takviye ediyorsun. Sadece ilk kahramanının ilk yeteneği sayılır – savunmacı olmalı (savunma, can, düşmandan daha az hasar).",
+      "intro_arena": "3v3 Arena savaşları için. Üç kahramanın arasındaki sinerji, tek tek güçten daha önemli.",
+      "formationTitle": "Birlik dizilimi",
+      "tipsTitle": "Bilmekte fayda var",
+      "inf": "Piyade",
+      "cav": "Süvari",
+      "arc": "Okçu",
+      "formLeader": "Rally lideri",
+      "formJoinerText": "Rally katılımcıları: %90+ okçu.",
+      "formAttack": "Saldırı",
+      "formGarrison": "Garnizon (savunma)",
+      "formSynergy": "Sabit dizilim yok – takımını üç kahramanının yetenek sinerjileri etrafında kur.",
+      "formTankDps": "Önde tanklar, arka sırada alan hasarı ve kontrol.",
+      "tips_bear_leaders": [
+        "Liderler ve katılımcılar farklı değerlendirilir – iyi bir lider zayıf bir katılımcı olabilir, tersi de.",
+        "Lider kahramanlarda yıldızlar ve ekipman, katılımcılara göre çok daha önemli."
+      ],
+      "tips_bear_joiners": [
+        "Sadece ilk kahramanın ilk yeteneği sayılır – katılımcı kahramanların yıldız ve ekipmanı neredeyse önemsiz, ama o ilk yetenek maksimumda olmalı.",
+        "Katılımcılar neredeyse sadece okçu gönderir."
+      ],
+      "tips_castle_atk-lead": [
+        "Avoid satırındaki kahramanlar çoğunlukla savunmacıdır ve saldırıda zayıftır."
+      ],
+      "tipSourceDiff": "Bu liste diğer kale listelerinden farklı bir kaynaktan geliyor, bu yüzden sıralamalar farklı olabilir.",
+      "tips_castle_atk-join": [
+        "Bir rally'de sadece en güçlü 4 katılımcı yeteneği sayılır – maksimum ilk yetenek, daha düşük seviyeli güçlü bir kahramanı yener.",
+        "Yetenek türlerini karıştır (örn. saldırı + lethality): farklı türler çarpılır, aynı türler sadece toplanır. İkişer tane, dört aynısından iyidir.",
+        "İlk yeteneği savunmacı olan kahramanlar garnizon listesine aittir, buraya değil."
+      ],
+      "tips_castle_gar-lead": [
+        "Gen 4'ten itibaren 60/40 garnizon (piyade/süvari, okçusuz) popülerleşir – orada Alcar, Margot ve Saul parlar.",
+        "Kaptandaki savunma widget'ları garnizonda büyük fark yaratır."
+      ],
+      "tips_castle_gar-join": [
+        "Saldırı katılımcılarıyla aynı kurallar: sadece ilk kahramanın ilk yeteneği sayılır, en fazla 4 katılımcı yeteneği.",
+        "Savunma, can ve \"daha az düşman hasarı\" yeteneklerini karıştır – farklı türler çarpılır.",
+        "Ava iki listeye de uyar: ilk yeteneği düşmanların daha fazla hasar almasını sağlar, bu savunanlara da yardım eder."
+      ],
+      "tips_arena": [
+        "Sıralama her yeni nesille değişir – yeni bir nesil gelince tekrar bak.",
+        "Öndeki bir tankı arkadaki hasar verenlerle birleştir."
+      ],
+      "tierAvoid": "Kaçın",
+      "emptyTier": "Bu tier'da kahraman yok",
+      "sourceLabel": "Tier verileri:",
+      "updated": "{d} itibarıyla",
+      "splitNote": "Katılımcı listesi her kahramanın ilk yeteneğine göre saldırı ve garnizon olarak ayrıldı.",
+      "footer": "Kahraman Tier Listeleri · Kingshot için topluluk rehberi"
+    },
+    es: {
+      "back": "← Guías",
+      "eyebrow": "Kingshot · Guía",
+      "title": "Tier lists de héroes",
+      "lead": "Qué héroes usar en Bear Trap, Castillo / KvK y Arena – ordenados por generación de héroes. Elige el modo y la generación actual de tu servidor.",
+      "modeBear": "Bear Trap",
+      "modeCastle": "Castillo / KvK",
+      "modeArena": "Arena",
+      "genLabel": "Generación de héroes",
+      "roleLabel": "Rol",
+      "roleLeaders": "Líder de rally",
+      "roleJoiners": "Participante",
+      "roleAtkLead": "Ataque · Líder",
+      "roleAtkJoin": "Ataque · Participante",
+      "roleGarLead": "Guarnición · Líder",
+      "roleGarJoin": "Guarnición · Participante",
+      "title_bear_leaders": "Bear Trap · Gen {g} · Líderes de rally",
+      "title_bear_joiners": "Bear Trap · Gen {g} · Participantes",
+      "title_castle_atk-lead": "Castillo / KvK · Gen {g} · Líder de ataque",
+      "title_castle_atk-join": "Castillo / KvK · Gen {g} · Participante de ataque",
+      "title_castle_gar-lead": "Castillo / KvK · Gen {g} · Líder de guarnición",
+      "title_castle_gar-join": "Castillo / KvK · Gen {g} · Participante de guarnición",
+      "title_arena": "Arena 3v3 · Gen {g}",
+      "intro_bear_leaders": "Como líder de rally cuentan todas tus estadísticas y todas las habilidades de tus héroes. Prioriza estadísticas brutas (estrellas, equipo) y héroes con widgets de ataque.",
+      "intro_bear_joiners": "Como participante solo cuenta la primera habilidad (arriba a la derecha) de tu primer héroe – elige héroes cuya primera habilidad añada daño o letalidad.",
+      "intro_castle_atk-lead": "Diriges el rally contra un castillo enemigo o un objetivo de KvK. Cuentan todas tus estadísticas y todas las habilidades de tus héroes – los widgets ofensivos y el ataque alto son clave.",
+      "intro_castle_atk-join": "Te unes a un rally de ataque. Solo cuenta la primera habilidad de tu primer héroe – debe ser ofensiva (ataque, letalidad, daño extra al enemigo).",
+      "intro_castle_gar-lead": "Defiendes el castillo como capitán de guarnición. Cuentan todas tus estadísticas y habilidades – los widgets defensivos y la defensa/vida altas son lo más importante.",
+      "intro_castle_gar-join": "Refuerzas una guarnición. Solo cuenta la primera habilidad de tu primer héroe – debe ser defensiva (defensa, vida, menos daño del enemigo).",
+      "intro_arena": "Para combates 3v3 en la Arena. La sinergia entre tus tres héroes importa más que la fuerza individual.",
+      "formationTitle": "Formación de tropas",
+      "tipsTitle": "Bueno saber",
+      "inf": "Infantería",
+      "cav": "Caballería",
+      "arc": "Arqueros",
+      "formLeader": "Líder de rally",
+      "formJoinerText": "Participantes: 90 %+ arqueros.",
+      "formAttack": "Ataque",
+      "formGarrison": "Guarnición (defensa)",
+      "formSynergy": "Sin formación fija – arma tu equipo en torno a las sinergias de habilidades de tus tres héroes.",
+      "formTankDps": "Tanques al frente, daño en área y control en la fila trasera.",
+      "tips_bear_leaders": [
+        "Líderes y participantes se valoran distinto – un gran líder puede ser un participante débil y al revés.",
+        "Las estrellas y el equipo importan mucho más en los héroes líderes que en los participantes."
+      ],
+      "tips_bear_joiners": [
+        "Solo cuenta la primera habilidad del primer héroe – estrellas y equipo de los participantes casi no importan, pero esa primera habilidad debe estar al máximo.",
+        "Los participantes envían casi solo arqueros."
+      ],
+      "tips_castle_atk-lead": [
+        "Los héroes de la fila Avoid son sobre todo defensivos y débiles en ataque."
+      ],
+      "tipSourceDiff": "Esta lista viene de una fuente distinta a las demás listas de castillo, así que las clasificaciones pueden variar.",
+      "tips_castle_atk-join": [
+        "En un rally solo cuentan las 4 habilidades de participante más fuertes – una primera habilidad al máximo supera a un héroe más fuerte con menor nivel.",
+        "Mezcla tipos de habilidad (p. ej. ataque + letalidad): los tipos distintos se multiplican, los iguales solo se suman. Dos de cada uno superan a cuatro iguales.",
+        "Los héroes con primera habilidad defensiva van en la lista de guarnición, no aquí."
+      ],
+      "tips_castle_gar-lead": [
+        "Desde la Gen 4 se popularizan las guarniciones 60/40 (infantería/caballería, sin arqueros) – ahí brillan Alcar, Margot y Saul.",
+        "Los widgets defensivos del capitán marcan una gran diferencia en guarnición."
+      ],
+      "tips_castle_gar-join": [
+        "Mismas reglas que para el ataque: solo cuenta la primera habilidad del primer héroe, máx. 4 habilidades de participantes.",
+        "Mezcla defensa, vida y \"menos daño enemigo\" – los tipos distintos se multiplican.",
+        "Ava encaja en ambas listas: su primera habilidad hace que los enemigos reciban más daño, lo que también ayuda a los defensores."
+      ],
+      "tips_arena": [
+        "La clasificación cambia con cada nueva generación – vuelve a mirar tras el lanzamiento de una nueva gen.",
+        "Combina un tanque al frente con dañadores en la retaguardia."
+      ],
+      "tierAvoid": "Evitar",
+      "emptyTier": "No hay héroes en este tier",
+      "sourceLabel": "Datos de tiers:",
+      "updated": "actualizado {d}",
+      "splitNote": "Lista de participantes dividida en ataque y guarnición según la primera habilidad de cada héroe.",
+      "footer": "Tier lists de héroes · Guía de la comunidad para Kingshot"
+    },
   };
 
   // ---------- Zustand ----------

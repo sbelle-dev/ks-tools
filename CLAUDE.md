@@ -19,7 +19,7 @@ Community-Website für das Mobile-Game **Kingshot**: Tools und Guides für Allia
 
 ## Feste Regeln für alle Seiten
 
-- **Sprachen:** Englisch ist Standard, dazu Deutsch und Französisch. Jeder sichtbare Text steht im `I18N`-Block (`en`/`de`/`fr`) der jeweiligen `app.js`. Sprachwahl über `assets/lang.js` (`KSLang`), gilt seitenübergreifend.
+- **Sprachen:** Englisch ist Standard, dazu Deutsch, Französisch, Türkisch und Spanisch. Jeder sichtbare Text steht im `I18N`-Block (`en`/`de`/`fr`/`tr`/`es`) der jeweiligen `app.js` – neue Texte immer in allen fünf Sprachen. Sprachwahl über `assets/lang.js` (`KSLang`), gilt seitenübergreifend.
 - **Footer** auf jeder Seite (wörtlich):
   - `provided for free with love by HUGO`
   - Disclaimer: *This is a fan-made website and is not affiliated with, endorsed by, or associated with Century Games or the official developers of Kingshot. All game assets, imagery, and text content are copyrights of their respective owners.*
@@ -27,7 +27,8 @@ Community-Website für das Mobile-Game **Kingshot**: Tools und Guides für Allia
 - **Keine Kopier-/„Plan kopieren“-Funktionen** (bewusst entfernt; Spiel-Chat hat ~150-Zeichen-Limit).
 - **Cache-Busting:** Nach jeder Änderung an `.js`/`.css` die Version `?v=JJJJMMTTx` in **allen** HTML-Dateien hochzählen.
 - **Mobile first:** 16 px Seitenrand, kein horizontales Scrollen, Touch-Ziele ≥ 44 px.
-- Neue Seiten: `crumb`-Navigation mit Zurück-Link + Sprachschalter (EN/DE/FR), Karte auf Startseite bzw. in `/guides/` ergänzen.
+- Neue Seiten: `crumb`-Navigation mit Zurück-Link + Sprachschalter (EN/DE/FR/TR/ES), Karte auf Startseite bzw. in `/guides/` ergänzen.
+- Elemente mit `text-transform: uppercase` und englischen Wörtern (z.B. Eyebrow „Kingshot“) bekommen `lang="en"`, sonst wird im Türkischen „İ“ daraus.
 - `localStorage` immer in try/catch, Seite muss auch ohne funktionieren.
 
 ## Struktur

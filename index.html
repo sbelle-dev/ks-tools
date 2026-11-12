@@ -7,7 +7,7 @@
   <meta name="description" content="Community-Tools für Kingshot: Rally Sync und Reinforcement Timer.">
   <title>Kingshot Tools</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚔️</text></svg>">
-  <link rel="stylesheet" href="assets/styles.css?v=20261111f">
+  <link rel="stylesheet" href="assets/styles.css?v=20261112b">
   <style>
     .tools { display: grid; gap: 14px; }
     @media (min-width: 680px) { .tools { grid-template-columns: 1fr 1fr; } }
@@ -31,18 +31,22 @@
   </style>
 </head>
 <body>
-  <header class="top">
-    <div class="brand">
-      <span class="mark" aria-hidden="true">⚔</span>
-      <div>
-        <p class="eyebrow">Kingshot</p>
-        <h1 data-i18n="title">Tools</h1>
-      </div>
-    </div>
+  <nav class="crumb"><span></span>
     <div id="langSwitch" class="lang" role="group" aria-label="Language">
       <button type="button" data-lang="en">EN</button>
       <button type="button" data-lang="de">DE</button>
       <button type="button" data-lang="fr">FR</button>
+      <button type="button" data-lang="tr">TR</button>
+      <button type="button" data-lang="es">ES</button>
+    </div>
+  </nav>
+  <header class="top">
+    <div class="brand">
+      <span class="mark" aria-hidden="true">⚔</span>
+      <div>
+        <p lang="en" class="eyebrow">Kingshot</p>
+        <h1 data-i18n="title">Tools</h1>
+      </div>
     </div>
   </header>
 
@@ -83,7 +87,7 @@
 
   <footer class="foot"><span data-i18n="foot"></span><span class="credit">provided for free with love by HUGO</span><small class="disclaimer">This is a fan-made website and is not affiliated with, endorsed by, or associated with Century Games or the official developers of Kingshot. All game assets, imagery, and text content are copyrights of their respective owners.</small></footer>
 
-  <script src="assets/lang.js?v=20261111f"></script>
+  <script src="assets/lang.js?v=20261112b"></script>
   <script>
     (() => {
       const T = {
@@ -116,6 +120,36 @@
           foot: 'Outils communautaires pour Kingshot',
           secTools: 'Outils', secGuides: 'Guides', tierTitle: 'Tier lists des héros', tierDesc: 'Les meilleurs héros pour le Bear Trap, le château / KvK et l\'arène – par génération, pour leaders et participants.', bearTitle: 'Guide Bear Hunt', bearDesc: 'La stratégie Bear Hunt la plus efficace : règles, staggering, leaders, marches de participation et calculateur de troupes.',
           read: 'Lire →',
+        },
+        tr: {
+          "title": "Araçlar & Rehberler",
+          "lead": "Rally ve savunma için küçük yardımcılar – tamamen tarayıcında çalışır, giriş gerekmez.",
+          "rallyDesc": "Birden fazla rally'nin aynı anda vurması için başlangıç gecikmelerini hesapla. Görsel geri sayımla.",
+          "reinfDesc": "Takviyeleri, düşman rally'si vurduktan hemen sonra – bir sonraki gelmeden önce – varacak şekilde zamanla.",
+          "open": "Aç →",
+          "foot": "Kingshot için topluluk araçları",
+          "secTools": "Araçlar",
+          "secGuides": "Rehberler",
+          "tierTitle": "Kahraman Tier Listeleri",
+          "tierDesc": "Bear Trap, Kale / KvK ve Arena için en iyi kahramanlar – nesle göre, rally liderleri ve katılımcılar için.",
+          "bearTitle": "Bear Hunt Rehberi",
+          "bearDesc": "En verimli Bear Hunt stratejisi: kurallar, staggering, rally liderleri, katılımcı yürüyüşleri ve birlik hesaplayıcı.",
+          "read": "Oku →"
+        },
+        es: {
+          "title": "Herramientas y guías",
+          "lead": "Pequeñas ayudas para rallies y defensa – funcionan por completo en tu navegador, sin registro.",
+          "rallyDesc": "Calcula los retrasos de salida para que varios rallies impacten a la vez. Con cuenta atrás visual.",
+          "reinfDesc": "Sincroniza tus refuerzos para que lleguen justo después del impacto de un rally enemigo – antes de que llegue el siguiente.",
+          "open": "Abrir →",
+          "foot": "Herramientas de la comunidad para Kingshot",
+          "secTools": "Herramientas",
+          "secGuides": "Guías",
+          "tierTitle": "Tier lists de héroes",
+          "tierDesc": "Los mejores héroes para Bear Trap, Castillo / KvK y Arena – por generación, para líderes y participantes.",
+          "bearTitle": "Guía Bear Hunt",
+          "bearDesc": "La estrategia de Bear Hunt más eficiente: reglas, staggering, líderes de rally, marchas de participante y calculadora de tropas.",
+          "read": "Leer →"
         },
       };
       let lang = KSLang.get();
