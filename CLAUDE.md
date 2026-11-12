@@ -11,7 +11,7 @@ Community-Website für das Mobile-Game **Kingshot**: Tools und Guides für Allia
 
 - **Neue Seiten/Features: erst Konzept zeigen, nach Freigabe bauen und pushen.** Kleine Änderungen (Texte, Hinweise, Fixes) direkt umsetzen.
 - Bei Unklarheiten kurz nachfragen statt annehmen.
-- Vor dem Push im Browser testen (Playwright, Handy 375–390 px + Desktop, alle drei Sprachen, keine Konsolenfehler).
+- Vor dem Push im Browser testen (Playwright, Handy 375–390 px + Desktop, alle fünf Sprachen, keine Konsolenfehler).
 - Nach dem Push prüfen, ob es live ist (Pages braucht ~30–60 s).
 - **Nach jedem Push** im Projektordner `01_Projekt-Doku.md` und `02_Changelog.md` aktualisieren und `04_Code/` auf den Repo-Stand bringen (falls der Ordner verbunden ist).
 - Commits: Autor `sbelle-dev <sbelle-dev@users.noreply.github.com>`, Nachricht auf Deutsch.
